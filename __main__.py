@@ -10,10 +10,10 @@ import numpy as np
 from collections import defaultdict
 
 # Import pipeline modules
-from community_pipeline.data_io import get_graph
-from community_pipeline.detection import run_louvain, refine_girvan_newman, enhance_infomap
-from community_pipeline.evaluation import evaluate_all
-from community_pipeline.visualization import plot_communities
+from data_io import get_graph
+from detection import run_louvain, refine_girvan_newman, enhance_infomap
+from evaluation import evaluate_all
+from visualization import plot_communities
 
 # Configure logging
 def setup_logging():
@@ -106,7 +106,8 @@ def main():
     
     # Step 1: Load the graph
     url = "https://snap.stanford.edu/data/com-LiveJournal.tar.gz"
-    G = get_graph(data_dir, url, sample_size)
+    edge_file_path = args.edge_file if hasattr(args, 'edge_file') else config.get('edge_file', None)
+    G = get_graph(data_dir, edge_file_path=edge_file_path, url=url, sample_size=sample_size)
     
     # Step 2: Run initial community detection using Louvain
     partition, communities = run_louvain(G)

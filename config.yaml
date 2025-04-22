@@ -2,7 +2,7 @@
 
 # Data settings
 data_dir: data
-sample_size: 10000  # Set to null for full graph
+sample_size: 400000  # Set to null for full graph
 
 # Algorithm parameters
 size_threshold: 500  # Communities larger than this will be refined

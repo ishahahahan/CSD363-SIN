@@ -1,34 +1,194 @@
-[2025-04-20 19:15:33,282] INFO [__main__.py:82] - Starting Community Detection Pipeline
-[2025-04-20 19:15:33,286] INFO [__main__.py:103] - Configuration: data_dir=data, sample_size=None, size_threshold=1000, target_subcommunities=5, modularity_threshold=0.3
-[2025-04-20 19:24:36,351] INFO [__main__.py:82] - Starting Community Detection Pipeline
-[2025-04-20 19:24:36,351] INFO [__main__.py:93] - Loading configuration from config.yaml
-[2025-04-20 19:24:36,351] INFO [__main__.py:103] - Configuration: data_dir=data, sample_size=None, size_threshold=1000, target_subcommunities=5, modularity_threshold=0.3
-[2025-04-20 19:30:35,628] INFO [__main__.py:82] - Starting Community Detection Pipeline
-[2025-04-20 19:30:35,628] INFO [__main__.py:93] - Loading configuration from config.yaml
-[2025-04-20 19:30:35,628] INFO [__main__.py:103] - Configuration: data_dir=data, sample_size=None, size_threshold=1000, target_subcommunities=5, modularity_threshold=0.3
-[2025-04-20 19:32:32,845] INFO [__main__.py:82] - Starting Community Detection Pipeline
-[2025-04-20 19:32:32,853] INFO [__main__.py:93] - Loading configuration from config.yaml
-[2025-04-20 19:32:32,856] INFO [__main__.py:103] - Configuration: data_dir=data, sample_size=None, size_threshold=1000, target_subcommunities=5, modularity_threshold=0.3
-[2025-04-20 19:34:09,362] INFO [__main__.py:82] - Starting Community Detection Pipeline
-[2025-04-20 19:34:09,362] INFO [__main__.py:93] - Loading configuration from config.yaml
-[2025-04-20 19:34:09,362] INFO [__main__.py:103] - Configuration: data_dir=data, sample_size=None, size_threshold=1000, target_subcommunities=5, modularity_threshold=0.3
-[2025-04-20 19:40:18,104] INFO [__main__.py:82] - Starting Community Detection Pipeline
-[2025-04-20 19:40:18,104] INFO [__main__.py:93] - Loading configuration from config.yaml
-[2025-04-20 19:40:18,104] INFO [__main__.py:103] - Configuration: data_dir=data, sample_size=None, size_threshold=1000, target_subcommunities=5, modularity_threshold=0.3
-[2025-04-20 19:43:34,813] INFO [__main__.py:82] - Starting Community Detection Pipeline
-[2025-04-20 19:43:34,829] INFO [__main__.py:93] - Loading configuration from config.yaml
-[2025-04-20 19:43:34,829] INFO [__main__.py:103] - Configuration: data_dir=data, sample_size=None, size_threshold=1000, target_subcommunities=5, modularity_threshold=0.3
-[2025-04-20 19:47:32,133] INFO [__main__.py:114] - Initial Louvain: 73882 communities
-[2025-04-20 20:22:38,044] INFO [__main__.py:123] - After refinement: 74311 communities
-[2025-04-20 20:23:02,449] INFO [__main__.py:132] - Final communities: 107736 communities
-[2025-04-20 20:23:06,927] INFO [__main__.py:142] - ==================================================
-[2025-04-20 20:23:06,928] INFO [__main__.py:143] - COMMUNITY DETECTION PIPELINE SUMMARY
-[2025-04-20 20:23:06,929] INFO [__main__.py:144] - ==================================================
-[2025-04-20 20:23:06,929] INFO [__main__.py:145] - Nodes: 477998
-[2025-04-20 20:23:07,088] INFO [__main__.py:146] - Edges: 530872
-[2025-04-20 20:23:07,089] INFO [__main__.py:147] - Number of communities: 107736
-[2025-04-20 20:23:07,089] INFO [__main__.py:148] - Modularity: 0.7192
-[2025-04-20 20:23:07,089] INFO [__main__.py:149] - Average conductance: 0.0928
-[2025-04-20 20:23:07,090] INFO [__main__.py:152] - Visualization saved to: community_visualization.png
-[2025-04-20 20:23:07,090] INFO [__main__.py:153] - Total runtime: 2372.11 seconds
-[2025-04-20 20:23:07,090] INFO [__main__.py:154] - ==================================================
+[2025-04-22 15:46:18,158] INFO [__main__.py:82] - Starting Community Detection Pipeline
+[2025-04-22 15:46:18,158] INFO [__main__.py:93] - Loading configuration from config.yaml
+[2025-04-22 15:46:18,176] INFO [__main__.py:109] - Configuration: data_dir=data, sample_size=40000, size_threshold=500, target_subcommunities=5, modularity_threshold=0.3
+[2025-04-22 15:46:26,333] INFO [__main__.py:120] - Initial Louvain: 30685 communities
+[2025-04-22 15:46:26,419] INFO [__main__.py:129] - After refinement: 30685 communities
+[2025-04-22 15:46:27,455] INFO [__main__.py:138] - Final communities: 30865 communities
+[2025-04-22 15:48:54,343] INFO [__main__.py:82] - Starting Community Detection Pipeline
+[2025-04-22 15:48:54,347] INFO [__main__.py:93] - Loading configuration from config.yaml
+[2025-04-22 15:48:54,347] INFO [__main__.py:109] - Configuration: data_dir=data, sample_size=40000, size_threshold=500, target_subcommunities=5, modularity_threshold=0.3
+[2025-04-22 15:49:02,062] INFO [__main__.py:120] - Initial Louvain: 30685 communities
+[2025-04-22 15:49:02,116] INFO [__main__.py:129] - After refinement: 30685 communities
+[2025-04-22 15:49:02,956] INFO [__main__.py:138] - Final communities: 30865 communities
+[2025-04-22 15:51:14,011] INFO [__main__.py:82] - Starting Community Detection Pipeline
+[2025-04-22 15:51:14,013] INFO [__main__.py:93] - Loading configuration from config.yaml
+[2025-04-22 15:51:14,015] INFO [__main__.py:109] - Configuration: data_dir=data, sample_size=40000, size_threshold=500, target_subcommunities=5, modularity_threshold=0.3
+[2025-04-22 15:51:19,331] INFO [__main__.py:120] - Initial Louvain: 30685 communities
+[2025-04-22 15:51:19,353] INFO [__main__.py:129] - After refinement: 30685 communities
+[2025-04-22 15:51:19,837] INFO [__main__.py:138] - Final communities: 30865 communities
+[2025-04-22 15:54:48,041] INFO [__main__.py:82] - Starting Community Detection Pipeline
+[2025-04-22 15:54:48,044] INFO [__main__.py:93] - Loading configuration from config.yaml
+[2025-04-22 15:54:48,047] INFO [__main__.py:109] - Configuration: data_dir=data, sample_size=40000, size_threshold=500, target_subcommunities=5, modularity_threshold=0.3
+[2025-04-22 15:54:53,485] INFO [__main__.py:120] - Initial Louvain: 30685 communities
+[2025-04-22 15:54:53,510] INFO [__main__.py:129] - After refinement: 30685 communities
+[2025-04-22 15:54:54,076] INFO [__main__.py:138] - Final communities: 30865 communities
+[2025-04-22 15:56:49,147] INFO [__main__.py:82] - Starting Community Detection Pipeline
+[2025-04-22 15:56:49,149] INFO [__main__.py:93] - Loading configuration from config.yaml
+[2025-04-22 15:56:49,151] INFO [__main__.py:109] - Configuration: data_dir=data, sample_size=40000, size_threshold=500, target_subcommunities=5, modularity_threshold=0.3
+[2025-04-22 15:56:55,155] INFO [__main__.py:120] - Initial Louvain: 30685 communities
+[2025-04-22 15:56:55,177] INFO [__main__.py:129] - After refinement: 30685 communities
+[2025-04-22 15:56:55,673] INFO [__main__.py:138] - Final communities: 30865 communities
+[2025-04-22 15:57:42,540] INFO [__main__.py:152] - ==================================================
+[2025-04-22 15:57:42,541] INFO [__main__.py:153] - COMMUNITY DETECTION PIPELINE SUMMARY
+[2025-04-22 15:57:42,541] INFO [__main__.py:154] - ==================================================
+[2025-04-22 15:57:42,542] INFO [__main__.py:155] - Nodes: 68436
+[2025-04-22 15:57:42,565] INFO [__main__.py:156] - Edges: 37815
+[2025-04-22 15:57:42,566] INFO [__main__.py:157] - Number of communities: 30865
+[2025-04-22 15:57:42,567] INFO [__main__.py:158] - Modularity: 0.9949
+[2025-04-22 15:57:42,567] INFO [__main__.py:159] - Average conductance: 0.0016
+[2025-04-22 15:57:42,567] INFO [__main__.py:162] - Visualization saved to: full_community_visualization.png
+[2025-04-22 15:57:42,568] INFO [__main__.py:163] - Total runtime: 53.39 seconds
+[2025-04-22 15:57:42,568] INFO [__main__.py:164] - ==================================================
+[2025-04-22 15:59:10,037] INFO [__main__.py:82] - Starting Community Detection Pipeline
+[2025-04-22 15:59:10,040] INFO [__main__.py:93] - Loading configuration from config.yaml
+[2025-04-22 15:59:10,042] INFO [__main__.py:109] - Configuration: data_dir=data, sample_size=40000, size_threshold=500, target_subcommunities=5, modularity_threshold=0.3
+[2025-04-22 15:59:15,314] INFO [__main__.py:120] - Initial Louvain: 30685 communities
+[2025-04-22 15:59:15,344] INFO [__main__.py:129] - After refinement: 30685 communities
+[2025-04-22 15:59:15,881] INFO [__main__.py:138] - Final communities: 30865 communities
+[2025-04-22 16:00:06,015] INFO [__main__.py:152] - ==================================================
+[2025-04-22 16:00:06,015] INFO [__main__.py:153] - COMMUNITY DETECTION PIPELINE SUMMARY
+[2025-04-22 16:00:06,015] INFO [__main__.py:154] - ==================================================
+[2025-04-22 16:00:06,016] INFO [__main__.py:155] - Nodes: 68436
+[2025-04-22 16:00:06,051] INFO [__main__.py:156] - Edges: 37815
+[2025-04-22 16:00:06,052] INFO [__main__.py:157] - Number of communities: 30865
+[2025-04-22 16:00:06,053] INFO [__main__.py:158] - Modularity: 0.9949
+[2025-04-22 16:00:06,053] INFO [__main__.py:159] - Average conductance: 0.0016
+[2025-04-22 16:00:06,053] INFO [__main__.py:162] - Visualization saved to: full_community_visualization.png
+[2025-04-22 16:00:06,053] INFO [__main__.py:163] - Total runtime: 55.98 seconds
+[2025-04-22 16:00:06,053] INFO [__main__.py:164] - ==================================================
+[2025-04-22 16:03:14,764] INFO [__main__.py:82] - Starting Community Detection Pipeline
+[2025-04-22 16:03:14,767] INFO [__main__.py:93] - Loading configuration from config.yaml
+[2025-04-22 16:03:14,769] INFO [__main__.py:109] - Configuration: data_dir=data, sample_size=40000, size_threshold=500, target_subcommunities=5, modularity_threshold=0.3
+[2025-04-22 16:03:20,258] INFO [__main__.py:120] - Initial Louvain: 30685 communities
+[2025-04-22 16:03:20,277] INFO [__main__.py:129] - After refinement: 30685 communities
+[2025-04-22 16:03:20,741] INFO [__main__.py:138] - Final communities: 30865 communities
+[2025-04-22 16:03:29,331] INFO [__main__.py:152] - ==================================================
+[2025-04-22 16:03:29,331] INFO [__main__.py:153] - COMMUNITY DETECTION PIPELINE SUMMARY
+[2025-04-22 16:03:29,331] INFO [__main__.py:154] - ==================================================
+[2025-04-22 16:03:29,332] INFO [__main__.py:155] - Nodes: 68436
+[2025-04-22 16:03:29,351] INFO [__main__.py:156] - Edges: 37815
+[2025-04-22 16:03:29,352] INFO [__main__.py:157] - Number of communities: 30865
+[2025-04-22 16:03:29,352] INFO [__main__.py:158] - Modularity: 0.9949
+[2025-04-22 16:03:29,353] INFO [__main__.py:159] - Average conductance: 0.0016
+[2025-04-22 16:03:29,353] INFO [__main__.py:162] - Visualization saved to: full_community_visualization.png
+[2025-04-22 16:03:29,353] INFO [__main__.py:163] - Total runtime: 14.57 seconds
+[2025-04-22 16:03:29,354] INFO [__main__.py:164] - ==================================================
+[2025-04-22 16:04:30,708] INFO [__main__.py:82] - Starting Community Detection Pipeline
+[2025-04-22 16:04:30,711] INFO [__main__.py:93] - Loading configuration from config.yaml
+[2025-04-22 16:04:30,719] INFO [__main__.py:109] - Configuration: data_dir=data, sample_size=10000, size_threshold=500, target_subcommunities=5, modularity_threshold=0.3
+[2025-04-22 16:04:31,782] INFO [__main__.py:120] - Initial Louvain: 9045 communities
+[2025-04-22 16:04:31,788] INFO [__main__.py:129] - After refinement: 9045 communities
+[2025-04-22 16:04:31,810] INFO [__main__.py:138] - Final communities: 9045 communities
+[2025-04-22 16:04:35,053] INFO [__main__.py:152] - ==================================================
+[2025-04-22 16:04:35,054] INFO [__main__.py:153] - COMMUNITY DETECTION PIPELINE SUMMARY
+[2025-04-22 16:04:35,054] INFO [__main__.py:154] - ==================================================
+[2025-04-22 16:04:35,054] INFO [__main__.py:155] - Nodes: 18607
+[2025-04-22 16:04:35,068] INFO [__main__.py:156] - Edges: 9565
+[2025-04-22 16:04:35,068] INFO [__main__.py:157] - Number of communities: 9045
+[2025-04-22 16:04:35,068] INFO [__main__.py:158] - Modularity: 0.9999
+[2025-04-22 16:04:35,069] INFO [__main__.py:159] - Average conductance: 0.0000
+[2025-04-22 16:04:35,069] INFO [__main__.py:162] - Visualization saved to: full_community_visualization.png
+[2025-04-22 16:04:35,069] INFO [__main__.py:163] - Total runtime: 4.34 seconds
+[2025-04-22 16:04:35,069] INFO [__main__.py:164] - ==================================================
+[2025-04-22 16:09:33,915] INFO [__main__.py:82] - Starting Community Detection Pipeline
+[2025-04-22 16:09:33,918] INFO [__main__.py:93] - Loading configuration from config.yaml
+[2025-04-22 16:09:33,920] INFO [__main__.py:109] - Configuration: data_dir=data, sample_size=10000, size_threshold=500, target_subcommunities=5, modularity_threshold=0.3
+[2025-04-22 16:09:34,994] INFO [__main__.py:120] - Initial Louvain: 9045 communities
+[2025-04-22 16:09:35,001] INFO [__main__.py:129] - After refinement: 9045 communities
+[2025-04-22 16:09:35,027] INFO [__main__.py:138] - Final communities: 9045 communities
+[2025-04-22 16:09:38,324] INFO [__main__.py:152] - ==================================================
+[2025-04-22 16:09:38,324] INFO [__main__.py:153] - COMMUNITY DETECTION PIPELINE SUMMARY
+[2025-04-22 16:09:38,324] INFO [__main__.py:154] - ==================================================
+[2025-04-22 16:09:38,325] INFO [__main__.py:155] - Nodes: 18607
+[2025-04-22 16:09:38,335] INFO [__main__.py:156] - Edges: 9565
+[2025-04-22 16:09:38,336] INFO [__main__.py:157] - Number of communities: 9045
+[2025-04-22 16:09:38,337] INFO [__main__.py:158] - Modularity: 0.9999
+[2025-04-22 16:09:38,337] INFO [__main__.py:159] - Average conductance: 0.0000
+[2025-04-22 16:09:38,337] INFO [__main__.py:162] - Visualization saved to: full_community_visualization.png
+[2025-04-22 16:09:38,337] INFO [__main__.py:163] - Total runtime: 4.41 seconds
+[2025-04-22 16:09:38,338] INFO [__main__.py:164] - ==================================================
+[2025-04-22 16:10:10,704] INFO [__main__.py:82] - Starting Community Detection Pipeline
+[2025-04-22 16:10:10,707] INFO [__main__.py:93] - Loading configuration from config.yaml
+[2025-04-22 16:10:10,710] INFO [__main__.py:109] - Configuration: data_dir=data, sample_size=10000, size_threshold=500, target_subcommunities=5, modularity_threshold=0.3
+[2025-04-22 16:10:12,117] INFO [__main__.py:120] - Initial Louvain: 9045 communities
+[2025-04-22 16:10:12,124] INFO [__main__.py:129] - After refinement: 9045 communities
+[2025-04-22 16:10:12,151] INFO [__main__.py:138] - Final communities: 9045 communities
+[2025-04-22 16:10:15,457] INFO [__main__.py:152] - ==================================================
+[2025-04-22 16:10:15,458] INFO [__main__.py:153] - COMMUNITY DETECTION PIPELINE SUMMARY
+[2025-04-22 16:10:15,458] INFO [__main__.py:154] - ==================================================
+[2025-04-22 16:10:15,458] INFO [__main__.py:155] - Nodes: 18607
+[2025-04-22 16:10:15,470] INFO [__main__.py:156] - Edges: 9565
+[2025-04-22 16:10:15,471] INFO [__main__.py:157] - Number of communities: 9045
+[2025-04-22 16:10:15,472] INFO [__main__.py:158] - Modularity: 0.9999
+[2025-04-22 16:10:15,472] INFO [__main__.py:159] - Average conductance: 0.0000
+[2025-04-22 16:10:15,472] INFO [__main__.py:162] - Visualization saved to: full_community_visualization.png
+[2025-04-22 16:10:15,472] INFO [__main__.py:163] - Total runtime: 4.75 seconds
+[2025-04-22 16:10:15,473] INFO [__main__.py:164] - ==================================================
+[2025-04-22 16:12:04,493] INFO [__main__.py:82] - Starting Community Detection Pipeline
+[2025-04-22 16:12:04,495] INFO [__main__.py:93] - Loading configuration from config.yaml
+[2025-04-22 16:12:04,498] INFO [__main__.py:109] - Configuration: data_dir=data, sample_size=10000, size_threshold=500, target_subcommunities=5, modularity_threshold=0.3
+[2025-04-22 16:12:05,805] INFO [__main__.py:120] - Initial Louvain: 9045 communities
+[2025-04-22 16:12:05,812] INFO [__main__.py:129] - After refinement: 9045 communities
+[2025-04-22 16:12:05,835] INFO [__main__.py:138] - Final communities: 9045 communities
+[2025-04-22 16:12:09,313] INFO [__main__.py:152] - ==================================================
+[2025-04-22 16:12:09,313] INFO [__main__.py:153] - COMMUNITY DETECTION PIPELINE SUMMARY
+[2025-04-22 16:12:09,313] INFO [__main__.py:154] - ==================================================
+[2025-04-22 16:12:09,314] INFO [__main__.py:155] - Nodes: 18607
+[2025-04-22 16:12:09,324] INFO [__main__.py:156] - Edges: 9565
+[2025-04-22 16:12:09,326] INFO [__main__.py:157] - Number of communities: 9045
+[2025-04-22 16:12:09,327] INFO [__main__.py:158] - Modularity: 0.9999
+[2025-04-22 16:12:09,327] INFO [__main__.py:159] - Average conductance: 0.0000
+[2025-04-22 16:12:09,327] INFO [__main__.py:162] - Visualization saved to: full_community_visualization.png
+[2025-04-22 16:12:09,328] INFO [__main__.py:163] - Total runtime: 4.82 seconds
+[2025-04-22 16:12:09,328] INFO [__main__.py:164] - ==================================================
+[2025-04-22 16:22:33,985] INFO [__main__.py:82] - Starting Community Detection Pipeline
+[2025-04-22 16:22:33,985] INFO [__main__.py:93] - Loading configuration from config.yaml
+[2025-04-22 16:22:33,985] INFO [__main__.py:109] - Configuration: data_dir=data, sample_size=10000, size_threshold=500, target_subcommunities=5, modularity_threshold=0.3
+[2025-04-22 16:22:34,914] INFO [__main__.py:120] - Initial Louvain: 9045 communities
+[2025-04-22 16:22:34,914] INFO [__main__.py:129] - After refinement: 9045 communities
+[2025-04-22 16:22:34,965] INFO [__main__.py:138] - Final communities: 9045 communities
+[2025-04-22 16:22:36,811] INFO [__main__.py:152] - ==================================================
+[2025-04-22 16:22:36,811] INFO [__main__.py:153] - COMMUNITY DETECTION PIPELINE SUMMARY
+[2025-04-22 16:22:36,811] INFO [__main__.py:154] - ==================================================
+[2025-04-22 16:22:36,811] INFO [__main__.py:155] - Nodes: 18607
+[2025-04-22 16:22:36,820] INFO [__main__.py:156] - Edges: 9565
+[2025-04-22 16:22:36,821] INFO [__main__.py:157] - Number of communities: 9045
+[2025-04-22 16:22:36,821] INFO [__main__.py:158] - Modularity: 0.9999
+[2025-04-22 16:22:36,821] INFO [__main__.py:159] - Average conductance: 0.0000
+[2025-04-22 16:22:36,822] INFO [__main__.py:162] - Visualization saved to: community_visualizations\community_report.html
+[2025-04-22 16:22:36,822] INFO [__main__.py:163] - Total runtime: 2.83 seconds
+[2025-04-22 16:22:36,822] INFO [__main__.py:164] - ==================================================
+[2025-04-22 17:03:50,148] INFO [__main__.py:82] - Starting Community Detection Pipeline
+[2025-04-22 17:03:50,154] INFO [__main__.py:93] - Loading configuration from config.yaml
+[2025-04-22 17:03:50,167] INFO [__main__.py:109] - Configuration: data_dir=data, sample_size=10000, size_threshold=500, target_subcommunities=5, modularity_threshold=0.3
+[2025-04-22 17:03:52,723] INFO [__main__.py:120] - Initial Louvain: 9045 communities
+[2025-04-22 17:03:52,744] INFO [__main__.py:129] - After refinement: 9045 communities
+[2025-04-22 17:03:52,870] INFO [__main__.py:138] - Final communities: 9045 communities
+[2025-04-22 17:03:56,723] INFO [__main__.py:152] - ==================================================
+[2025-04-22 17:03:56,723] INFO [__main__.py:153] - COMMUNITY DETECTION PIPELINE SUMMARY
+[2025-04-22 17:03:56,723] INFO [__main__.py:154] - ==================================================
+[2025-04-22 17:03:56,723] INFO [__main__.py:155] - Nodes: 18607
+[2025-04-22 17:03:56,732] INFO [__main__.py:156] - Edges: 9565
+[2025-04-22 17:03:56,732] INFO [__main__.py:157] - Number of communities: 9045
+[2025-04-22 17:03:56,732] INFO [__main__.py:158] - Modularity: 0.9999
+[2025-04-22 17:03:56,732] INFO [__main__.py:159] - Average conductance: 0.0000
+[2025-04-22 17:03:56,732] INFO [__main__.py:162] - Visualization saved to: community_visualizations\community_report.html
+[2025-04-22 17:03:56,732] INFO [__main__.py:163] - Total runtime: 6.58 seconds
+[2025-04-22 17:03:56,732] INFO [__main__.py:164] - ==================================================
+[2025-04-22 17:04:35,989] INFO [__main__.py:82] - Starting Community Detection Pipeline
+[2025-04-22 17:04:35,989] INFO [__main__.py:93] - Loading configuration from config.yaml
+[2025-04-22 17:04:35,989] INFO [__main__.py:109] - Configuration: data_dir=data, sample_size=10000, size_threshold=500, target_subcommunities=5, modularity_threshold=0.3
+[2025-04-22 17:04:37,370] INFO [__main__.py:120] - Initial Louvain: 9045 communities
+[2025-04-22 17:04:37,370] INFO [__main__.py:129] - After refinement: 9045 communities
+[2025-04-22 17:04:37,409] INFO [__main__.py:138] - Final communities: 9045 communities
+[2025-04-22 17:04:40,014] INFO [__main__.py:152] - ==================================================
+[2025-04-22 17:04:40,014] INFO [__main__.py:153] - COMMUNITY DETECTION PIPELINE SUMMARY
+[2025-04-22 17:04:40,018] INFO [__main__.py:154] - ==================================================
+[2025-04-22 17:04:40,018] INFO [__main__.py:155] - Nodes: 18607
+[2025-04-22 17:04:40,021] INFO [__main__.py:156] - Edges: 9565
+[2025-04-22 17:04:40,021] INFO [__main__.py:157] - Number of communities: 9045
+[2025-04-22 17:04:40,021] INFO [__main__.py:158] - Modularity: 0.9999
+[2025-04-22 17:04:40,021] INFO [__main__.py:159] - Average conductance: 0.0000
+[2025-04-22 17:04:40,030] INFO [__main__.py:162] - Visualization saved to: community_visualizations\community_report.html
+[2025-04-22 17:04:40,030] INFO [__main__.py:163] - Total runtime: 4.03 seconds
+[2025-04-22 17:04:40,030] INFO [__main__.py:164] - ==================================================

@@ -93,12 +93,18 @@ def main():
         logger.info(f"Loading configuration from {args.config}")
         config = load_config(args.config)
     
+    print(config)
+    
     # Override config with command line arguments
-    data_dir = args.data_dir if hasattr(args, 'data_dir') else config.get('data_dir', 'data')
-    sample_size = args.sample_size if hasattr(args, 'sample_size') else config.get('sample_size', None)
-    size_threshold = args.size_threshold if hasattr(args, 'size_threshold') else config.get('size_threshold', 1000)
-    target_subcommunities = args.target_subcommunities if hasattr(args, 'target_subcommunities') else config.get('target_subcommunities', 5)
-    modularity_threshold = args.modularity_threshold if hasattr(args, 'modularity_threshold') else config.get('modularity_threshold', 0.3)
+    data_dir = args.data_dir if args.data_dir != 'data' else config.get('data_dir', 'data')
+    sample_size = args.sample_size if args.sample_size is not None else config.get('sample_size', None)
+    size_threshold = args.size_threshold if args.size_threshold != 1000 else config.get('size_threshold', 1000)
+    target_subcommunities = args.target_subcommunities if args.target_subcommunities != 5 else config.get('target_subcommunities', 5)
+    modularity_threshold = args.modularity_threshold if args.modularity_threshold != 0.3 else config.get('modularity_threshold', 0.3)
+    
+    print(sample_size)
+    print(size_threshold)
+    print(target_subcommunities)
     
     logger.info(f"Configuration: data_dir={data_dir}, sample_size={sample_size}, "
                f"size_threshold={size_threshold}, target_subcommunities={target_subcommunities}, "
@@ -134,8 +140,12 @@ def main():
     # Step 5: Evaluate results
     metrics = evaluate_all(G, final_partition)
     
+    print('\n\n-------visualization starts-----')
     # Step 6: Visualize communities
     visualization_path = plot_communities(G, final_communities)
+    
+    print('-------visualization ends-----\n\n')
+    
     
     # Print summary results
     total_runtime = time.time() - pipeline_start_time

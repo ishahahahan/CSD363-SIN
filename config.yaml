@@ -2,10 +2,10 @@
 
 # Data settings
 data_dir: data
-sample_size: 100000  # Set to null for full graph
+sample_size: 10000  # Set to null for full graph
 
 # Algorithm parameters
-size_threshold: 1000  # Communities larger than this will be refined
+size_threshold: 500  # Communities larger than this will be refined
 target_subcommunities: 5  # Target number of subcommunities in refinement
 modularity_threshold: 0.3  # Communities with modularity below this will be enhanced with Infomap
 edge_file: edge_file.txt

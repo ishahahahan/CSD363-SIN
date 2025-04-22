@@ -118,14 +118,16 @@ def refine_girvan_newman(G, communities, size_threshold, target_subcommunities):
                     break
         
         # Assign new community IDs to components
-        for component in current_components:
-            # Skip tiny components (likely noise)
-            if len(component) < 5:
-                continue
-                
-            for node in component:
-                partition[node] = next_community_id
-            next_community_id += 1
+        if len(current_components) > 1:
+            for component in current_components:
+                if len(component) < 5:
+                    continue
+                for node in component:
+                    partition[node] = next_community_id
+                next_community_id += 1
+        else:
+            # Keep original community ID if no split occurred
+            logger.debug(f"Community {comm_id} could not be split further")
     
     elapsed = time.time() - start_time
     logger.info(f"Girvan-Newman refinement completed in {elapsed:.2f} seconds")
@@ -201,8 +203,9 @@ def enhance_infomap(G, partition, communities, modularity_threshold):
         ig_graph = ig.Graph.TupleList(edges, directed=False)
         
         # Map between networkx and igraph vertex indices
-        nx_to_ig = {node: i for i, node in enumerate(G_sub.nodes())}
-        ig_to_nx = {i: node for node, i in nx_to_ig.items()}
+        nodes_list = list(G_sub.nodes())
+        nx_to_ig = {node: i for i, node in enumerate(nodes_list)}
+        ig_to_nx = {i: nodes_list[i] for i in range(len(nodes_list))}
         
         # Run Infomap
         infomap = Infomap("--two-level")

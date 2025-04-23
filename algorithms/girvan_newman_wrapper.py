@@ -4,7 +4,9 @@ from networkx.algorithms.community import girvan_newman
 from collections import defaultdict
 import logging
 import time
-from ..evaluation import compute_modularity, track_algorithm_metrics, evaluate_all
+
+# Change from relative import to absolute import
+from evaluation import compute_modularity, track_algorithm_metrics, evaluate_all
 
 logger = logging.getLogger('community_pipeline')
 

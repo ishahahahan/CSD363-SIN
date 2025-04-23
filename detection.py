@@ -100,7 +100,7 @@ def refine_girvan_newman(G, communities, size_threshold, target_subcommunities, 
         
         try:
             # Run Girvan-Newman with a limit on iterations or components
-            from .algorithms.girvan_newman_wrapper import run_girvan_newman_with_tracking
+            from algorithms.girvan_newman_wrapper import run_girvan_newman_with_tracking
             
             logger.info(f"Running Girvan-Newman on community {comm_id} to find {target} subcommunities")
             

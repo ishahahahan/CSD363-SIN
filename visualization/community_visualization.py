@@ -4,7 +4,7 @@ import logging
 import networkx as nx
 import matplotlib.pyplot as plt
 import numpy as np
-from collections import Counter
+from collections import Counter, defaultdict
 
 logger = logging.getLogger('community_pipeline')
 
@@ -199,6 +199,170 @@ def plot_communities(G, communities):
         
         logger.info(f"Top communities visualization saved to {top_communities_path}")
         
+        # --- VISUALIZATION 3: COMMUNITY INTERCONNECTIONS ---
+        logger.info("Creating community interconnection visualization...")
+        
+        # Create community graph where nodes are communities and edges represent connections
+        community_graph = nx.Graph()
+        
+        # Add nodes (each community)
+        for comm_id, size in largest_communities[:30]:  # Limit to top 30 communities
+            # Only add communities that have nodes in the visualization graph
+            if any(node in G_viz for node in communities[comm_id]):
+                community_graph.add_node(comm_id, size=size)
+        
+        # Add edges between communities
+        inter_community_edges = defaultdict(int)
+        
+        # Count edges between communities
+        for u, v in G_viz.edges():
+            if u in node_to_comm and v in node_to_comm:
+                comm_u = node_to_comm[u]
+                comm_v = node_to_comm[v]
+                if comm_u != comm_v:
+                    edge = tuple(sorted([comm_u, comm_v]))  # Ensure consistent ordering
+                    inter_community_edges[edge] += 1
+        
+        # Add edges to community graph with weights
+        for (comm_u, comm_v), weight in inter_community_edges.items():
+            if comm_u in community_graph and comm_v in community_graph:
+                community_graph.add_edge(comm_u, comm_v, weight=weight)
+        
+        # Visualize community interconnections
+        plt.figure(figsize=(16, 12))
+        
+        # Node sizes based on community size
+        node_sizes = [community_graph.nodes[comm_id]['size'] * 0.5 for comm_id in community_graph]
+        node_sizes = [max(100, min(2000, size)) for size in node_sizes]  # Constrain sizes
+        
+        # Node colors based on community ID
+        node_colors = [color_map(comm_to_color.get(comm_id, 0) % 20) for comm_id in community_graph]
+        
+        # Get edge weights for line thickness
+        edge_weights = [community_graph[u][v]['weight'] for u, v in community_graph.edges()]
+        max_weight = max(edge_weights) if edge_weights else 1
+        edge_widths = [0.5 + 3 * (w / max_weight) for w in edge_weights]
+        
+        # Compute layout
+        try:
+            pos = nx.spring_layout(community_graph, k=2.0, seed=42)
+        except:
+            pos = nx.random_layout(community_graph)
+        
+        # Draw the graph
+        nx.draw_networkx_nodes(
+            community_graph, pos, 
+            node_size=node_sizes,
+            node_color=node_colors,
+            alpha=0.8
+        )
+        
+        # Draw edges with width based on weight
+        nx.draw_networkx_edges(
+            community_graph, pos,
+            width=edge_widths,
+            alpha=0.5,
+            edge_color='grey'
+        )
+        
+        # Add labels
+        nx.draw_networkx_labels(
+            community_graph, pos,
+            labels={comm_id: f"C{comm_id}\n({community_graph.nodes[comm_id]['size']})" for comm_id in community_graph},
+            font_size=10,
+            font_weight='bold'
+        )
+        
+        plt.title("Community Interconnections", fontsize=16)
+        plt.axis('off')
+        
+        # Save the community interconnection visualization
+        interconnections_path = os.path.join(output_dir, "community_interconnections.png")
+        plt.tight_layout()
+        plt.savefig(interconnections_path, dpi=200, bbox_inches="tight")
+        plt.close()
+        
+        logger.info(f"Community interconnection visualization saved to {interconnections_path}")
+        
+        # --- VISUALIZATION 4: DETAILED COMMUNITY GRAPHS ---
+        logger.info("Creating detailed visualizations for top communities...")
+        
+        # Create a directory for detailed community visualizations
+        detailed_dir = os.path.join(output_dir, "detailed_communities")
+        os.makedirs(detailed_dir, exist_ok=True)
+        
+        # Visualize top N communities individually
+        top_n_detailed = min(10, len(largest_communities))  # Limit to top 10 communities
+        detailed_paths = []
+        
+        for i, (comm_id, size) in enumerate(largest_communities[:top_n_detailed]):
+            # Skip very small communities
+            if size < 10:
+                continue
+                
+            # Get nodes in this community
+            comm_nodes = [node for node in communities[comm_id] if node in G_viz]
+            
+            # Skip if no valid nodes
+            if not comm_nodes:
+                continue
+                
+            # Create subgraph for this community
+            subgraph = G_viz.subgraph(comm_nodes).copy()
+            
+            # Skip if too few edges
+            if subgraph.number_of_edges() < 5:
+                continue
+                
+            # Compute positions - try to use a layout that works well for the graph's size
+            if subgraph.number_of_nodes() < 100:
+                try:
+                    pos = nx.spring_layout(subgraph, seed=42)
+                except:
+                    pos = nx.random_layout(subgraph)
+            else:
+                # For larger communities, use faster layout algorithms
+                try:
+                    pos = nx.kamada_kawai_layout(subgraph)
+                except:
+                    pos = nx.random_layout(subgraph)
+            
+            # Create figure
+            plt.figure(figsize=(12, 12))
+            
+            # Calculate node sizes based on degree
+            node_degrees = dict(subgraph.degree())
+            max_degree = max(node_degrees.values()) if node_degrees else 1
+            node_sizes = [20 + 200 * (node_degrees[n] / max_degree) for n in subgraph.nodes()]
+            
+            # Draw nodes
+            nx.draw_networkx_nodes(
+                subgraph, pos,
+                node_size=node_sizes,
+                node_color=color_map(comm_to_color.get(comm_id, 0) % 20),
+                alpha=0.8
+            )
+            
+            # Draw edges
+            nx.draw_networkx_edges(
+                subgraph, pos,
+                alpha=0.2,
+                width=0.5
+            )
+            
+            # Add title and labels
+            plt.title(f"Community {comm_id} - {size} nodes, {subgraph.number_of_edges()} edges", fontsize=16)
+            plt.axis('off')
+            
+            # Save the detailed community visualization
+            detailed_path = os.path.join(detailed_dir, f"community_{comm_id}_detail.png")
+            plt.tight_layout()
+            plt.savefig(detailed_path, dpi=200, bbox_inches="tight")
+            plt.close()
+            
+            detailed_paths.append((comm_id, detailed_path))
+            logger.info(f"Detailed visualization for community {comm_id} saved to {detailed_path}")
+        
         # Create HTML report
         html_content = f"""<!DOCTYPE html>
         <html>
@@ -211,6 +375,8 @@ def plot_communities(G, communities):
                 img {{ max-width: 100%; border: 1px solid #ddd; box-shadow: 0 0 10px rgba(0,0,0,0.1); }}
                 .stats {{ background-color: #f5f5f5; padding: 15px; border-radius: 5px; }}
                 .warning {{ background-color: #fff3cd; color: #856404; padding: 10px; border-radius: 5px; margin: 10px 0; }}
+                .image-row {{ display: flex; flex-wrap: wrap; gap: 20px; }}
+                .image-container {{ width: 45%; min-width: 300px; margin-bottom: 20px; }}
             </style>
         </head>
         <body>
@@ -246,10 +412,36 @@ def plot_communities(G, communities):
                 <h2>Top Communities Overview</h2>
                 <img src="top_communities_visualization.png" alt="Top Communities Visualization">
             </div>
+            
+            <div class="section">
+                <h2>Community Interconnections</h2>
+                <img src="community_interconnections.png" alt="Community Interconnections">
+            </div>
         """
         
-        html_content += """
+        # Add detailed community visualizations
+        if detailed_paths:
+            html_content += f"""
+            <div class="section">
+                <h2>Detailed Community Visualizations</h2>
+                <div class="image-row">
+            """
+            
+            for comm_id, path in detailed_paths:
+                rel_path = os.path.relpath(path, output_dir)
+                html_content += f"""
+                <div class="image-container">
+                    <h3>Community {comm_id}</h3>
+                    <img src="{rel_path}" alt="Community {comm_id} Detail">
+                </div>
+                """
+                
+            html_content += """
+                </div>
             </div>
+            """
+        
+        html_content += """
         </body>
         </html>
         """

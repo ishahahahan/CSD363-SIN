@@ -9,6 +9,8 @@
                 img { max-width: 100%; border: 1px solid #ddd; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
                 .stats { background-color: #f5f5f5; padding: 15px; border-radius: 5px; }
                 .warning { background-color: #fff3cd; color: #856404; padding: 10px; border-radius: 5px; margin: 10px 0; }
+                .image-row { display: flex; flex-wrap: wrap; gap: 20px; }
+                .image-container { width: 45%; min-width: 300px; margin-bottom: 20px; }
             </style>
         </head>
         <body>
@@ -16,16 +18,16 @@
             
             <div class="stats">
                 <h2>Summary Statistics</h2>
-                <p>Total nodes: 18607</p>
-                <p>Total edges: 9565</p>
-                <p>Total communities: 9045</p>
-                <p>Largest community: 6754 (8 nodes)</p>
-                <p>Graph connected components: 9045</p>
-                <p>Largest connected component: 8 nodes (0.0% of graph)</p>
+                <p>Total nodes: 477998</p>
+                <p>Total edges: 530872</p>
+                <p>Total communities: 106812</p>
+                <p>Largest community: 80010 (265 nodes)</p>
+                <p>Graph connected components: 71813</p>
+                <p>Largest connected component: 303526 nodes (63.5% of graph)</p>
             </div>
             
             <div class="warning">
-                <strong>Note:</strong> This graph has 9045 connected components, which may naturally form separate communities.
+                <strong>Note:</strong> This graph has 71813 connected components, which may naturally form separate communities.
                 High modularity values are expected in disconnected graphs as there are no edges between components.
             </div>
             
@@ -38,8 +40,69 @@
                 <h2>Top Communities Overview</h2>
                 <img src="top_communities_visualization.png" alt="Top Communities Visualization">
             </div>
-        
+            
+            <div class="section">
+                <h2>Community Interconnections</h2>
+                <img src="community_interconnections.png" alt="Community Interconnections">
             </div>
+        
+            <div class="section">
+                <h2>Detailed Community Visualizations</h2>
+                <div class="image-row">
+            
+                <div class="image-container">
+                    <h3>Community 80010</h3>
+                    <img src="detailed_communities\community_80010_detail.png" alt="Community 80010 Detail">
+                </div>
+                
+                <div class="image-container">
+                    <h3>Community 74726</h3>
+                    <img src="detailed_communities\community_74726_detail.png" alt="Community 74726 Detail">
+                </div>
+                
+                <div class="image-container">
+                    <h3>Community 74725</h3>
+                    <img src="detailed_communities\community_74725_detail.png" alt="Community 74725 Detail">
+                </div>
+                
+                <div class="image-container">
+                    <h3>Community 74729</h3>
+                    <img src="detailed_communities\community_74729_detail.png" alt="Community 74729 Detail">
+                </div>
+                
+                <div class="image-container">
+                    <h3>Community 74727</h3>
+                    <img src="detailed_communities\community_74727_detail.png" alt="Community 74727 Detail">
+                </div>
+                
+                <div class="image-container">
+                    <h3>Community 74732</h3>
+                    <img src="detailed_communities\community_74732_detail.png" alt="Community 74732 Detail">
+                </div>
+                
+                <div class="image-container">
+                    <h3>Community 74728</h3>
+                    <img src="detailed_communities\community_74728_detail.png" alt="Community 74728 Detail">
+                </div>
+                
+                <div class="image-container">
+                    <h3>Community 74735</h3>
+                    <img src="detailed_communities\community_74735_detail.png" alt="Community 74735 Detail">
+                </div>
+                
+                <div class="image-container">
+                    <h3>Community 74730</h3>
+                    <img src="detailed_communities\community_74730_detail.png" alt="Community 74730 Detail">
+                </div>
+                
+                <div class="image-container">
+                    <h3>Community 74738</h3>
+                    <img src="detailed_communities\community_74738_detail.png" alt="Community 74738 Detail">
+                </div>
+                
+                </div>
+            </div>
+            
         </body>
         </html>
         

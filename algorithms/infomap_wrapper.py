@@ -4,7 +4,9 @@ from collections import defaultdict
 import logging
 import time
 import numpy as np
-from ..evaluation import compute_modularity, track_algorithm_metrics, evaluate_all, compute_description_length
+
+# Change from relative import to absolute import
+from evaluation import compute_modularity, track_algorithm_metrics, evaluate_all, compute_description_length
 
 logger = logging.getLogger('community_pipeline')
 

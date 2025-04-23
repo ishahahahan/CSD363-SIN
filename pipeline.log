@@ -1,1042 +1,120 @@
-[2025-04-23 21:41:32,808] INFO [__main__.py:60] - Output log being saved to: results\output_20250423-214132.txt
-[2025-04-23 21:41:32,809] INFO [__main__.py:472] - Starting Community Detection Pipeline
-[2025-04-23 21:41:32,813] INFO [__main__.py:483] - Loading configuration from config.yaml
-[2025-04-23 21:41:32,832] INFO [__main__.py:498] - Configuration: data_dir=data, sample_size=1000000, size_threshold=500, target_subcommunities=5, modularity_threshold=0.3
-[2025-04-23 21:41:32,833] INFO [__main__.py:501] - Performance settings: max_iterations=50, time_limit=300s, fast_mode=False
-[2025-04-23 21:41:38,539] INFO [__main__.py:516] - Graph loaded in 5.70 seconds
-[2025-04-23 21:41:38,540] WARNING [__main__.py:520] - Large graph detected (477998 nodes). Consider using --fast-mode for better performance.
-[2025-04-23 21:41:38,542] WARNING [__main__.py:521] - Processing may take a long time without optimizations.
-[2025-04-23 21:41:38,543] INFO [__main__.py:192] - Analyzing graph structure...
-[2025-04-23 21:41:40,637] INFO [__main__.py:227] - Graph has 477998 nodes and 530872 edges (density: 0.000005)
-[2025-04-23 21:41:40,638] INFO [__main__.py:228] - Graph has 71813 connected components
-[2025-04-23 21:41:40,638] INFO [__main__.py:229] - Largest component has 303526 nodes (63.50% of graph)
-[2025-04-23 21:41:40,638] WARNING [__main__.py:232] - Graph is disconnected with 71813 components - metrics may be affected
-[2025-04-23 21:41:40,644] INFO [__main__.py:235] - Component size distribution: 303526 nodes: 1 components, 58 nodes: 1 components, 38 nodes: 2 components, 35 nodes: 1 components, 32 nodes: 1 components, 27 nodes: 1 components, 24 nodes: 1 components, 22 nodes: 1 components, 20 nodes: 2 components
-[2025-04-23 21:41:40,671] WARNING [__main__.py:286] - No ground truth files found. NMI will not be calculated.
-[2025-04-23 21:41:40,753] INFO [evaluation.py:374] - Evaluating community detection results
-[2025-04-23 21:41:40,753] WARNING [evaluation.py:405] - Large graph detected (477998 nodes) - using optimized metrics
-[2025-04-23 21:41:42,048] WARNING [evaluation.py:440] - Graph has 71813 connected components (largest: 303526 nodes)
-[2025-04-23 21:41:42,049] WARNING [evaluation.py:441] - Metrics may be affected by graph disconnectivity
-[2025-04-23 21:41:45,344] INFO [evaluation.py:445] - Modularity: 0.0000
-[2025-04-23 21:41:46,917] INFO [evaluation.py:456] - Average conductance: 0.0000
-[2025-04-23 21:41:46,918] WARNING [evaluation.py:460] - Very low conductance likely due to graph disconnectivity (few edges between components)
-[2025-04-23 21:41:50,066] INFO [evaluation.py:486] - Estimated coverage based on 1/1 communities
-[2025-04-23 21:41:50,067] INFO [evaluation.py:510] - No ground truth provided, skipping NMI calculation
-[2025-04-23 21:41:50,082] INFO [evaluation.py:550] - Evaluation completed in 9.33 seconds
-[2025-04-23 21:41:50,156] INFO [__main__.py:564] - Baseline metrics - Modularity: 0.0000, Conductance: 0.0000
-[2025-04-23 21:47:10,064] INFO [evaluation.py:374] - Evaluating community detection results
-[2025-04-23 21:47:10,064] WARNING [evaluation.py:405] - Large graph detected (477998 nodes) - using optimized metrics
-[2025-04-23 21:47:11,402] WARNING [evaluation.py:440] - Graph has 71813 connected components (largest: 303526 nodes)
-[2025-04-23 21:47:11,403] WARNING [evaluation.py:441] - Metrics may be affected by graph disconnectivity
-[2025-04-23 21:47:14,852] INFO [evaluation.py:445] - Modularity: 0.8301
-[2025-04-23 21:47:16,106] INFO [evaluation.py:452] - Computed conductance for 1000/73882 communities (sampled)
-[2025-04-23 21:47:16,106] INFO [evaluation.py:456] - Average conductance: 0.0296
-[2025-04-23 21:47:17,692] INFO [evaluation.py:486] - Estimated coverage based on 500/73882 communities
-[2025-04-23 21:47:17,696] INFO [evaluation.py:510] - No ground truth provided, skipping NMI calculation
-[2025-04-23 21:47:17,703] INFO [evaluation.py:550] - Evaluation completed in 7.64 seconds
-[2025-04-23 21:47:17,761] INFO [__main__.py:579] - Initial Louvain: 73882 communities
-[2025-04-23 21:47:17,762] INFO [__main__.py:580] - Louvain metrics - Modularity: 0.8301, Conductance: 0.0296
-[2025-04-23 21:47:17,762] INFO [__main__.py:581] - Improvement from baseline - Modularity: +0.8301
-[2025-04-23 21:47:17,762] INFO [__main__.py:589] - Large graph with many components: checking if Girvan-Newman refinement is needed
-[2025-04-23 21:47:17,763] INFO [__main__.py:617] - Running Girvan-Newman with max_iterations=50
-[2025-04-23 21:47:17,763] INFO [detection.py:59] - Refining communities larger than 500 nodes
-[2025-04-23 21:47:17,903] INFO [detection.py:73] - Found 164 communities larger than threshold
-[2025-04-23 21:47:17,908] INFO [detection.py:84] - Refining community 1 with 2238 nodes
-[2025-04-23 21:47:17,979] ERROR [detection.py:137] - Error refining community 1: attempted relative import with no known parent package
-[2025-04-23 21:47:17,980] INFO [detection.py:84] - Refining community 3 with 1645 nodes
-[2025-04-23 21:47:18,028] ERROR [detection.py:137] - Error refining community 3: attempted relative import with no known parent package
-[2025-04-23 21:47:18,028] INFO [detection.py:84] - Refining community 4 with 3697 nodes
-[2025-04-23 21:47:18,080] ERROR [detection.py:137] - Error refining community 4: attempted relative import with no known parent package
-[2025-04-23 21:47:18,080] INFO [detection.py:84] - Refining community 5 with 46124 nodes
-[2025-04-23 21:47:19,362] ERROR [detection.py:137] - Error refining community 5: attempted relative import with no known parent package
-[2025-04-23 21:47:19,362] INFO [detection.py:84] - Refining community 6 with 1041 nodes
-[2025-04-23 21:47:19,376] ERROR [detection.py:137] - Error refining community 6: attempted relative import with no known parent package
-[2025-04-23 21:47:19,378] INFO [detection.py:84] - Refining community 7 with 1069 nodes
-[2025-04-23 21:47:19,402] ERROR [detection.py:137] - Error refining community 7: attempted relative import with no known parent package
-[2025-04-23 21:47:19,403] INFO [detection.py:84] - Refining community 9 with 4436 nodes
-[2025-04-23 21:47:19,502] ERROR [detection.py:137] - Error refining community 9: attempted relative import with no known parent package
-[2025-04-23 21:47:19,502] INFO [detection.py:84] - Refining community 11 with 1947 nodes
-[2025-04-23 21:47:19,521] ERROR [detection.py:137] - Error refining community 11: attempted relative import with no known parent package
-[2025-04-23 21:47:19,521] INFO [detection.py:84] - Refining community 12 with 734 nodes
-[2025-04-23 21:47:19,531] ERROR [detection.py:137] - Error refining community 12: attempted relative import with no known parent package
-[2025-04-23 21:47:19,531] INFO [detection.py:84] - Refining community 13 with 1985 nodes
-[2025-04-23 21:47:19,557] ERROR [detection.py:137] - Error refining community 13: attempted relative import with no known parent package
-[2025-04-23 21:47:19,577] INFO [detection.py:84] - Refining community 14 with 1937 nodes
-[2025-04-23 21:47:19,611] ERROR [detection.py:137] - Error refining community 14: attempted relative import with no known parent package
-[2025-04-23 21:47:19,612] INFO [detection.py:84] - Refining community 18 with 1195 nodes
-[2025-04-23 21:47:19,630] ERROR [detection.py:137] - Error refining community 18: attempted relative import with no known parent package
-[2025-04-23 21:47:19,631] INFO [detection.py:84] - Refining community 19 with 1417 nodes
-[2025-04-23 21:47:19,653] ERROR [detection.py:137] - Error refining community 19: attempted relative import with no known parent package
-[2025-04-23 21:47:19,653] INFO [detection.py:84] - Refining community 22 with 27831 nodes
-[2025-04-23 21:47:20,070] ERROR [detection.py:137] - Error refining community 22: attempted relative import with no known parent package
-[2025-04-23 21:47:20,070] INFO [detection.py:84] - Refining community 23 with 1485 nodes
-[2025-04-23 21:47:20,084] ERROR [detection.py:137] - Error refining community 23: attempted relative import with no known parent package
-[2025-04-23 21:47:20,085] INFO [detection.py:84] - Refining community 24 with 3766 nodes
-[2025-04-23 21:47:20,134] ERROR [detection.py:137] - Error refining community 24: attempted relative import with no known parent package
-[2025-04-23 21:47:20,134] INFO [detection.py:84] - Refining community 29 with 2206 nodes
-[2025-04-23 21:47:20,158] ERROR [detection.py:137] - Error refining community 29: attempted relative import with no known parent package
-[2025-04-23 21:47:20,159] INFO [detection.py:84] - Refining community 30 with 723 nodes
-[2025-04-23 21:47:20,167] ERROR [detection.py:137] - Error refining community 30: attempted relative import with no known parent package
-[2025-04-23 21:47:20,167] INFO [detection.py:84] - Refining community 31 with 4014 nodes
-[2025-04-23 21:47:20,225] ERROR [detection.py:137] - Error refining community 31: attempted relative import with no known parent package
-[2025-04-23 21:47:20,226] INFO [detection.py:84] - Refining community 32 with 862 nodes
-[2025-04-23 21:47:20,239] ERROR [detection.py:137] - Error refining community 32: attempted relative import with no known parent package
-[2025-04-23 21:47:20,240] INFO [detection.py:84] - Refining community 38 with 1186 nodes
-[2025-04-23 21:47:20,257] ERROR [detection.py:137] - Error refining community 38: attempted relative import with no known parent package
-[2025-04-23 21:47:20,258] INFO [detection.py:84] - Refining community 40 with 1631 nodes
-[2025-04-23 21:47:20,281] ERROR [detection.py:137] - Error refining community 40: attempted relative import with no known parent package
-[2025-04-23 21:47:20,282] INFO [detection.py:84] - Refining community 43 with 883 nodes
-[2025-04-23 21:47:20,292] ERROR [detection.py:137] - Error refining community 43: attempted relative import with no known parent package
-[2025-04-23 21:47:20,292] INFO [detection.py:84] - Refining community 45 with 1215 nodes
-[2025-04-23 21:47:20,316] ERROR [detection.py:137] - Error refining community 45: attempted relative import with no known parent package
-[2025-04-23 21:47:20,316] INFO [detection.py:84] - Refining community 47 with 528 nodes
-[2025-04-23 21:47:20,326] ERROR [detection.py:137] - Error refining community 47: attempted relative import with no known parent package
-[2025-04-23 21:47:20,326] INFO [detection.py:84] - Refining community 49 with 923 nodes
-[2025-04-23 21:47:20,348] ERROR [detection.py:137] - Error refining community 49: attempted relative import with no known parent package
-[2025-04-23 21:47:20,349] INFO [detection.py:84] - Refining community 55 with 1102 nodes
-[2025-04-23 21:47:20,370] ERROR [detection.py:137] - Error refining community 55: attempted relative import with no known parent package
-[2025-04-23 21:47:20,371] INFO [detection.py:84] - Refining community 60 with 1325 nodes
-[2025-04-23 21:47:20,409] ERROR [detection.py:137] - Error refining community 60: attempted relative import with no known parent package
-[2025-04-23 21:47:20,410] INFO [detection.py:84] - Refining community 62 with 1233 nodes
-[2025-04-23 21:47:20,439] ERROR [detection.py:137] - Error refining community 62: attempted relative import with no known parent package
-[2025-04-23 21:47:20,440] INFO [detection.py:84] - Refining community 63 with 869 nodes
-[2025-04-23 21:47:20,462] ERROR [detection.py:137] - Error refining community 63: attempted relative import with no known parent package
-[2025-04-23 21:47:20,463] INFO [detection.py:84] - Refining community 64 with 1912 nodes
-[2025-04-23 21:47:20,490] ERROR [detection.py:137] - Error refining community 64: attempted relative import with no known parent package
-[2025-04-23 21:47:20,491] INFO [detection.py:84] - Refining community 65 with 1515 nodes
-[2025-04-23 21:47:20,516] ERROR [detection.py:137] - Error refining community 65: attempted relative import with no known parent package
-[2025-04-23 21:47:20,516] INFO [detection.py:84] - Refining community 70 with 1646 nodes
-[2025-04-23 21:47:20,535] ERROR [detection.py:137] - Error refining community 70: attempted relative import with no known parent package
-[2025-04-23 21:47:20,536] INFO [detection.py:84] - Refining community 72 with 1348 nodes
-[2025-04-23 21:47:20,551] ERROR [detection.py:137] - Error refining community 72: attempted relative import with no known parent package
-[2025-04-23 21:47:20,551] INFO [detection.py:84] - Refining community 74 with 904 nodes
-[2025-04-23 21:47:20,561] ERROR [detection.py:137] - Error refining community 74: attempted relative import with no known parent package
-[2025-04-23 21:47:20,561] INFO [detection.py:84] - Refining community 75 with 1608 nodes
-[2025-04-23 21:47:20,582] ERROR [detection.py:137] - Error refining community 75: attempted relative import with no known parent package
-[2025-04-23 21:47:20,582] INFO [detection.py:84] - Refining community 76 with 1873 nodes
-[2025-04-23 21:47:20,606] ERROR [detection.py:137] - Error refining community 76: attempted relative import with no known parent package
-[2025-04-23 21:47:20,607] INFO [detection.py:84] - Refining community 82 with 1595 nodes
-[2025-04-23 21:47:20,627] ERROR [detection.py:137] - Error refining community 82: attempted relative import with no known parent package
-[2025-04-23 21:47:20,628] INFO [detection.py:84] - Refining community 86 with 1284 nodes
-[2025-04-23 21:47:20,651] ERROR [detection.py:137] - Error refining community 86: attempted relative import with no known parent package
-[2025-04-23 21:47:20,652] INFO [detection.py:84] - Refining community 89 with 843 nodes
-[2025-04-23 21:47:20,669] ERROR [detection.py:137] - Error refining community 89: attempted relative import with no known parent package
-[2025-04-23 21:47:20,669] INFO [detection.py:84] - Refining community 95 with 1461 nodes
-[2025-04-23 21:47:20,698] ERROR [detection.py:137] - Error refining community 95: attempted relative import with no known parent package
-[2025-04-23 21:47:20,699] INFO [detection.py:84] - Refining community 97 with 1013 nodes
-[2025-04-23 21:47:20,726] ERROR [detection.py:137] - Error refining community 97: attempted relative import with no known parent package
-[2025-04-23 21:47:20,727] INFO [detection.py:84] - Refining community 99 with 3588 nodes
-[2025-04-23 21:47:20,802] ERROR [detection.py:137] - Error refining community 99: attempted relative import with no known parent package
-[2025-04-23 21:47:20,803] INFO [detection.py:84] - Refining community 103 with 665 nodes
-[2025-04-23 21:47:20,819] ERROR [detection.py:137] - Error refining community 103: attempted relative import with no known parent package
-[2025-04-23 21:47:20,819] INFO [detection.py:84] - Refining community 106 with 3840 nodes
-[2025-04-23 21:47:20,897] ERROR [detection.py:137] - Error refining community 106: attempted relative import with no known parent package
-[2025-04-23 21:47:20,898] INFO [detection.py:84] - Refining community 112 with 4283 nodes
-[2025-04-23 21:47:20,952] ERROR [detection.py:137] - Error refining community 112: attempted relative import with no known parent package
-[2025-04-23 21:47:20,952] INFO [detection.py:84] - Refining community 117 with 1314 nodes
-[2025-04-23 21:47:20,976] ERROR [detection.py:137] - Error refining community 117: attempted relative import with no known parent package
-[2025-04-23 21:47:20,977] INFO [detection.py:84] - Refining community 119 with 1592 nodes
-[2025-04-23 21:47:21,022] ERROR [detection.py:137] - Error refining community 119: attempted relative import with no known parent package
-[2025-04-23 21:47:21,024] INFO [detection.py:84] - Refining community 121 with 1301 nodes
-[2025-04-23 21:47:21,070] ERROR [detection.py:137] - Error refining community 121: attempted relative import with no known parent package
-[2025-04-23 21:47:21,072] INFO [detection.py:84] - Refining community 123 with 569 nodes
-[2025-04-23 21:47:21,091] ERROR [detection.py:137] - Error refining community 123: attempted relative import with no known parent package
-[2025-04-23 21:47:21,092] INFO [detection.py:84] - Refining community 128 with 1173 nodes
-[2025-04-23 21:47:21,130] ERROR [detection.py:137] - Error refining community 128: attempted relative import with no known parent package
-[2025-04-23 21:47:21,131] INFO [detection.py:84] - Refining community 129 with 1192 nodes
-[2025-04-23 21:47:21,157] ERROR [detection.py:137] - Error refining community 129: attempted relative import with no known parent package
-[2025-04-23 21:47:21,158] INFO [detection.py:84] - Refining community 130 with 1996 nodes
-[2025-04-23 21:47:21,189] ERROR [detection.py:137] - Error refining community 130: attempted relative import with no known parent package
-[2025-04-23 21:47:21,190] INFO [detection.py:84] - Refining community 711 with 1716 nodes
-[2025-04-23 21:47:21,221] ERROR [detection.py:137] - Error refining community 711: attempted relative import with no known parent package
-[2025-04-23 21:47:21,222] INFO [detection.py:84] - Refining community 141 with 1236 nodes
-[2025-04-23 21:47:21,248] ERROR [detection.py:137] - Error refining community 141: attempted relative import with no known parent package
-[2025-04-23 21:47:21,248] INFO [detection.py:84] - Refining community 143 with 1847 nodes
-[2025-04-23 21:47:21,282] ERROR [detection.py:137] - Error refining community 143: attempted relative import with no known parent package
-[2025-04-23 21:47:21,283] INFO [detection.py:84] - Refining community 144 with 1120 nodes
-[2025-04-23 21:47:21,294] ERROR [detection.py:137] - Error refining community 144: attempted relative import with no known parent package
-[2025-04-23 21:47:21,294] INFO [detection.py:84] - Refining community 146 with 726 nodes
-[2025-04-23 21:47:21,303] ERROR [detection.py:137] - Error refining community 146: attempted relative import with no known parent package
-[2025-04-23 21:47:21,303] INFO [detection.py:84] - Refining community 149 with 1717 nodes
-[2025-04-23 21:47:21,324] ERROR [detection.py:137] - Error refining community 149: attempted relative import with no known parent package
-[2025-04-23 21:47:21,324] INFO [detection.py:84] - Refining community 151 with 676 nodes
-[2025-04-23 21:47:21,334] ERROR [detection.py:137] - Error refining community 151: attempted relative import with no known parent package
-[2025-04-23 21:47:21,334] INFO [detection.py:84] - Refining community 153 with 3539 nodes
-[2025-04-23 21:47:21,387] ERROR [detection.py:137] - Error refining community 153: attempted relative import with no known parent package
-[2025-04-23 21:47:21,387] INFO [detection.py:84] - Refining community 155 with 1489 nodes
-[2025-04-23 21:47:21,407] ERROR [detection.py:137] - Error refining community 155: attempted relative import with no known parent package
-[2025-04-23 21:47:21,407] INFO [detection.py:84] - Refining community 158 with 858 nodes
-[2025-04-23 21:47:21,420] ERROR [detection.py:137] - Error refining community 158: attempted relative import with no known parent package
-[2025-04-23 21:47:21,420] INFO [detection.py:84] - Refining community 162 with 689 nodes
-[2025-04-23 21:47:21,429] ERROR [detection.py:137] - Error refining community 162: attempted relative import with no known parent package
-[2025-04-23 21:47:21,430] INFO [detection.py:84] - Refining community 169 with 4803 nodes
-[2025-04-23 21:47:21,500] ERROR [detection.py:137] - Error refining community 169: attempted relative import with no known parent package
-[2025-04-23 21:47:21,500] INFO [detection.py:84] - Refining community 172 with 1142 nodes
-[2025-04-23 21:47:21,513] ERROR [detection.py:137] - Error refining community 172: attempted relative import with no known parent package
-[2025-04-23 21:47:21,513] INFO [detection.py:84] - Refining community 173 with 1151 nodes
-[2025-04-23 21:47:21,525] ERROR [detection.py:137] - Error refining community 173: attempted relative import with no known parent package
-[2025-04-23 21:47:21,526] INFO [detection.py:84] - Refining community 176 with 1448 nodes
-[2025-04-23 21:47:21,548] ERROR [detection.py:137] - Error refining community 176: attempted relative import with no known parent package
-[2025-04-23 21:47:21,549] INFO [detection.py:84] - Refining community 177 with 1421 nodes
-[2025-04-23 21:47:21,568] ERROR [detection.py:137] - Error refining community 177: attempted relative import with no known parent package
-[2025-04-23 21:47:21,568] INFO [detection.py:84] - Refining community 181 with 1336 nodes
-[2025-04-23 21:47:21,591] ERROR [detection.py:137] - Error refining community 181: attempted relative import with no known parent package
-[2025-04-23 21:47:21,592] INFO [detection.py:84] - Refining community 182 with 1218 nodes
-[2025-04-23 21:47:21,621] ERROR [detection.py:137] - Error refining community 182: attempted relative import with no known parent package
-[2025-04-23 21:47:21,622] INFO [detection.py:84] - Refining community 188 with 801 nodes
-[2025-04-23 21:47:21,638] ERROR [detection.py:137] - Error refining community 188: attempted relative import with no known parent package
-[2025-04-23 21:47:21,638] INFO [detection.py:84] - Refining community 195 with 1527 nodes
-[2025-04-23 21:47:21,667] ERROR [detection.py:137] - Error refining community 195: attempted relative import with no known parent package
-[2025-04-23 21:47:21,667] INFO [detection.py:84] - Refining community 197 with 924 nodes
-[2025-04-23 21:47:21,679] ERROR [detection.py:137] - Error refining community 197: attempted relative import with no known parent package
-[2025-04-23 21:47:21,680] INFO [detection.py:84] - Refining community 198 with 1463 nodes
-[2025-04-23 21:47:21,700] ERROR [detection.py:137] - Error refining community 198: attempted relative import with no known parent package
-[2025-04-23 21:47:21,700] INFO [detection.py:84] - Refining community 206 with 1882 nodes
-[2025-04-23 21:47:21,724] ERROR [detection.py:137] - Error refining community 206: attempted relative import with no known parent package
-[2025-04-23 21:47:21,724] INFO [detection.py:84] - Refining community 211 with 1160 nodes
-[2025-04-23 21:47:21,738] ERROR [detection.py:137] - Error refining community 211: attempted relative import with no known parent package
-[2025-04-23 21:47:21,739] INFO [detection.py:84] - Refining community 212 with 683 nodes
-[2025-04-23 21:47:21,746] ERROR [detection.py:137] - Error refining community 212: attempted relative import with no known parent package
-[2025-04-23 21:47:21,747] INFO [detection.py:84] - Refining community 218 with 1559 nodes
-[2025-04-23 21:47:21,769] ERROR [detection.py:137] - Error refining community 218: attempted relative import with no known parent package
-[2025-04-23 21:47:21,770] INFO [detection.py:84] - Refining community 219 with 669 nodes
-[2025-04-23 21:47:21,780] ERROR [detection.py:137] - Error refining community 219: attempted relative import with no known parent package
-[2025-04-23 21:47:21,780] INFO [detection.py:84] - Refining community 220 with 1411 nodes
-[2025-04-23 21:47:21,802] ERROR [detection.py:137] - Error refining community 220: attempted relative import with no known parent package
-[2025-04-23 21:47:21,802] INFO [detection.py:84] - Refining community 222 with 1443 nodes
-[2025-04-23 21:47:21,822] ERROR [detection.py:137] - Error refining community 222: attempted relative import with no known parent package
-[2025-04-23 21:47:21,822] INFO [detection.py:84] - Refining community 223 with 1046 nodes
-[2025-04-23 21:47:21,836] ERROR [detection.py:137] - Error refining community 223: attempted relative import with no known parent package
-[2025-04-23 21:47:21,836] INFO [detection.py:84] - Refining community 224 with 828 nodes
-[2025-04-23 21:47:21,853] ERROR [detection.py:137] - Error refining community 224: attempted relative import with no known parent package
-[2025-04-23 21:47:21,853] INFO [detection.py:84] - Refining community 230 with 1053 nodes
-[2025-04-23 21:47:21,868] ERROR [detection.py:137] - Error refining community 230: attempted relative import with no known parent package
-[2025-04-23 21:47:21,869] INFO [detection.py:84] - Refining community 231 with 774 nodes
-[2025-04-23 21:47:21,879] ERROR [detection.py:137] - Error refining community 231: attempted relative import with no known parent package
-[2025-04-23 21:47:21,879] INFO [detection.py:84] - Refining community 238 with 1003 nodes
-[2025-04-23 21:47:21,889] ERROR [detection.py:137] - Error refining community 238: attempted relative import with no known parent package
-[2025-04-23 21:47:21,890] INFO [detection.py:84] - Refining community 241 with 1641 nodes
-[2025-04-23 21:47:21,911] ERROR [detection.py:137] - Error refining community 241: attempted relative import with no known parent package
-[2025-04-23 21:47:21,912] INFO [detection.py:84] - Refining community 242 with 3679 nodes
-[2025-04-23 21:47:21,972] ERROR [detection.py:137] - Error refining community 242: attempted relative import with no known parent package
-[2025-04-23 21:47:21,972] INFO [detection.py:84] - Refining community 243 with 1201 nodes
-[2025-04-23 21:47:21,990] ERROR [detection.py:137] - Error refining community 243: attempted relative import with no known parent package
-[2025-04-23 21:47:21,990] INFO [detection.py:84] - Refining community 244 with 2065 nodes
-[2025-04-23 21:47:22,022] ERROR [detection.py:137] - Error refining community 244: attempted relative import with no known parent package
-[2025-04-23 21:47:22,022] INFO [detection.py:84] - Refining community 247 with 1073 nodes
-[2025-04-23 21:47:22,043] ERROR [detection.py:137] - Error refining community 247: attempted relative import with no known parent package
-[2025-04-23 21:47:22,044] INFO [detection.py:84] - Refining community 248 with 895 nodes
-[2025-04-23 21:47:22,057] ERROR [detection.py:137] - Error refining community 248: attempted relative import with no known parent package
-[2025-04-23 21:47:22,058] INFO [detection.py:84] - Refining community 251 with 1836 nodes
-[2025-04-23 21:47:22,106] ERROR [detection.py:137] - Error refining community 251: attempted relative import with no known parent package
-[2025-04-23 21:47:22,107] INFO [detection.py:84] - Refining community 253 with 594 nodes
-[2025-04-23 21:47:22,121] ERROR [detection.py:137] - Error refining community 253: attempted relative import with no known parent package
-[2025-04-23 21:47:22,122] INFO [detection.py:84] - Refining community 257 with 747 nodes
-[2025-04-23 21:47:22,141] ERROR [detection.py:137] - Error refining community 257: attempted relative import with no known parent package
-[2025-04-23 21:47:22,142] INFO [detection.py:84] - Refining community 261 with 1330 nodes
-[2025-04-23 21:47:22,173] ERROR [detection.py:137] - Error refining community 261: attempted relative import with no known parent package
-[2025-04-23 21:47:22,174] INFO [detection.py:84] - Refining community 271 with 1165 nodes
-[2025-04-23 21:47:22,192] ERROR [detection.py:137] - Error refining community 271: attempted relative import with no known parent package
-[2025-04-23 21:47:22,192] INFO [detection.py:84] - Refining community 272 with 1054 nodes
-[2025-04-23 21:47:22,210] ERROR [detection.py:137] - Error refining community 272: attempted relative import with no known parent package
-[2025-04-23 21:47:22,210] INFO [detection.py:84] - Refining community 283 with 1567 nodes
-[2025-04-23 21:47:22,236] ERROR [detection.py:137] - Error refining community 283: attempted relative import with no known parent package
-[2025-04-23 21:47:22,236] INFO [detection.py:84] - Refining community 288 with 2403 nodes
-[2025-04-23 21:47:22,271] ERROR [detection.py:137] - Error refining community 288: attempted relative import with no known parent package
-[2025-04-23 21:47:22,272] INFO [detection.py:84] - Refining community 296 with 777 nodes
-[2025-04-23 21:47:22,283] ERROR [detection.py:137] - Error refining community 296: attempted relative import with no known parent package
-[2025-04-23 21:47:22,283] INFO [detection.py:84] - Refining community 298 with 1095 nodes
-[2025-04-23 21:47:22,299] ERROR [detection.py:137] - Error refining community 298: attempted relative import with no known parent package
-[2025-04-23 21:47:22,299] INFO [detection.py:84] - Refining community 300 with 1261 nodes
-[2025-04-23 21:47:22,315] ERROR [detection.py:137] - Error refining community 300: attempted relative import with no known parent package
-[2025-04-23 21:47:22,315] INFO [detection.py:84] - Refining community 303 with 858 nodes
-[2025-04-23 21:47:22,327] ERROR [detection.py:137] - Error refining community 303: attempted relative import with no known parent package
-[2025-04-23 21:47:22,328] INFO [detection.py:84] - Refining community 312 with 1143 nodes
-[2025-04-23 21:47:22,344] ERROR [detection.py:137] - Error refining community 312: attempted relative import with no known parent package
-[2025-04-23 21:47:22,344] INFO [detection.py:84] - Refining community 317 with 995 nodes
-[2025-04-23 21:47:22,362] ERROR [detection.py:137] - Error refining community 317: attempted relative import with no known parent package
-[2025-04-23 21:47:22,363] INFO [detection.py:84] - Refining community 323 with 1739 nodes
-[2025-04-23 21:47:22,391] ERROR [detection.py:137] - Error refining community 323: attempted relative import with no known parent package
-[2025-04-23 21:47:22,393] INFO [detection.py:84] - Refining community 324 with 1387 nodes
-[2025-04-23 21:47:22,413] ERROR [detection.py:137] - Error refining community 324: attempted relative import with no known parent package
-[2025-04-23 21:47:22,414] INFO [detection.py:84] - Refining community 352 with 679 nodes
-[2025-04-23 21:47:22,424] ERROR [detection.py:137] - Error refining community 352: attempted relative import with no known parent package
-[2025-04-23 21:47:22,425] INFO [detection.py:84] - Refining community 355 with 1158 nodes
-[2025-04-23 21:47:22,445] ERROR [detection.py:137] - Error refining community 355: attempted relative import with no known parent package
-[2025-04-23 21:47:22,445] INFO [detection.py:84] - Refining community 391 with 660 nodes
-[2025-04-23 21:47:22,455] ERROR [detection.py:137] - Error refining community 391: attempted relative import with no known parent package
-[2025-04-23 21:47:22,456] INFO [detection.py:84] - Refining community 393 with 1008 nodes
-[2025-04-23 21:47:22,471] ERROR [detection.py:137] - Error refining community 393: attempted relative import with no known parent package
-[2025-04-23 21:47:22,471] INFO [detection.py:84] - Refining community 413 with 1060 nodes
-[2025-04-23 21:47:22,491] ERROR [detection.py:137] - Error refining community 413: attempted relative import with no known parent package
-[2025-04-23 21:47:22,492] INFO [detection.py:84] - Refining community 415 with 1432 nodes
-[2025-04-23 21:47:22,519] ERROR [detection.py:137] - Error refining community 415: attempted relative import with no known parent package
-[2025-04-23 21:47:22,519] INFO [detection.py:84] - Refining community 417 with 1111 nodes
-[2025-04-23 21:47:22,536] ERROR [detection.py:137] - Error refining community 417: attempted relative import with no known parent package
-[2025-04-23 21:47:22,536] INFO [detection.py:84] - Refining community 426 with 1369 nodes
-[2025-04-23 21:47:22,555] ERROR [detection.py:137] - Error refining community 426: attempted relative import with no known parent package
-[2025-04-23 21:47:22,555] INFO [detection.py:84] - Refining community 433 with 1389 nodes
-[2025-04-23 21:47:22,576] ERROR [detection.py:137] - Error refining community 433: attempted relative import with no known parent package
-[2025-04-23 21:47:22,577] INFO [detection.py:84] - Refining community 445 with 710 nodes
-[2025-04-23 21:47:22,589] ERROR [detection.py:137] - Error refining community 445: attempted relative import with no known parent package
-[2025-04-23 21:47:22,590] INFO [detection.py:84] - Refining community 456 with 676 nodes
-[2025-04-23 21:47:22,601] ERROR [detection.py:137] - Error refining community 456: attempted relative import with no known parent package
-[2025-04-23 21:47:22,602] INFO [detection.py:84] - Refining community 463 with 663 nodes
-[2025-04-23 21:47:22,618] ERROR [detection.py:137] - Error refining community 463: attempted relative import with no known parent package
-[2025-04-23 21:47:22,620] INFO [detection.py:84] - Refining community 473 with 944 nodes
-[2025-04-23 21:47:22,636] ERROR [detection.py:137] - Error refining community 473: attempted relative import with no known parent package
-[2025-04-23 21:47:22,637] INFO [detection.py:84] - Refining community 481 with 1600 nodes
-[2025-04-23 21:47:22,667] ERROR [detection.py:137] - Error refining community 481: attempted relative import with no known parent package
-[2025-04-23 21:47:22,667] INFO [detection.py:84] - Refining community 498 with 890 nodes
-[2025-04-23 21:47:22,683] ERROR [detection.py:137] - Error refining community 498: attempted relative import with no known parent package
-[2025-04-23 21:47:22,683] INFO [detection.py:84] - Refining community 516 with 834 nodes
-[2025-04-23 21:47:22,696] ERROR [detection.py:137] - Error refining community 516: attempted relative import with no known parent package
-[2025-04-23 21:47:22,696] INFO [detection.py:84] - Refining community 521 with 799 nodes
-[2025-04-23 21:47:22,706] ERROR [detection.py:137] - Error refining community 521: attempted relative import with no known parent package
-[2025-04-23 21:47:22,706] INFO [detection.py:84] - Refining community 536 with 1250 nodes
-[2025-04-23 21:47:22,725] ERROR [detection.py:137] - Error refining community 536: attempted relative import with no known parent package
-[2025-04-23 21:47:22,726] INFO [detection.py:84] - Refining community 557 with 1301 nodes
-[2025-04-23 21:47:22,743] ERROR [detection.py:137] - Error refining community 557: attempted relative import with no known parent package
-[2025-04-23 21:47:22,744] INFO [detection.py:84] - Refining community 564 with 1426 nodes
-[2025-04-23 21:47:22,766] ERROR [detection.py:137] - Error refining community 564: attempted relative import with no known parent package
-[2025-04-23 21:47:22,767] INFO [detection.py:84] - Refining community 568 with 1718 nodes
-[2025-04-23 21:47:22,790] ERROR [detection.py:137] - Error refining community 568: attempted relative import with no known parent package
-[2025-04-23 21:47:22,791] INFO [detection.py:84] - Refining community 589 with 1575 nodes
-[2025-04-23 21:47:22,818] ERROR [detection.py:137] - Error refining community 589: attempted relative import with no known parent package
-[2025-04-23 21:47:22,819] INFO [detection.py:84] - Refining community 593 with 721 nodes
-[2025-04-23 21:47:22,832] ERROR [detection.py:137] - Error refining community 593: attempted relative import with no known parent package
-[2025-04-23 21:47:22,832] INFO [detection.py:84] - Refining community 608 with 708 nodes
-[2025-04-23 21:47:22,844] ERROR [detection.py:137] - Error refining community 608: attempted relative import with no known parent package
-[2025-04-23 21:47:22,844] INFO [detection.py:84] - Refining community 619 with 540 nodes
-[2025-04-23 21:47:22,853] ERROR [detection.py:137] - Error refining community 619: attempted relative import with no known parent package
-[2025-04-23 21:47:22,854] INFO [detection.py:84] - Refining community 646 with 552 nodes
-[2025-04-23 21:47:22,863] ERROR [detection.py:137] - Error refining community 646: attempted relative import with no known parent package
-[2025-04-23 21:47:22,863] INFO [detection.py:84] - Refining community 654 with 1114 nodes
-[2025-04-23 21:47:22,875] ERROR [detection.py:137] - Error refining community 654: attempted relative import with no known parent package
-[2025-04-23 21:47:22,876] INFO [detection.py:84] - Refining community 656 with 750 nodes
-[2025-04-23 21:47:22,886] ERROR [detection.py:137] - Error refining community 656: attempted relative import with no known parent package
-[2025-04-23 21:47:22,887] INFO [detection.py:84] - Refining community 679 with 1228 nodes
-[2025-04-23 21:47:22,909] ERROR [detection.py:137] - Error refining community 679: attempted relative import with no known parent package
-[2025-04-23 21:47:22,910] INFO [detection.py:84] - Refining community 683 with 1250 nodes
-[2025-04-23 21:47:22,936] ERROR [detection.py:137] - Error refining community 683: attempted relative import with no known parent package
-[2025-04-23 21:47:22,937] INFO [detection.py:84] - Refining community 689 with 712 nodes
-[2025-04-23 21:47:22,949] ERROR [detection.py:137] - Error refining community 689: attempted relative import with no known parent package
-[2025-04-23 21:47:22,949] INFO [detection.py:84] - Refining community 700 with 887 nodes
-[2025-04-23 21:47:22,965] ERROR [detection.py:137] - Error refining community 700: attempted relative import with no known parent package
-[2025-04-23 21:47:22,966] INFO [detection.py:84] - Refining community 713 with 1183 nodes
-[2025-04-23 21:47:22,987] ERROR [detection.py:137] - Error refining community 713: attempted relative import with no known parent package
-[2025-04-23 21:47:22,987] INFO [detection.py:84] - Refining community 754 with 792 nodes
-[2025-04-23 21:47:23,002] ERROR [detection.py:137] - Error refining community 754: attempted relative import with no known parent package
-[2025-04-23 21:47:23,003] INFO [detection.py:84] - Refining community 759 with 582 nodes
-[2025-04-23 21:47:23,018] ERROR [detection.py:137] - Error refining community 759: attempted relative import with no known parent package
-[2025-04-23 21:47:23,018] INFO [detection.py:84] - Refining community 780 with 1127 nodes
-[2025-04-23 21:47:23,040] ERROR [detection.py:137] - Error refining community 780: attempted relative import with no known parent package
-[2025-04-23 21:47:23,041] INFO [detection.py:84] - Refining community 784 with 797 nodes
-[2025-04-23 21:47:23,055] ERROR [detection.py:137] - Error refining community 784: attempted relative import with no known parent package
-[2025-04-23 21:47:23,056] INFO [detection.py:84] - Refining community 828 with 1122 nodes
-[2025-04-23 21:47:23,070] ERROR [detection.py:137] - Error refining community 828: attempted relative import with no known parent package
-[2025-04-23 21:47:23,071] INFO [detection.py:84] - Refining community 846 with 983 nodes
-[2025-04-23 21:47:23,086] ERROR [detection.py:137] - Error refining community 846: attempted relative import with no known parent package
-[2025-04-23 21:47:23,086] INFO [detection.py:84] - Refining community 881 with 1126 nodes
-[2025-04-23 21:47:23,106] ERROR [detection.py:137] - Error refining community 881: attempted relative import with no known parent package
-[2025-04-23 21:47:23,107] INFO [detection.py:84] - Refining community 885 with 585 nodes
-[2025-04-23 21:47:23,119] ERROR [detection.py:137] - Error refining community 885: attempted relative import with no known parent package
-[2025-04-23 21:47:23,119] INFO [detection.py:84] - Refining community 931 with 891 nodes
-[2025-04-23 21:47:23,142] ERROR [detection.py:137] - Error refining community 931: attempted relative import with no known parent package
-[2025-04-23 21:47:23,143] INFO [detection.py:84] - Refining community 948 with 1075 nodes
-[2025-04-23 21:47:23,166] ERROR [detection.py:137] - Error refining community 948: attempted relative import with no known parent package
-[2025-04-23 21:47:23,167] INFO [detection.py:84] - Refining community 1036 with 1304 nodes
-[2025-04-23 21:47:23,188] ERROR [detection.py:137] - Error refining community 1036: attempted relative import with no known parent package
-[2025-04-23 21:47:23,188] INFO [detection.py:84] - Refining community 1057 with 1115 nodes
-[2025-04-23 21:47:23,211] ERROR [detection.py:137] - Error refining community 1057: attempted relative import with no known parent package
-[2025-04-23 21:47:23,212] INFO [detection.py:84] - Refining community 1071 with 813 nodes
-[2025-04-23 21:47:23,228] ERROR [detection.py:137] - Error refining community 1071: attempted relative import with no known parent package
-[2025-04-23 21:47:23,229] INFO [detection.py:84] - Refining community 1139 with 577 nodes
-[2025-04-23 21:47:23,239] ERROR [detection.py:137] - Error refining community 1139: attempted relative import with no known parent package
-[2025-04-23 21:47:23,239] INFO [detection.py:84] - Refining community 1143 with 1296 nodes
-[2025-04-23 21:47:23,257] ERROR [detection.py:137] - Error refining community 1143: attempted relative import with no known parent package
-[2025-04-23 21:47:23,257] INFO [detection.py:84] - Refining community 1151 with 589 nodes
-[2025-04-23 21:47:23,265] ERROR [detection.py:137] - Error refining community 1151: attempted relative import with no known parent package
-[2025-04-23 21:47:23,266] INFO [detection.py:84] - Refining community 1157 with 614 nodes
-[2025-04-23 21:47:23,273] ERROR [detection.py:137] - Error refining community 1157: attempted relative import with no known parent package
-[2025-04-23 21:47:23,274] INFO [detection.py:84] - Refining community 1160 with 1406 nodes
-[2025-04-23 21:47:23,300] ERROR [detection.py:137] - Error refining community 1160: attempted relative import with no known parent package
-[2025-04-23 21:47:23,301] INFO [detection.py:84] - Refining community 1641 with 582 nodes
-[2025-04-23 21:47:23,312] ERROR [detection.py:137] - Error refining community 1641: attempted relative import with no known parent package
-[2025-04-23 21:47:23,313] INFO [detection.py:84] - Refining community 1788 with 712 nodes
-[2025-04-23 21:47:23,328] ERROR [detection.py:137] - Error refining community 1788: attempted relative import with no known parent package
-[2025-04-23 21:47:23,328] INFO [detection.py:84] - Refining community 2387 with 724 nodes
-[2025-04-23 21:47:23,346] ERROR [detection.py:137] - Error refining community 2387: attempted relative import with no known parent package
-[2025-04-23 21:47:23,346] INFO [detection.py:84] - Refining community 2959 with 517 nodes
-[2025-04-23 21:47:23,353] ERROR [detection.py:137] - Error refining community 2959: attempted relative import with no known parent package
-[2025-04-23 21:47:23,373] INFO [detection.py:141] - Refinement complete. Partition now has 73882 communities
-[2025-04-23 21:47:24,166] INFO [evaluation.py:374] - Evaluating community detection results
-[2025-04-23 21:47:24,167] WARNING [evaluation.py:405] - Large graph detected (477998 nodes) - using optimized metrics
-[2025-04-23 21:47:25,484] WARNING [evaluation.py:440] - Graph has 71813 connected components (largest: 303526 nodes)
-[2025-04-23 21:47:25,485] WARNING [evaluation.py:441] - Metrics may be affected by graph disconnectivity
-[2025-04-23 21:47:29,203] INFO [evaluation.py:445] - Modularity: 0.8301
-[2025-04-23 21:47:30,444] INFO [evaluation.py:452] - Computed conductance for 1000/73882 communities (sampled)
-[2025-04-23 21:47:30,470] INFO [evaluation.py:456] - Average conductance: 0.0296
-[2025-04-23 21:47:32,625] INFO [evaluation.py:486] - Estimated coverage based on 500/73882 communities
-[2025-04-23 21:47:32,633] INFO [evaluation.py:510] - No ground truth provided, skipping NMI calculation
-[2025-04-23 21:47:32,658] INFO [evaluation.py:550] - Evaluation completed in 8.49 seconds
-[2025-04-23 21:47:32,731] INFO [__main__.py:637] - After refinement: 73882 communities
-[2025-04-23 21:47:32,732] INFO [__main__.py:638] - GN metrics - Modularity: 0.8301, Conductance: 0.0296
-[2025-04-23 21:48:03,319] INFO [evaluation.py:374] - Evaluating community detection results
-[2025-04-23 21:48:03,320] WARNING [evaluation.py:405] - Large graph detected (477998 nodes) - using optimized metrics
-[2025-04-23 21:48:05,377] WARNING [evaluation.py:440] - Graph has 71813 connected components (largest: 303526 nodes)
-[2025-04-23 21:48:05,378] WARNING [evaluation.py:441] - Metrics may be affected by graph disconnectivity
-[2025-04-23 21:48:09,292] INFO [evaluation.py:445] - Modularity: 0.7215
-[2025-04-23 21:48:09,831] INFO [evaluation.py:452] - Computed conductance for 1000/106812 communities (sampled)
-[2025-04-23 21:48:09,832] INFO [evaluation.py:456] - Average conductance: 0.2938
-[2025-04-23 21:48:10,207] INFO [evaluation.py:486] - Estimated coverage based on 500/106812 communities
-[2025-04-23 21:48:10,213] INFO [evaluation.py:510] - No ground truth provided, skipping NMI calculation
-[2025-04-23 21:48:12,440] INFO [evaluation.py:547] - Description length: 0.6669
-[2025-04-23 21:48:12,440] INFO [evaluation.py:550] - Evaluation completed in 9.12 seconds
-[2025-04-23 21:48:12,512] INFO [__main__.py:659] - Final communities: 106812 communities
-[2025-04-23 21:48:12,513] INFO [__main__.py:660] - Infomap metrics - Modularity: 0.7215, Conductance: 0.2938
-[2025-04-23 21:48:12,513] INFO [__main__.py:661] - Improvement from GN - Modularity: -0.1086
-[2025-04-23 21:48:12,720] INFO [__main__.py:682] - Creating community visualization...
-[2025-04-23 21:48:20,262] INFO [community_visualization.py:65] - Preparing to visualize 477998 nodes, 530872 edges in 106812 communities
-[2025-04-23 21:48:22,088] INFO [community_visualization.py:96] - Community size summary saved to community_visualizations\community_size_summary.png
-[2025-04-23 21:48:22,141] INFO [community_visualization.py:110] - Computing layout for top 20 communities subgraph...
-[2025-04-23 21:48:52,749] INFO [community_visualization.py:200] - Top communities visualization saved to community_visualizations\top_communities_visualization.png
-[2025-04-23 21:48:52,949] INFO [community_visualization.py:270] - Community visualization completed in 40.23 seconds
-[2025-04-23 21:48:52,949] INFO [community_visualization.py:271] - Comprehensive visualization report saved to community_visualizations\community_report.html
-[2025-04-23 21:48:54,106] INFO [__main__.py:162] - Evaluation metrics saved to results\metrics_20250423-214853.json
-[2025-04-23 21:48:54,111] INFO [__main__.py:688] - Evaluation metrics saved to results\metrics_20250423-214853.json
-[2025-04-23 21:48:54,767] INFO [__main__.py:456] - Metrics comparison plot saved to results\metrics_comparison.png
-[2025-04-23 21:48:54,768] INFO [__main__.py:695] - Metrics comparison plot saved to results\metrics_comparison.png
-[2025-04-23 21:48:54,768] INFO [__main__.py:726] - ==================================================
-[2025-04-23 21:48:54,768] INFO [__main__.py:727] - COMMUNITY DETECTION PIPELINE SUMMARY
-[2025-04-23 21:48:54,769] INFO [__main__.py:728] - ==================================================
-[2025-04-23 21:48:54,966] INFO [__main__.py:729] - Nodes: 477998, Edges: 530872
-[2025-04-23 21:48:54,967] INFO [__main__.py:730] - Graph density: 0.000005
-[2025-04-23 21:48:54,967] INFO [__main__.py:731] - Connected components: 71813
-[2025-04-23 21:48:54,968] WARNING [__main__.py:735] - IMPORTANT: Graph is highly disconnected - metrics may not be meaningful
-[2025-04-23 21:48:54,969] WARNING [__main__.py:736] - High number of connected components (71813) may explain high modularity values
-[2025-04-23 21:48:54,969] INFO [__main__.py:738] - Final number of communities: 106812
-[2025-04-23 21:48:54,970] INFO [__main__.py:739] - Stage-by-stage modularity:
-[2025-04-23 21:48:54,970] INFO [__main__.py:740] -   - Baseline: 0.0000
-[2025-04-23 21:48:54,971] INFO [__main__.py:741] -   - Louvain:  0.8301 (delta: +0.8301)
-[2025-04-23 21:48:54,972] INFO [__main__.py:742] -   - GN:       0.8301 (delta: 0.0000)
-[2025-04-23 21:48:54,972] INFO [__main__.py:743] -   - Infomap:  0.7215 (delta: -0.1086)
-[2025-04-23 21:48:54,973] INFO [__main__.py:744] - Overall improvement: +0.7215
-[2025-04-23 21:48:54,973] INFO [__main__.py:751] - Visualization saved to: community_visualizations\community_report.html
-[2025-04-23 21:48:54,974] INFO [__main__.py:752] - Metrics saved to: results\metrics_20250423-214853.json
-[2025-04-23 21:48:54,974] INFO [__main__.py:753] - Total runtime: 441.96 seconds
-[2025-04-23 21:48:54,975] INFO [__main__.py:754] - ==================================================
-[2025-04-23 22:00:33,913] INFO [__main__.py:60] - Output log being saved to: results\output_20250423-220033.txt
-[2025-04-23 22:00:33,914] INFO [__main__.py:472] - Starting Community Detection Pipeline
-[2025-04-23 22:00:33,916] INFO [__main__.py:483] - Loading configuration from config.yaml
-[2025-04-23 22:00:33,920] INFO [__main__.py:498] - Configuration: data_dir=data, sample_size=10000, size_threshold=500, target_subcommunities=5, modularity_threshold=0.3
-[2025-04-23 22:00:33,920] INFO [__main__.py:501] - Performance settings: max_iterations=50, time_limit=300s, fast_mode=False
-[2025-04-23 22:00:33,940] INFO [__main__.py:516] - Graph loaded in 0.02 seconds
-[2025-04-23 22:00:33,940] INFO [__main__.py:192] - Analyzing graph structure...
-[2025-04-23 22:00:33,978] INFO [__main__.py:227] - Graph has 18607 nodes and 9565 edges (density: 0.000055)
-[2025-04-23 22:00:33,979] INFO [__main__.py:228] - Graph has 9045 connected components
-[2025-04-23 22:00:33,980] INFO [__main__.py:229] - Largest component has 8 nodes (0.04% of graph)
-[2025-04-23 22:00:33,980] WARNING [__main__.py:232] - Graph is disconnected with 9045 components - metrics may be affected
-[2025-04-23 22:00:33,981] INFO [__main__.py:235] - Component size distribution: 8 nodes: 1 components, 7 nodes: 2 components, 6 nodes: 4 components, 5 nodes: 8 components
-[2025-04-23 22:00:33,982] WARNING [__main__.py:286] - No ground truth files found. NMI will not be calculated.
-[2025-04-23 22:00:33,985] INFO [evaluation.py:374] - Evaluating community detection results
-[2025-04-23 22:00:34,010] WARNING [evaluation.py:440] - Graph has 9045 connected components (largest: 8 nodes)
-[2025-04-23 22:00:34,011] WARNING [evaluation.py:441] - Metrics may be affected by graph disconnectivity
-[2025-04-23 22:00:34,097] INFO [evaluation.py:445] - Modularity: 0.0000
-[2025-04-23 22:00:34,134] INFO [evaluation.py:456] - Average conductance: 0.0000
-[2025-04-23 22:00:34,135] WARNING [evaluation.py:460] - Very low conductance likely due to graph disconnectivity (few edges between components)
-[2025-04-23 22:00:34,234] INFO [evaluation.py:510] - No ground truth provided, skipping NMI calculation
-[2025-04-23 22:00:34,237] INFO [evaluation.py:550] - Evaluation completed in 0.25 seconds
-[2025-04-23 22:00:34,240] INFO [__main__.py:564] - Baseline metrics - Modularity: 0.0000, Conductance: 0.0000
-[2025-04-23 22:00:36,099] INFO [evaluation.py:374] - Evaluating community detection results
-[2025-04-23 22:00:36,131] WARNING [evaluation.py:440] - Graph has 9045 connected components (largest: 8 nodes)
-[2025-04-23 22:00:36,132] WARNING [evaluation.py:441] - Metrics may be affected by graph disconnectivity
-[2025-04-23 22:00:36,247] WARNING [evaluation.py:41] - Very high modularity (0.9999) with 9045 connected components.
-[2025-04-23 22:00:36,248] WARNING [evaluation.py:42] - This is expected for disconnected graphs, as each component naturally forms a community.
-[2025-04-23 22:00:36,249] INFO [evaluation.py:445] - Modularity: 0.9999
-[2025-04-23 22:00:36,296] INFO [evaluation.py:456] - Average conductance: 0.0000
-[2025-04-23 22:00:36,297] WARNING [evaluation.py:460] - Very low conductance likely due to graph disconnectivity (few edges between components)
-[2025-04-23 22:00:36,487] INFO [evaluation.py:510] - No ground truth provided, skipping NMI calculation
-[2025-04-23 22:00:36,489] INFO [evaluation.py:550] - Evaluation completed in 0.39 seconds
-[2025-04-23 22:00:36,491] INFO [__main__.py:579] - Initial Louvain: 9045 communities
-[2025-04-23 22:00:36,491] INFO [__main__.py:580] - Louvain metrics - Modularity: 0.9999, Conductance: 0.0000
-[2025-04-23 22:00:36,492] INFO [__main__.py:581] - Improvement from baseline - Modularity: +0.9999
-[2025-04-23 22:00:36,492] INFO [__main__.py:589] - Large graph with many components: checking if Girvan-Newman refinement is needed
-[2025-04-23 22:00:36,492] INFO [__main__.py:592] - High modularity detected from Louvain. Skipping Girvan-Newman refinement.
-[2025-04-23 22:00:36,492] INFO [__main__.py:637] - After refinement: 9045 communities
-[2025-04-23 22:00:36,493] INFO [__main__.py:638] - GN metrics - Modularity: 0.9999, Conductance: 0.0000
-[2025-04-23 22:00:36,631] INFO [evaluation.py:374] - Evaluating community detection results
-[2025-04-23 22:00:36,652] WARNING [evaluation.py:440] - Graph has 9045 connected components (largest: 8 nodes)
-[2025-04-23 22:00:36,653] WARNING [evaluation.py:441] - Metrics may be affected by graph disconnectivity
-[2025-04-23 22:00:36,756] WARNING [evaluation.py:41] - Very high modularity (0.9999) with 9045 connected components.
-[2025-04-23 22:00:36,757] WARNING [evaluation.py:42] - This is expected for disconnected graphs, as each component naturally forms a community.
-[2025-04-23 22:00:36,757] INFO [evaluation.py:445] - Modularity: 0.9999
-[2025-04-23 22:00:36,795] INFO [evaluation.py:456] - Average conductance: 0.0000
-[2025-04-23 22:00:36,796] WARNING [evaluation.py:460] - Very low conductance likely due to graph disconnectivity (few edges between components)
-[2025-04-23 22:00:37,004] INFO [evaluation.py:510] - No ground truth provided, skipping NMI calculation
-[2025-04-23 22:00:37,048] INFO [evaluation.py:547] - Description length: 0.0000
-[2025-04-23 22:00:37,049] INFO [evaluation.py:550] - Evaluation completed in 0.42 seconds
-[2025-04-23 22:00:37,051] INFO [__main__.py:659] - Final communities: 9045 communities
-[2025-04-23 22:00:37,051] INFO [__main__.py:660] - Infomap metrics - Modularity: 0.9999, Conductance: 0.0000
-[2025-04-23 22:00:37,052] INFO [__main__.py:661] - Improvement from GN - Modularity: 0.0000
-[2025-04-23 22:00:37,059] INFO [__main__.py:682] - Creating community visualization...
-[2025-04-23 22:00:37,165] INFO [community_visualization.py:65] - Preparing to visualize 18607 nodes, 9565 edges in 9045 communities
-[2025-04-23 22:00:37,973] INFO [community_visualization.py:96] - Community size summary saved to community_visualizations\community_size_summary.png
-[2025-04-23 22:00:37,975] INFO [community_visualization.py:110] - Computing layout for top 20 communities subgraph...
-[2025-04-23 22:00:38,818] INFO [community_visualization.py:200] - Top communities visualization saved to community_visualizations\top_communities_visualization.png
-[2025-04-23 22:00:38,828] INFO [community_visualization.py:270] - Community visualization completed in 1.77 seconds
-[2025-04-23 22:00:38,829] INFO [community_visualization.py:271] - Comprehensive visualization report saved to community_visualizations\community_report.html
-[2025-04-23 22:00:39,074] INFO [__main__.py:162] - Evaluation metrics saved to results\metrics_20250423-220038.json
-[2025-04-23 22:00:39,075] INFO [__main__.py:688] - Evaluation metrics saved to results\metrics_20250423-220038.json
-[2025-04-23 22:00:39,714] INFO [__main__.py:456] - Metrics comparison plot saved to results\metrics_comparison.png
-[2025-04-23 22:00:39,715] INFO [__main__.py:695] - Metrics comparison plot saved to results\metrics_comparison.png
-[2025-04-23 22:00:39,715] INFO [__main__.py:726] - ==================================================
-[2025-04-23 22:00:39,716] INFO [__main__.py:727] - COMMUNITY DETECTION PIPELINE SUMMARY
-[2025-04-23 22:00:39,716] INFO [__main__.py:728] - ==================================================
-[2025-04-23 22:00:39,720] INFO [__main__.py:729] - Nodes: 18607, Edges: 9565
-[2025-04-23 22:00:39,720] INFO [__main__.py:730] - Graph density: 0.000055
-[2025-04-23 22:00:39,720] INFO [__main__.py:731] - Connected components: 9045
-[2025-04-23 22:00:39,721] WARNING [__main__.py:735] - IMPORTANT: Graph is highly disconnected - metrics may not be meaningful
-[2025-04-23 22:00:39,721] WARNING [__main__.py:736] - High number of connected components (9045) may explain high modularity values
-[2025-04-23 22:00:39,722] INFO [__main__.py:738] - Final number of communities: 9045
-[2025-04-23 22:00:39,722] INFO [__main__.py:739] - Stage-by-stage modularity:
-[2025-04-23 22:00:39,723] INFO [__main__.py:740] -   - Baseline: 0.0000
-[2025-04-23 22:00:39,723] INFO [__main__.py:741] -   - Louvain:  0.9999 (delta: +0.9999)
-[2025-04-23 22:00:39,723] INFO [__main__.py:742] -   - GN:       0.9999 (delta: 0.0000)
-[2025-04-23 22:00:39,724] INFO [__main__.py:743] -   - Infomap:  0.9999 (delta: 0.0000)
-[2025-04-23 22:00:39,724] INFO [__main__.py:744] - Overall improvement: +0.9999
-[2025-04-23 22:00:39,724] INFO [__main__.py:748] - NOTE: The high modularity values are likely due to many disconnected components in the graph
-[2025-04-23 22:00:39,725] INFO [__main__.py:749] -       Each component forms its own natural community with no external edges
-[2025-04-23 22:00:39,725] INFO [__main__.py:751] - Visualization saved to: community_visualizations\community_report.html
-[2025-04-23 22:00:39,726] INFO [__main__.py:752] - Metrics saved to: results\metrics_20250423-220038.json
-[2025-04-23 22:00:39,726] INFO [__main__.py:753] - Total runtime: 5.80 seconds
-[2025-04-23 22:00:39,727] INFO [__main__.py:754] - ==================================================
-[2025-04-23 22:07:10,965] INFO [__main__.py:60] - Output log being saved to: results\output_20250423-220710.txt
-[2025-04-23 22:07:10,967] INFO [__main__.py:472] - Starting Community Detection Pipeline
-[2025-04-23 22:07:10,971] INFO [__main__.py:483] - Loading configuration from config.yaml
-[2025-04-23 22:07:10,975] INFO [__main__.py:498] - Configuration: data_dir=data, sample_size=10000, size_threshold=500, target_subcommunities=5, modularity_threshold=0.3
-[2025-04-23 22:07:10,975] INFO [__main__.py:501] - Performance settings: max_iterations=50, time_limit=300s, fast_mode=False
-[2025-04-23 22:07:10,996] INFO [__main__.py:516] - Graph loaded in 0.02 seconds
-[2025-04-23 22:07:10,997] INFO [__main__.py:192] - Analyzing graph structure...
-[2025-04-23 22:07:11,034] INFO [__main__.py:227] - Graph has 18607 nodes and 9565 edges (density: 0.000055)
-[2025-04-23 22:07:11,034] INFO [__main__.py:228] - Graph has 9045 connected components
-[2025-04-23 22:07:11,034] INFO [__main__.py:229] - Largest component has 8 nodes (0.04% of graph)
-[2025-04-23 22:07:11,035] WARNING [__main__.py:232] - Graph is disconnected with 9045 components - metrics may be affected
-[2025-04-23 22:07:11,035] INFO [__main__.py:235] - Component size distribution: 8 nodes: 1 components, 7 nodes: 2 components, 6 nodes: 4 components, 5 nodes: 8 components
-[2025-04-23 22:07:11,037] WARNING [__main__.py:286] - No ground truth files found. NMI will not be calculated.
-[2025-04-23 22:07:11,039] INFO [evaluation.py:374] - Evaluating community detection results
-[2025-04-23 22:07:11,062] WARNING [evaluation.py:440] - Graph has 9045 connected components (largest: 8 nodes)
-[2025-04-23 22:07:11,063] WARNING [evaluation.py:441] - Metrics may be affected by graph disconnectivity
-[2025-04-23 22:07:11,193] INFO [evaluation.py:445] - Modularity: 0.0000
-[2025-04-23 22:07:11,265] INFO [evaluation.py:456] - Average conductance: 0.0000
-[2025-04-23 22:07:11,266] WARNING [evaluation.py:460] - Very low conductance likely due to graph disconnectivity (few edges between components)
-[2025-04-23 22:07:11,352] INFO [evaluation.py:510] - No ground truth provided, skipping NMI calculation
-[2025-04-23 22:07:11,354] INFO [evaluation.py:550] - Evaluation completed in 0.31 seconds
-[2025-04-23 22:07:11,356] INFO [__main__.py:564] - Baseline metrics - Modularity: 0.0000, Conductance: 0.0000
-[2025-04-23 22:07:13,128] INFO [evaluation.py:374] - Evaluating community detection results
-[2025-04-23 22:07:13,181] WARNING [evaluation.py:440] - Graph has 9045 connected components (largest: 8 nodes)
-[2025-04-23 22:07:13,182] WARNING [evaluation.py:441] - Metrics may be affected by graph disconnectivity
-[2025-04-23 22:07:13,311] WARNING [evaluation.py:41] - Very high modularity (0.9999) with 9045 connected components.
-[2025-04-23 22:07:13,311] WARNING [evaluation.py:42] - This is expected for disconnected graphs, as each component naturally forms a community.
-[2025-04-23 22:07:13,313] INFO [evaluation.py:445] - Modularity: 0.9999
-[2025-04-23 22:07:13,360] INFO [evaluation.py:456] - Average conductance: 0.0000
-[2025-04-23 22:07:13,360] WARNING [evaluation.py:460] - Very low conductance likely due to graph disconnectivity (few edges between components)
-[2025-04-23 22:07:13,547] INFO [evaluation.py:510] - No ground truth provided, skipping NMI calculation
-[2025-04-23 22:07:13,548] INFO [evaluation.py:550] - Evaluation completed in 0.42 seconds
-[2025-04-23 22:07:13,550] INFO [__main__.py:579] - Initial Louvain: 9045 communities
-[2025-04-23 22:07:13,550] INFO [__main__.py:580] - Louvain metrics - Modularity: 0.9999, Conductance: 0.0000
-[2025-04-23 22:07:13,551] INFO [__main__.py:581] - Improvement from baseline - Modularity: +0.9999
-[2025-04-23 22:07:13,551] INFO [__main__.py:589] - Large graph with many components: checking if Girvan-Newman refinement is needed
-[2025-04-23 22:07:13,551] INFO [__main__.py:592] - High modularity detected from Louvain. Skipping Girvan-Newman refinement.
-[2025-04-23 22:07:13,551] INFO [__main__.py:637] - After refinement: 9045 communities
-[2025-04-23 22:07:13,552] INFO [__main__.py:638] - GN metrics - Modularity: 0.9999, Conductance: 0.0000
-[2025-04-23 22:07:13,714] INFO [evaluation.py:374] - Evaluating community detection results
-[2025-04-23 22:07:13,741] WARNING [evaluation.py:440] - Graph has 9045 connected components (largest: 8 nodes)
-[2025-04-23 22:07:13,742] WARNING [evaluation.py:441] - Metrics may be affected by graph disconnectivity
-[2025-04-23 22:07:13,880] WARNING [evaluation.py:41] - Very high modularity (0.9999) with 9045 connected components.
-[2025-04-23 22:07:13,881] WARNING [evaluation.py:42] - This is expected for disconnected graphs, as each component naturally forms a community.
-[2025-04-23 22:07:13,883] INFO [evaluation.py:445] - Modularity: 0.9999
-[2025-04-23 22:07:13,949] INFO [evaluation.py:456] - Average conductance: 0.0000
-[2025-04-23 22:07:13,950] WARNING [evaluation.py:460] - Very low conductance likely due to graph disconnectivity (few edges between components)
-[2025-04-23 22:07:14,116] INFO [evaluation.py:510] - No ground truth provided, skipping NMI calculation
-[2025-04-23 22:07:14,164] INFO [evaluation.py:547] - Description length: 0.0000
-[2025-04-23 22:07:14,165] INFO [evaluation.py:550] - Evaluation completed in 0.45 seconds
-[2025-04-23 22:07:14,167] INFO [__main__.py:659] - Final communities: 9045 communities
-[2025-04-23 22:07:14,167] INFO [__main__.py:660] - Infomap metrics - Modularity: 0.9999, Conductance: 0.0000
-[2025-04-23 22:07:14,168] INFO [__main__.py:661] - Improvement from GN - Modularity: 0.0000
-[2025-04-23 22:07:14,173] INFO [__main__.py:682] - Creating community visualization...
-[2025-04-23 22:07:14,290] INFO [community_visualization.py:65] - Preparing to visualize 18607 nodes, 9565 edges in 9045 communities
-[2025-04-23 22:07:15,087] INFO [community_visualization.py:96] - Community size summary saved to community_visualizations\community_size_summary.png
-[2025-04-23 22:07:15,089] INFO [community_visualization.py:110] - Computing layout for top 20 communities subgraph...
-[2025-04-23 22:07:15,896] INFO [community_visualization.py:200] - Top communities visualization saved to community_visualizations\top_communities_visualization.png
-[2025-04-23 22:07:15,896] INFO [community_visualization.py:203] - Creating community interconnection visualization...
-[2025-04-23 22:07:16,494] INFO [community_visualization.py:285] - Community interconnection visualization saved to community_visualizations\community_interconnections.png
-[2025-04-23 22:07:16,494] INFO [community_visualization.py:288] - Creating detailed visualizations for top communities...
-[2025-04-23 22:07:16,503] INFO [community_visualization.py:462] - Community visualization completed in 2.33 seconds
-[2025-04-23 22:07:16,504] INFO [community_visualization.py:463] - Comprehensive visualization report saved to community_visualizations\community_report.html
-[2025-04-23 22:07:16,785] INFO [__main__.py:162] - Evaluation metrics saved to results\metrics_20250423-220716.json
-[2025-04-23 22:07:16,786] INFO [__main__.py:688] - Evaluation metrics saved to results\metrics_20250423-220716.json
-[2025-04-23 22:07:17,516] INFO [__main__.py:456] - Metrics comparison plot saved to results\metrics_comparison.png
-[2025-04-23 22:07:17,517] INFO [__main__.py:695] - Metrics comparison plot saved to results\metrics_comparison.png
-[2025-04-23 22:07:17,517] INFO [__main__.py:726] - ==================================================
-[2025-04-23 22:07:17,517] INFO [__main__.py:727] - COMMUNITY DETECTION PIPELINE SUMMARY
-[2025-04-23 22:07:17,518] INFO [__main__.py:728] - ==================================================
-[2025-04-23 22:07:17,523] INFO [__main__.py:729] - Nodes: 18607, Edges: 9565
-[2025-04-23 22:07:17,523] INFO [__main__.py:730] - Graph density: 0.000055
-[2025-04-23 22:07:17,524] INFO [__main__.py:731] - Connected components: 9045
-[2025-04-23 22:07:17,524] WARNING [__main__.py:735] - IMPORTANT: Graph is highly disconnected - metrics may not be meaningful
-[2025-04-23 22:07:17,525] WARNING [__main__.py:736] - High number of connected components (9045) may explain high modularity values
-[2025-04-23 22:07:17,526] INFO [__main__.py:738] - Final number of communities: 9045
-[2025-04-23 22:07:17,527] INFO [__main__.py:739] - Stage-by-stage modularity:
-[2025-04-23 22:07:17,527] INFO [__main__.py:740] -   - Baseline: 0.0000
-[2025-04-23 22:07:17,528] INFO [__main__.py:741] -   - Louvain:  0.9999 (delta: +0.9999)
-[2025-04-23 22:07:17,528] INFO [__main__.py:742] -   - GN:       0.9999 (delta: 0.0000)
-[2025-04-23 22:07:17,528] INFO [__main__.py:743] -   - Infomap:  0.9999 (delta: 0.0000)
-[2025-04-23 22:07:17,529] INFO [__main__.py:744] - Overall improvement: +0.9999
-[2025-04-23 22:07:17,529] INFO [__main__.py:748] - NOTE: The high modularity values are likely due to many disconnected components in the graph
-[2025-04-23 22:07:17,530] INFO [__main__.py:749] -       Each component forms its own natural community with no external edges
-[2025-04-23 22:07:17,530] INFO [__main__.py:751] - Visualization saved to: community_visualizations\community_report.html
-[2025-04-23 22:07:17,531] INFO [__main__.py:752] - Metrics saved to: results\metrics_20250423-220716.json
-[2025-04-23 22:07:17,531] INFO [__main__.py:753] - Total runtime: 6.55 seconds
-[2025-04-23 22:07:17,532] INFO [__main__.py:754] - ==================================================
-[2025-04-23 22:10:01,884] INFO [__main__.py:60] - Output log being saved to: results\output_20250423-221001.txt
-[2025-04-23 22:10:01,885] INFO [__main__.py:472] - Starting Community Detection Pipeline
-[2025-04-23 22:10:01,889] INFO [__main__.py:483] - Loading configuration from config.yaml
-[2025-04-23 22:10:01,909] INFO [__main__.py:498] - Configuration: data_dir=data, sample_size=None, size_threshold=500, target_subcommunities=5, modularity_threshold=0.3
-[2025-04-23 22:10:01,909] INFO [__main__.py:501] - Performance settings: max_iterations=50, time_limit=300s, fast_mode=False
-[2025-04-23 22:10:02,821] INFO [__main__.py:516] - Graph loaded in 0.91 seconds
-[2025-04-23 22:10:02,822] WARNING [__main__.py:520] - Large graph detected (477998 nodes). Consider using --fast-mode for better performance.
-[2025-04-23 22:10:02,823] WARNING [__main__.py:521] - Processing may take a long time without optimizations.
-[2025-04-23 22:10:02,824] INFO [__main__.py:192] - Analyzing graph structure...
-[2025-04-23 22:10:04,615] INFO [__main__.py:227] - Graph has 477998 nodes and 530872 edges (density: 0.000005)
-[2025-04-23 22:10:04,615] INFO [__main__.py:228] - Graph has 71813 connected components
-[2025-04-23 22:10:04,616] INFO [__main__.py:229] - Largest component has 303526 nodes (63.50% of graph)
-[2025-04-23 22:10:04,616] WARNING [__main__.py:232] - Graph is disconnected with 71813 components - metrics may be affected
-[2025-04-23 22:10:04,621] INFO [__main__.py:235] - Component size distribution: 303526 nodes: 1 components, 58 nodes: 1 components, 38 nodes: 2 components, 35 nodes: 1 components, 32 nodes: 1 components, 27 nodes: 1 components, 24 nodes: 1 components, 22 nodes: 1 components, 20 nodes: 2 components
-[2025-04-23 22:10:04,649] WARNING [__main__.py:286] - No ground truth files found. NMI will not be calculated.
-[2025-04-23 22:10:04,772] INFO [evaluation.py:374] - Evaluating community detection results
-[2025-04-23 22:10:04,773] WARNING [evaluation.py:405] - Large graph detected (477998 nodes) - using optimized metrics
-[2025-04-23 22:10:06,113] WARNING [evaluation.py:440] - Graph has 71813 connected components (largest: 303526 nodes)
-[2025-04-23 22:10:06,114] WARNING [evaluation.py:441] - Metrics may be affected by graph disconnectivity
-[2025-04-23 22:10:09,505] INFO [evaluation.py:445] - Modularity: 0.0000
-[2025-04-23 22:10:10,729] INFO [evaluation.py:456] - Average conductance: 0.0000
-[2025-04-23 22:10:10,730] WARNING [evaluation.py:460] - Very low conductance likely due to graph disconnectivity (few edges between components)
-[2025-04-23 22:10:14,168] INFO [evaluation.py:486] - Estimated coverage based on 1/1 communities
-[2025-04-23 22:10:14,169] INFO [evaluation.py:510] - No ground truth provided, skipping NMI calculation
-[2025-04-23 22:10:14,178] INFO [evaluation.py:550] - Evaluation completed in 9.41 seconds
-[2025-04-23 22:10:14,236] INFO [__main__.py:564] - Baseline metrics - Modularity: 0.0000, Conductance: 0.0000
-[2025-04-23 22:15:09,076] INFO [evaluation.py:374] - Evaluating community detection results
-[2025-04-23 22:15:09,077] WARNING [evaluation.py:405] - Large graph detected (477998 nodes) - using optimized metrics
-[2025-04-23 22:15:10,552] WARNING [evaluation.py:440] - Graph has 71813 connected components (largest: 303526 nodes)
-[2025-04-23 22:15:10,552] WARNING [evaluation.py:441] - Metrics may be affected by graph disconnectivity
-[2025-04-23 22:15:13,955] INFO [evaluation.py:445] - Modularity: 0.8301
-[2025-04-23 22:15:15,099] INFO [evaluation.py:452] - Computed conductance for 1000/73882 communities (sampled)
-[2025-04-23 22:15:15,099] INFO [evaluation.py:456] - Average conductance: 0.0296
-[2025-04-23 22:15:17,151] INFO [evaluation.py:486] - Estimated coverage based on 500/73882 communities
-[2025-04-23 22:15:17,155] INFO [evaluation.py:510] - No ground truth provided, skipping NMI calculation
-[2025-04-23 22:15:17,161] INFO [evaluation.py:550] - Evaluation completed in 8.08 seconds
-[2025-04-23 22:15:17,214] INFO [__main__.py:579] - Initial Louvain: 73882 communities
-[2025-04-23 22:15:17,215] INFO [__main__.py:580] - Louvain metrics - Modularity: 0.8301, Conductance: 0.0296
-[2025-04-23 22:15:17,215] INFO [__main__.py:581] - Improvement from baseline - Modularity: +0.8301
-[2025-04-23 22:15:17,215] INFO [__main__.py:589] - Large graph with many components: checking if Girvan-Newman refinement is needed
-[2025-04-23 22:15:17,216] INFO [__main__.py:617] - Running Girvan-Newman with max_iterations=50
-[2025-04-23 22:15:17,216] INFO [detection.py:59] - Refining communities larger than 500 nodes
-[2025-04-23 22:15:17,327] INFO [detection.py:73] - Found 164 communities larger than threshold
-[2025-04-23 22:15:17,332] INFO [detection.py:84] - Refining community 1 with 2238 nodes
-[2025-04-23 22:15:17,395] ERROR [detection.py:137] - Error refining community 1: attempted relative import with no known parent package
-[2025-04-23 22:15:17,396] INFO [detection.py:84] - Refining community 3 with 1645 nodes
-[2025-04-23 22:15:17,420] ERROR [detection.py:137] - Error refining community 3: attempted relative import with no known parent package
-[2025-04-23 22:15:17,420] INFO [detection.py:84] - Refining community 4 with 3697 nodes
-[2025-04-23 22:15:17,470] ERROR [detection.py:137] - Error refining community 4: attempted relative import with no known parent package
-[2025-04-23 22:15:17,471] INFO [detection.py:84] - Refining community 5 with 46124 nodes
-[2025-04-23 22:15:18,387] ERROR [detection.py:137] - Error refining community 5: attempted relative import with no known parent package
-[2025-04-23 22:15:18,387] INFO [detection.py:84] - Refining community 6 with 1041 nodes
-[2025-04-23 22:15:18,402] ERROR [detection.py:137] - Error refining community 6: attempted relative import with no known parent package
-[2025-04-23 22:15:18,403] INFO [detection.py:84] - Refining community 7 with 1069 nodes
-[2025-04-23 22:15:18,423] ERROR [detection.py:137] - Error refining community 7: attempted relative import with no known parent package
-[2025-04-23 22:15:18,424] INFO [detection.py:84] - Refining community 9 with 4436 nodes
-[2025-04-23 22:15:18,486] ERROR [detection.py:137] - Error refining community 9: attempted relative import with no known parent package
-[2025-04-23 22:15:18,487] INFO [detection.py:84] - Refining community 11 with 1947 nodes
-[2025-04-23 22:15:18,511] ERROR [detection.py:137] - Error refining community 11: attempted relative import with no known parent package
-[2025-04-23 22:15:18,512] INFO [detection.py:84] - Refining community 12 with 734 nodes
-[2025-04-23 22:15:18,521] ERROR [detection.py:137] - Error refining community 12: attempted relative import with no known parent package
-[2025-04-23 22:15:18,522] INFO [detection.py:84] - Refining community 13 with 1985 nodes
-[2025-04-23 22:15:18,546] ERROR [detection.py:137] - Error refining community 13: attempted relative import with no known parent package
-[2025-04-23 22:15:18,547] INFO [detection.py:84] - Refining community 14 with 1937 nodes
-[2025-04-23 22:15:18,569] ERROR [detection.py:137] - Error refining community 14: attempted relative import with no known parent package
-[2025-04-23 22:15:18,569] INFO [detection.py:84] - Refining community 18 with 1195 nodes
-[2025-04-23 22:15:18,583] ERROR [detection.py:137] - Error refining community 18: attempted relative import with no known parent package
-[2025-04-23 22:15:18,584] INFO [detection.py:84] - Refining community 19 with 1417 nodes
-[2025-04-23 22:15:18,602] ERROR [detection.py:137] - Error refining community 19: attempted relative import with no known parent package
-[2025-04-23 22:15:18,603] INFO [detection.py:84] - Refining community 22 with 27831 nodes
-[2025-04-23 22:15:19,065] ERROR [detection.py:137] - Error refining community 22: attempted relative import with no known parent package
-[2025-04-23 22:15:19,065] INFO [detection.py:84] - Refining community 23 with 1485 nodes
-[2025-04-23 22:15:19,080] ERROR [detection.py:137] - Error refining community 23: attempted relative import with no known parent package
-[2025-04-23 22:15:19,080] INFO [detection.py:84] - Refining community 24 with 3766 nodes
-[2025-04-23 22:15:19,129] ERROR [detection.py:137] - Error refining community 24: attempted relative import with no known parent package
-[2025-04-23 22:15:19,129] INFO [detection.py:84] - Refining community 29 with 2206 nodes
-[2025-04-23 22:15:19,154] ERROR [detection.py:137] - Error refining community 29: attempted relative import with no known parent package
-[2025-04-23 22:15:19,154] INFO [detection.py:84] - Refining community 30 with 723 nodes
-[2025-04-23 22:15:19,165] ERROR [detection.py:137] - Error refining community 30: attempted relative import with no known parent package
-[2025-04-23 22:15:19,166] INFO [detection.py:84] - Refining community 31 with 4014 nodes
-[2025-04-23 22:15:19,583] ERROR [detection.py:137] - Error refining community 31: attempted relative import with no known parent package
-[2025-04-23 22:15:19,583] INFO [detection.py:84] - Refining community 32 with 862 nodes
-[2025-04-23 22:15:19,592] ERROR [detection.py:137] - Error refining community 32: attempted relative import with no known parent package
-[2025-04-23 22:15:19,592] INFO [detection.py:84] - Refining community 38 with 1186 nodes
-[2025-04-23 22:15:19,604] ERROR [detection.py:137] - Error refining community 38: attempted relative import with no known parent package
-[2025-04-23 22:15:19,604] INFO [detection.py:84] - Refining community 40 with 1631 nodes
-[2025-04-23 22:15:19,620] ERROR [detection.py:137] - Error refining community 40: attempted relative import with no known parent package
-[2025-04-23 22:15:19,621] INFO [detection.py:84] - Refining community 43 with 883 nodes
-[2025-04-23 22:15:19,633] ERROR [detection.py:137] - Error refining community 43: attempted relative import with no known parent package
-[2025-04-23 22:15:19,633] INFO [detection.py:84] - Refining community 45 with 1215 nodes
-[2025-04-23 22:15:19,648] ERROR [detection.py:137] - Error refining community 45: attempted relative import with no known parent package
-[2025-04-23 22:15:19,648] INFO [detection.py:84] - Refining community 47 with 528 nodes
-[2025-04-23 22:15:19,658] ERROR [detection.py:137] - Error refining community 47: attempted relative import with no known parent package
-[2025-04-23 22:15:19,659] INFO [detection.py:84] - Refining community 49 with 923 nodes
-[2025-04-23 22:15:19,673] ERROR [detection.py:137] - Error refining community 49: attempted relative import with no known parent package
-[2025-04-23 22:15:19,673] INFO [detection.py:84] - Refining community 55 with 1102 nodes
-[2025-04-23 22:15:19,690] ERROR [detection.py:137] - Error refining community 55: attempted relative import with no known parent package
-[2025-04-23 22:15:19,690] INFO [detection.py:84] - Refining community 60 with 1325 nodes
-[2025-04-23 22:15:19,721] ERROR [detection.py:137] - Error refining community 60: attempted relative import with no known parent package
-[2025-04-23 22:15:19,722] INFO [detection.py:84] - Refining community 62 with 1233 nodes
-[2025-04-23 22:15:19,760] ERROR [detection.py:137] - Error refining community 62: attempted relative import with no known parent package
-[2025-04-23 22:15:19,761] INFO [detection.py:84] - Refining community 63 with 869 nodes
-[2025-04-23 22:15:19,786] ERROR [detection.py:137] - Error refining community 63: attempted relative import with no known parent package
-[2025-04-23 22:15:19,787] INFO [detection.py:84] - Refining community 64 with 1912 nodes
-[2025-04-23 22:15:19,854] ERROR [detection.py:137] - Error refining community 64: attempted relative import with no known parent package
-[2025-04-23 22:15:19,855] INFO [detection.py:84] - Refining community 65 with 1515 nodes
-[2025-04-23 22:15:19,897] ERROR [detection.py:137] - Error refining community 65: attempted relative import with no known parent package
-[2025-04-23 22:15:19,898] INFO [detection.py:84] - Refining community 70 with 1646 nodes
-[2025-04-23 22:15:19,922] ERROR [detection.py:137] - Error refining community 70: attempted relative import with no known parent package
-[2025-04-23 22:15:19,923] INFO [detection.py:84] - Refining community 72 with 1348 nodes
-[2025-04-23 22:15:19,941] ERROR [detection.py:137] - Error refining community 72: attempted relative import with no known parent package
-[2025-04-23 22:15:19,942] INFO [detection.py:84] - Refining community 74 with 904 nodes
-[2025-04-23 22:15:19,954] ERROR [detection.py:137] - Error refining community 74: attempted relative import with no known parent package
-[2025-04-23 22:15:19,955] INFO [detection.py:84] - Refining community 75 with 1608 nodes
-[2025-04-23 22:15:19,982] ERROR [detection.py:137] - Error refining community 75: attempted relative import with no known parent package
-[2025-04-23 22:15:19,983] INFO [detection.py:84] - Refining community 76 with 1873 nodes
-[2025-04-23 22:15:20,004] ERROR [detection.py:137] - Error refining community 76: attempted relative import with no known parent package
-[2025-04-23 22:15:20,005] INFO [detection.py:84] - Refining community 82 with 1595 nodes
-[2025-04-23 22:15:20,025] ERROR [detection.py:137] - Error refining community 82: attempted relative import with no known parent package
-[2025-04-23 22:15:20,026] INFO [detection.py:84] - Refining community 86 with 1284 nodes
-[2025-04-23 22:15:20,042] ERROR [detection.py:137] - Error refining community 86: attempted relative import with no known parent package
-[2025-04-23 22:15:20,043] INFO [detection.py:84] - Refining community 89 with 843 nodes
-[2025-04-23 22:15:20,056] ERROR [detection.py:137] - Error refining community 89: attempted relative import with no known parent package
-[2025-04-23 22:15:20,056] INFO [detection.py:84] - Refining community 95 with 1461 nodes
-[2025-04-23 22:15:20,080] ERROR [detection.py:137] - Error refining community 95: attempted relative import with no known parent package
-[2025-04-23 22:15:20,081] INFO [detection.py:84] - Refining community 97 with 1013 nodes
-[2025-04-23 22:15:20,093] ERROR [detection.py:137] - Error refining community 97: attempted relative import with no known parent package
-[2025-04-23 22:15:20,093] INFO [detection.py:84] - Refining community 99 with 3588 nodes
-[2025-04-23 22:15:20,150] ERROR [detection.py:137] - Error refining community 99: attempted relative import with no known parent package
-[2025-04-23 22:15:20,150] INFO [detection.py:84] - Refining community 103 with 665 nodes
-[2025-04-23 22:15:20,160] ERROR [detection.py:137] - Error refining community 103: attempted relative import with no known parent package
-[2025-04-23 22:15:20,161] INFO [detection.py:84] - Refining community 106 with 3840 nodes
-[2025-04-23 22:15:20,229] ERROR [detection.py:137] - Error refining community 106: attempted relative import with no known parent package
-[2025-04-23 22:15:20,229] INFO [detection.py:84] - Refining community 112 with 4283 nodes
-[2025-04-23 22:15:20,276] ERROR [detection.py:137] - Error refining community 112: attempted relative import with no known parent package
-[2025-04-23 22:15:20,277] INFO [detection.py:84] - Refining community 117 with 1314 nodes
-[2025-04-23 22:15:20,292] ERROR [detection.py:137] - Error refining community 117: attempted relative import with no known parent package
-[2025-04-23 22:15:20,293] INFO [detection.py:84] - Refining community 119 with 1592 nodes
-[2025-04-23 22:15:20,319] ERROR [detection.py:137] - Error refining community 119: attempted relative import with no known parent package
-[2025-04-23 22:15:20,320] INFO [detection.py:84] - Refining community 121 with 1301 nodes
-[2025-04-23 22:15:20,339] ERROR [detection.py:137] - Error refining community 121: attempted relative import with no known parent package
-[2025-04-23 22:15:20,340] INFO [detection.py:84] - Refining community 123 with 569 nodes
-[2025-04-23 22:15:20,346] ERROR [detection.py:137] - Error refining community 123: attempted relative import with no known parent package
-[2025-04-23 22:15:20,347] INFO [detection.py:84] - Refining community 128 with 1173 nodes
-[2025-04-23 22:15:20,361] ERROR [detection.py:137] - Error refining community 128: attempted relative import with no known parent package
-[2025-04-23 22:15:20,361] INFO [detection.py:84] - Refining community 129 with 1192 nodes
-[2025-04-23 22:15:20,374] ERROR [detection.py:137] - Error refining community 129: attempted relative import with no known parent package
-[2025-04-23 22:15:20,375] INFO [detection.py:84] - Refining community 130 with 1996 nodes
-[2025-04-23 22:15:20,397] ERROR [detection.py:137] - Error refining community 130: attempted relative import with no known parent package
-[2025-04-23 22:15:20,397] INFO [detection.py:84] - Refining community 711 with 1716 nodes
-[2025-04-23 22:15:20,421] ERROR [detection.py:137] - Error refining community 711: attempted relative import with no known parent package
-[2025-04-23 22:15:20,422] INFO [detection.py:84] - Refining community 141 with 1236 nodes
-[2025-04-23 22:15:20,437] ERROR [detection.py:137] - Error refining community 141: attempted relative import with no known parent package
-[2025-04-23 22:15:20,438] INFO [detection.py:84] - Refining community 143 with 1847 nodes
-[2025-04-23 22:15:20,461] ERROR [detection.py:137] - Error refining community 143: attempted relative import with no known parent package
-[2025-04-23 22:15:20,461] INFO [detection.py:84] - Refining community 144 with 1120 nodes
-[2025-04-23 22:15:20,475] ERROR [detection.py:137] - Error refining community 144: attempted relative import with no known parent package
-[2025-04-23 22:15:20,476] INFO [detection.py:84] - Refining community 146 with 726 nodes
-[2025-04-23 22:15:20,483] ERROR [detection.py:137] - Error refining community 146: attempted relative import with no known parent package
-[2025-04-23 22:15:20,484] INFO [detection.py:84] - Refining community 149 with 1717 nodes
-[2025-04-23 22:15:20,514] ERROR [detection.py:137] - Error refining community 149: attempted relative import with no known parent package
-[2025-04-23 22:15:20,515] INFO [detection.py:84] - Refining community 151 with 676 nodes
-[2025-04-23 22:15:20,536] ERROR [detection.py:137] - Error refining community 151: attempted relative import with no known parent package
-[2025-04-23 22:15:20,536] INFO [detection.py:84] - Refining community 153 with 3539 nodes
-[2025-04-23 22:15:20,605] ERROR [detection.py:137] - Error refining community 153: attempted relative import with no known parent package
-[2025-04-23 22:15:20,606] INFO [detection.py:84] - Refining community 155 with 1489 nodes
-[2025-04-23 22:15:20,627] ERROR [detection.py:137] - Error refining community 155: attempted relative import with no known parent package
-[2025-04-23 22:15:20,628] INFO [detection.py:84] - Refining community 158 with 858 nodes
-[2025-04-23 22:15:20,652] ERROR [detection.py:137] - Error refining community 158: attempted relative import with no known parent package
-[2025-04-23 22:15:20,654] INFO [detection.py:84] - Refining community 162 with 689 nodes
-[2025-04-23 22:15:20,679] ERROR [detection.py:137] - Error refining community 162: attempted relative import with no known parent package
-[2025-04-23 22:15:20,679] INFO [detection.py:84] - Refining community 169 with 4803 nodes
-[2025-04-23 22:15:20,776] ERROR [detection.py:137] - Error refining community 169: attempted relative import with no known parent package
-[2025-04-23 22:15:20,777] INFO [detection.py:84] - Refining community 172 with 1142 nodes
-[2025-04-23 22:15:20,806] ERROR [detection.py:137] - Error refining community 172: attempted relative import with no known parent package
-[2025-04-23 22:15:20,807] INFO [detection.py:84] - Refining community 173 with 1151 nodes
-[2025-04-23 22:15:20,823] ERROR [detection.py:137] - Error refining community 173: attempted relative import with no known parent package
-[2025-04-23 22:15:20,824] INFO [detection.py:84] - Refining community 176 with 1448 nodes
-[2025-04-23 22:15:20,841] ERROR [detection.py:137] - Error refining community 176: attempted relative import with no known parent package
-[2025-04-23 22:15:20,841] INFO [detection.py:84] - Refining community 177 with 1421 nodes
-[2025-04-23 22:15:20,862] ERROR [detection.py:137] - Error refining community 177: attempted relative import with no known parent package
-[2025-04-23 22:15:20,862] INFO [detection.py:84] - Refining community 181 with 1336 nodes
-[2025-04-23 22:15:20,882] ERROR [detection.py:137] - Error refining community 181: attempted relative import with no known parent package
-[2025-04-23 22:15:20,882] INFO [detection.py:84] - Refining community 182 with 1218 nodes
-[2025-04-23 22:15:20,897] ERROR [detection.py:137] - Error refining community 182: attempted relative import with no known parent package
-[2025-04-23 22:15:20,897] INFO [detection.py:84] - Refining community 188 with 801 nodes
-[2025-04-23 22:15:20,905] ERROR [detection.py:137] - Error refining community 188: attempted relative import with no known parent package
-[2025-04-23 22:15:20,906] INFO [detection.py:84] - Refining community 195 with 1527 nodes
-[2025-04-23 22:15:20,924] ERROR [detection.py:137] - Error refining community 195: attempted relative import with no known parent package
-[2025-04-23 22:15:20,925] INFO [detection.py:84] - Refining community 197 with 924 nodes
-[2025-04-23 22:15:20,940] ERROR [detection.py:137] - Error refining community 197: attempted relative import with no known parent package
-[2025-04-23 22:15:20,941] INFO [detection.py:84] - Refining community 198 with 1463 nodes
-[2025-04-23 22:15:20,967] ERROR [detection.py:137] - Error refining community 198: attempted relative import with no known parent package
-[2025-04-23 22:15:20,968] INFO [detection.py:84] - Refining community 206 with 1882 nodes
-[2025-04-23 22:15:20,999] ERROR [detection.py:137] - Error refining community 206: attempted relative import with no known parent package
-[2025-04-23 22:15:21,000] INFO [detection.py:84] - Refining community 211 with 1160 nodes
-[2025-04-23 22:15:21,021] ERROR [detection.py:137] - Error refining community 211: attempted relative import with no known parent package
-[2025-04-23 22:15:21,022] INFO [detection.py:84] - Refining community 212 with 683 nodes
-[2025-04-23 22:15:21,033] ERROR [detection.py:137] - Error refining community 212: attempted relative import with no known parent package
-[2025-04-23 22:15:21,033] INFO [detection.py:84] - Refining community 218 with 1559 nodes
-[2025-04-23 22:15:21,064] ERROR [detection.py:137] - Error refining community 218: attempted relative import with no known parent package
-[2025-04-23 22:15:21,065] INFO [detection.py:84] - Refining community 219 with 669 nodes
-[2025-04-23 22:15:21,085] ERROR [detection.py:137] - Error refining community 219: attempted relative import with no known parent package
-[2025-04-23 22:15:21,086] INFO [detection.py:84] - Refining community 220 with 1411 nodes
-[2025-04-23 22:15:21,123] ERROR [detection.py:137] - Error refining community 220: attempted relative import with no known parent package
-[2025-04-23 22:15:21,124] INFO [detection.py:84] - Refining community 222 with 1443 nodes
-[2025-04-23 22:15:21,154] ERROR [detection.py:137] - Error refining community 222: attempted relative import with no known parent package
-[2025-04-23 22:15:21,155] INFO [detection.py:84] - Refining community 223 with 1046 nodes
-[2025-04-23 22:15:21,176] ERROR [detection.py:137] - Error refining community 223: attempted relative import with no known parent package
-[2025-04-23 22:15:21,177] INFO [detection.py:84] - Refining community 224 with 828 nodes
-[2025-04-23 22:15:21,191] ERROR [detection.py:137] - Error refining community 224: attempted relative import with no known parent package
-[2025-04-23 22:15:21,192] INFO [detection.py:84] - Refining community 230 with 1053 nodes
-[2025-04-23 22:15:21,212] ERROR [detection.py:137] - Error refining community 230: attempted relative import with no known parent package
-[2025-04-23 22:15:21,213] INFO [detection.py:84] - Refining community 231 with 774 nodes
-[2025-04-23 22:15:21,229] ERROR [detection.py:137] - Error refining community 231: attempted relative import with no known parent package
-[2025-04-23 22:15:21,229] INFO [detection.py:84] - Refining community 238 with 1003 nodes
-[2025-04-23 22:15:21,251] ERROR [detection.py:137] - Error refining community 238: attempted relative import with no known parent package
-[2025-04-23 22:15:21,252] INFO [detection.py:84] - Refining community 241 with 1641 nodes
-[2025-04-23 22:15:21,296] ERROR [detection.py:137] - Error refining community 241: attempted relative import with no known parent package
-[2025-04-23 22:15:21,297] INFO [detection.py:84] - Refining community 242 with 3679 nodes
-[2025-04-23 22:15:21,377] ERROR [detection.py:137] - Error refining community 242: attempted relative import with no known parent package
-[2025-04-23 22:15:21,378] INFO [detection.py:84] - Refining community 243 with 1201 nodes
-[2025-04-23 22:15:21,397] ERROR [detection.py:137] - Error refining community 243: attempted relative import with no known parent package
-[2025-04-23 22:15:21,398] INFO [detection.py:84] - Refining community 244 with 2065 nodes
-[2025-04-23 22:15:21,456] ERROR [detection.py:137] - Error refining community 244: attempted relative import with no known parent package
-[2025-04-23 22:15:21,457] INFO [detection.py:84] - Refining community 247 with 1073 nodes
-[2025-04-23 22:15:21,500] ERROR [detection.py:137] - Error refining community 247: attempted relative import with no known parent package
-[2025-04-23 22:15:21,501] INFO [detection.py:84] - Refining community 248 with 895 nodes
-[2025-04-23 22:15:21,535] ERROR [detection.py:137] - Error refining community 248: attempted relative import with no known parent package
-[2025-04-23 22:15:21,536] INFO [detection.py:84] - Refining community 251 with 1836 nodes
-[2025-04-23 22:15:21,592] ERROR [detection.py:137] - Error refining community 251: attempted relative import with no known parent package
-[2025-04-23 22:15:21,593] INFO [detection.py:84] - Refining community 253 with 594 nodes
-[2025-04-23 22:15:21,608] ERROR [detection.py:137] - Error refining community 253: attempted relative import with no known parent package
-[2025-04-23 22:15:21,609] INFO [detection.py:84] - Refining community 257 with 747 nodes
-[2025-04-23 22:15:21,628] ERROR [detection.py:137] - Error refining community 257: attempted relative import with no known parent package
-[2025-04-23 22:15:21,629] INFO [detection.py:84] - Refining community 261 with 1330 nodes
-[2025-04-23 22:15:21,677] ERROR [detection.py:137] - Error refining community 261: attempted relative import with no known parent package
-[2025-04-23 22:15:21,678] INFO [detection.py:84] - Refining community 271 with 1165 nodes
-[2025-04-23 22:15:21,711] ERROR [detection.py:137] - Error refining community 271: attempted relative import with no known parent package
-[2025-04-23 22:15:21,712] INFO [detection.py:84] - Refining community 272 with 1054 nodes
-[2025-04-23 22:15:21,746] ERROR [detection.py:137] - Error refining community 272: attempted relative import with no known parent package
-[2025-04-23 22:15:21,747] INFO [detection.py:84] - Refining community 283 with 1567 nodes
-[2025-04-23 22:15:21,805] ERROR [detection.py:137] - Error refining community 283: attempted relative import with no known parent package
-[2025-04-23 22:15:21,806] INFO [detection.py:84] - Refining community 288 with 2403 nodes
-[2025-04-23 22:15:21,892] ERROR [detection.py:137] - Error refining community 288: attempted relative import with no known parent package
-[2025-04-23 22:15:21,893] INFO [detection.py:84] - Refining community 296 with 777 nodes
-[2025-04-23 22:15:21,910] ERROR [detection.py:137] - Error refining community 296: attempted relative import with no known parent package
-[2025-04-23 22:15:21,911] INFO [detection.py:84] - Refining community 298 with 1095 nodes
-[2025-04-23 22:15:21,949] ERROR [detection.py:137] - Error refining community 298: attempted relative import with no known parent package
-[2025-04-23 22:15:21,951] INFO [detection.py:84] - Refining community 300 with 1261 nodes
-[2025-04-23 22:15:21,982] ERROR [detection.py:137] - Error refining community 300: attempted relative import with no known parent package
-[2025-04-23 22:15:21,982] INFO [detection.py:84] - Refining community 303 with 858 nodes
-[2025-04-23 22:15:21,991] ERROR [detection.py:137] - Error refining community 303: attempted relative import with no known parent package
-[2025-04-23 22:15:21,991] INFO [detection.py:84] - Refining community 312 with 1143 nodes
-[2025-04-23 22:15:22,009] ERROR [detection.py:137] - Error refining community 312: attempted relative import with no known parent package
-[2025-04-23 22:15:22,010] INFO [detection.py:84] - Refining community 317 with 995 nodes
-[2025-04-23 22:15:22,030] ERROR [detection.py:137] - Error refining community 317: attempted relative import with no known parent package
-[2025-04-23 22:15:22,031] INFO [detection.py:84] - Refining community 323 with 1739 nodes
-[2025-04-23 22:15:22,090] ERROR [detection.py:137] - Error refining community 323: attempted relative import with no known parent package
-[2025-04-23 22:15:22,091] INFO [detection.py:84] - Refining community 324 with 1387 nodes
-[2025-04-23 22:15:22,133] ERROR [detection.py:137] - Error refining community 324: attempted relative import with no known parent package
-[2025-04-23 22:15:22,133] INFO [detection.py:84] - Refining community 352 with 679 nodes
-[2025-04-23 22:15:22,149] ERROR [detection.py:137] - Error refining community 352: attempted relative import with no known parent package
-[2025-04-23 22:15:22,150] INFO [detection.py:84] - Refining community 355 with 1158 nodes
-[2025-04-23 22:15:22,191] ERROR [detection.py:137] - Error refining community 355: attempted relative import with no known parent package
-[2025-04-23 22:15:22,192] INFO [detection.py:84] - Refining community 391 with 660 nodes
-[2025-04-23 22:15:22,215] ERROR [detection.py:137] - Error refining community 391: attempted relative import with no known parent package
-[2025-04-23 22:15:22,216] INFO [detection.py:84] - Refining community 393 with 1008 nodes
-[2025-04-23 22:15:22,259] ERROR [detection.py:137] - Error refining community 393: attempted relative import with no known parent package
-[2025-04-23 22:15:22,260] INFO [detection.py:84] - Refining community 413 with 1060 nodes
-[2025-04-23 22:15:22,291] ERROR [detection.py:137] - Error refining community 413: attempted relative import with no known parent package
-[2025-04-23 22:15:22,292] INFO [detection.py:84] - Refining community 415 with 1432 nodes
-[2025-04-23 22:15:22,330] ERROR [detection.py:137] - Error refining community 415: attempted relative import with no known parent package
-[2025-04-23 22:15:22,332] INFO [detection.py:84] - Refining community 417 with 1111 nodes
-[2025-04-23 22:15:22,362] ERROR [detection.py:137] - Error refining community 417: attempted relative import with no known parent package
-[2025-04-23 22:15:22,363] INFO [detection.py:84] - Refining community 426 with 1369 nodes
-[2025-04-23 22:15:22,378] ERROR [detection.py:137] - Error refining community 426: attempted relative import with no known parent package
-[2025-04-23 22:15:22,379] INFO [detection.py:84] - Refining community 433 with 1389 nodes
-[2025-04-23 22:15:22,405] ERROR [detection.py:137] - Error refining community 433: attempted relative import with no known parent package
-[2025-04-23 22:15:22,406] INFO [detection.py:84] - Refining community 445 with 710 nodes
-[2025-04-23 22:15:22,416] ERROR [detection.py:137] - Error refining community 445: attempted relative import with no known parent package
-[2025-04-23 22:15:22,417] INFO [detection.py:84] - Refining community 456 with 676 nodes
-[2025-04-23 22:15:22,427] ERROR [detection.py:137] - Error refining community 456: attempted relative import with no known parent package
-[2025-04-23 22:15:22,427] INFO [detection.py:84] - Refining community 463 with 663 nodes
-[2025-04-23 22:15:22,436] ERROR [detection.py:137] - Error refining community 463: attempted relative import with no known parent package
-[2025-04-23 22:15:22,437] INFO [detection.py:84] - Refining community 473 with 944 nodes
-[2025-04-23 22:15:22,448] ERROR [detection.py:137] - Error refining community 473: attempted relative import with no known parent package
-[2025-04-23 22:15:22,448] INFO [detection.py:84] - Refining community 481 with 1600 nodes
-[2025-04-23 22:15:22,472] ERROR [detection.py:137] - Error refining community 481: attempted relative import with no known parent package
-[2025-04-23 22:15:22,473] INFO [detection.py:84] - Refining community 498 with 890 nodes
-[2025-04-23 22:15:22,492] ERROR [detection.py:137] - Error refining community 498: attempted relative import with no known parent package
-[2025-04-23 22:15:22,493] INFO [detection.py:84] - Refining community 516 with 834 nodes
-[2025-04-23 22:15:22,509] ERROR [detection.py:137] - Error refining community 516: attempted relative import with no known parent package
-[2025-04-23 22:15:22,510] INFO [detection.py:84] - Refining community 521 with 799 nodes
-[2025-04-23 22:15:22,525] ERROR [detection.py:137] - Error refining community 521: attempted relative import with no known parent package
-[2025-04-23 22:15:22,526] INFO [detection.py:84] - Refining community 536 with 1250 nodes
-[2025-04-23 22:15:22,542] ERROR [detection.py:137] - Error refining community 536: attempted relative import with no known parent package
-[2025-04-23 22:15:22,542] INFO [detection.py:84] - Refining community 557 with 1301 nodes
-[2025-04-23 22:15:22,568] ERROR [detection.py:137] - Error refining community 557: attempted relative import with no known parent package
-[2025-04-23 22:15:22,569] INFO [detection.py:84] - Refining community 564 with 1426 nodes
-[2025-04-23 22:15:22,589] ERROR [detection.py:137] - Error refining community 564: attempted relative import with no known parent package
-[2025-04-23 22:15:22,589] INFO [detection.py:84] - Refining community 568 with 1718 nodes
-[2025-04-23 22:15:22,613] ERROR [detection.py:137] - Error refining community 568: attempted relative import with no known parent package
-[2025-04-23 22:15:22,614] INFO [detection.py:84] - Refining community 589 with 1575 nodes
-[2025-04-23 22:15:22,647] ERROR [detection.py:137] - Error refining community 589: attempted relative import with no known parent package
-[2025-04-23 22:15:22,648] INFO [detection.py:84] - Refining community 593 with 721 nodes
-[2025-04-23 22:15:22,671] ERROR [detection.py:137] - Error refining community 593: attempted relative import with no known parent package
-[2025-04-23 22:15:22,672] INFO [detection.py:84] - Refining community 608 with 708 nodes
-[2025-04-23 22:15:22,698] ERROR [detection.py:137] - Error refining community 608: attempted relative import with no known parent package
-[2025-04-23 22:15:22,699] INFO [detection.py:84] - Refining community 619 with 540 nodes
-[2025-04-23 22:15:22,718] ERROR [detection.py:137] - Error refining community 619: attempted relative import with no known parent package
-[2025-04-23 22:15:22,719] INFO [detection.py:84] - Refining community 646 with 552 nodes
-[2025-04-23 22:15:22,747] ERROR [detection.py:137] - Error refining community 646: attempted relative import with no known parent package
-[2025-04-23 22:15:22,748] INFO [detection.py:84] - Refining community 654 with 1114 nodes
-[2025-04-23 22:15:22,774] ERROR [detection.py:137] - Error refining community 654: attempted relative import with no known parent package
-[2025-04-23 22:15:22,775] INFO [detection.py:84] - Refining community 656 with 750 nodes
-[2025-04-23 22:15:22,787] ERROR [detection.py:137] - Error refining community 656: attempted relative import with no known parent package
-[2025-04-23 22:15:22,788] INFO [detection.py:84] - Refining community 679 with 1228 nodes
-[2025-04-23 22:15:22,803] ERROR [detection.py:137] - Error refining community 679: attempted relative import with no known parent package
-[2025-04-23 22:15:22,804] INFO [detection.py:84] - Refining community 683 with 1250 nodes
-[2025-04-23 22:15:22,823] ERROR [detection.py:137] - Error refining community 683: attempted relative import with no known parent package
-[2025-04-23 22:15:22,824] INFO [detection.py:84] - Refining community 689 with 712 nodes
-[2025-04-23 22:15:22,838] ERROR [detection.py:137] - Error refining community 689: attempted relative import with no known parent package
-[2025-04-23 22:15:22,839] INFO [detection.py:84] - Refining community 700 with 887 nodes
-[2025-04-23 22:15:22,862] ERROR [detection.py:137] - Error refining community 700: attempted relative import with no known parent package
-[2025-04-23 22:15:22,862] INFO [detection.py:84] - Refining community 713 with 1183 nodes
-[2025-04-23 22:15:22,883] ERROR [detection.py:137] - Error refining community 713: attempted relative import with no known parent package
-[2025-04-23 22:15:22,884] INFO [detection.py:84] - Refining community 754 with 792 nodes
-[2025-04-23 22:15:22,901] ERROR [detection.py:137] - Error refining community 754: attempted relative import with no known parent package
-[2025-04-23 22:15:22,902] INFO [detection.py:84] - Refining community 759 with 582 nodes
-[2025-04-23 22:15:22,916] ERROR [detection.py:137] - Error refining community 759: attempted relative import with no known parent package
-[2025-04-23 22:15:22,917] INFO [detection.py:84] - Refining community 780 with 1127 nodes
-[2025-04-23 22:15:22,942] ERROR [detection.py:137] - Error refining community 780: attempted relative import with no known parent package
-[2025-04-23 22:15:22,943] INFO [detection.py:84] - Refining community 784 with 797 nodes
-[2025-04-23 22:15:22,963] ERROR [detection.py:137] - Error refining community 784: attempted relative import with no known parent package
-[2025-04-23 22:15:22,964] INFO [detection.py:84] - Refining community 828 with 1122 nodes
-[2025-04-23 22:15:22,985] ERROR [detection.py:137] - Error refining community 828: attempted relative import with no known parent package
-[2025-04-23 22:15:22,986] INFO [detection.py:84] - Refining community 846 with 983 nodes
-[2025-04-23 22:15:23,017] ERROR [detection.py:137] - Error refining community 846: attempted relative import with no known parent package
-[2025-04-23 22:15:23,018] INFO [detection.py:84] - Refining community 881 with 1126 nodes
-[2025-04-23 22:15:23,047] ERROR [detection.py:137] - Error refining community 881: attempted relative import with no known parent package
-[2025-04-23 22:15:23,048] INFO [detection.py:84] - Refining community 885 with 585 nodes
-[2025-04-23 22:15:23,065] ERROR [detection.py:137] - Error refining community 885: attempted relative import with no known parent package
-[2025-04-23 22:15:23,067] INFO [detection.py:84] - Refining community 931 with 891 nodes
-[2025-04-23 22:15:23,083] ERROR [detection.py:137] - Error refining community 931: attempted relative import with no known parent package
-[2025-04-23 22:15:23,083] INFO [detection.py:84] - Refining community 948 with 1075 nodes
-[2025-04-23 22:15:23,109] ERROR [detection.py:137] - Error refining community 948: attempted relative import with no known parent package
-[2025-04-23 22:15:23,110] INFO [detection.py:84] - Refining community 1036 with 1304 nodes
-[2025-04-23 22:15:23,135] ERROR [detection.py:137] - Error refining community 1036: attempted relative import with no known parent package
-[2025-04-23 22:15:23,136] INFO [detection.py:84] - Refining community 1057 with 1115 nodes
-[2025-04-23 22:15:23,156] ERROR [detection.py:137] - Error refining community 1057: attempted relative import with no known parent package
-[2025-04-23 22:15:23,156] INFO [detection.py:84] - Refining community 1071 with 813 nodes
-[2025-04-23 22:15:23,171] ERROR [detection.py:137] - Error refining community 1071: attempted relative import with no known parent package
-[2025-04-23 22:15:23,172] INFO [detection.py:84] - Refining community 1139 with 577 nodes
-[2025-04-23 22:15:23,185] ERROR [detection.py:137] - Error refining community 1139: attempted relative import with no known parent package
-[2025-04-23 22:15:23,185] INFO [detection.py:84] - Refining community 1143 with 1296 nodes
-[2025-04-23 22:15:23,208] ERROR [detection.py:137] - Error refining community 1143: attempted relative import with no known parent package
-[2025-04-23 22:15:23,209] INFO [detection.py:84] - Refining community 1151 with 589 nodes
-[2025-04-23 22:15:23,220] ERROR [detection.py:137] - Error refining community 1151: attempted relative import with no known parent package
-[2025-04-23 22:15:23,220] INFO [detection.py:84] - Refining community 1157 with 614 nodes
-[2025-04-23 22:15:23,232] ERROR [detection.py:137] - Error refining community 1157: attempted relative import with no known parent package
-[2025-04-23 22:15:23,233] INFO [detection.py:84] - Refining community 1160 with 1406 nodes
-[2025-04-23 22:15:23,269] ERROR [detection.py:137] - Error refining community 1160: attempted relative import with no known parent package
-[2025-04-23 22:15:23,270] INFO [detection.py:84] - Refining community 1641 with 582 nodes
-[2025-04-23 22:15:23,281] ERROR [detection.py:137] - Error refining community 1641: attempted relative import with no known parent package
-[2025-04-23 22:15:23,281] INFO [detection.py:84] - Refining community 1788 with 712 nodes
-[2025-04-23 22:15:23,293] ERROR [detection.py:137] - Error refining community 1788: attempted relative import with no known parent package
-[2025-04-23 22:15:23,293] INFO [detection.py:84] - Refining community 2387 with 724 nodes
-[2025-04-23 22:15:23,305] ERROR [detection.py:137] - Error refining community 2387: attempted relative import with no known parent package
-[2025-04-23 22:15:23,305] INFO [detection.py:84] - Refining community 2959 with 517 nodes
-[2025-04-23 22:15:23,321] ERROR [detection.py:137] - Error refining community 2959: attempted relative import with no known parent package
-[2025-04-23 22:15:23,354] INFO [detection.py:141] - Refinement complete. Partition now has 73882 communities
-[2025-04-23 22:15:23,480] INFO [evaluation.py:374] - Evaluating community detection results
-[2025-04-23 22:15:23,481] WARNING [evaluation.py:405] - Large graph detected (477998 nodes) - using optimized metrics
-[2025-04-23 22:15:25,133] WARNING [evaluation.py:440] - Graph has 71813 connected components (largest: 303526 nodes)
-[2025-04-23 22:15:25,134] WARNING [evaluation.py:441] - Metrics may be affected by graph disconnectivity
-[2025-04-23 22:15:28,587] INFO [evaluation.py:445] - Modularity: 0.8301
-[2025-04-23 22:15:29,609] INFO [evaluation.py:452] - Computed conductance for 1000/73882 communities (sampled)
-[2025-04-23 22:15:29,610] INFO [evaluation.py:456] - Average conductance: 0.0296
-[2025-04-23 22:15:31,392] INFO [evaluation.py:486] - Estimated coverage based on 500/73882 communities
-[2025-04-23 22:15:31,397] INFO [evaluation.py:510] - No ground truth provided, skipping NMI calculation
-[2025-04-23 22:15:31,407] INFO [evaluation.py:550] - Evaluation completed in 7.93 seconds
-[2025-04-23 22:15:31,463] INFO [__main__.py:637] - After refinement: 73882 communities
-[2025-04-23 22:15:31,464] INFO [__main__.py:638] - GN metrics - Modularity: 0.8301, Conductance: 0.0296
-[2025-04-23 22:16:01,244] INFO [evaluation.py:374] - Evaluating community detection results
-[2025-04-23 22:16:01,244] WARNING [evaluation.py:405] - Large graph detected (477998 nodes) - using optimized metrics
-[2025-04-23 22:16:03,015] WARNING [evaluation.py:440] - Graph has 71813 connected components (largest: 303526 nodes)
-[2025-04-23 22:16:03,015] WARNING [evaluation.py:441] - Metrics may be affected by graph disconnectivity
-[2025-04-23 22:16:07,480] INFO [evaluation.py:445] - Modularity: 0.7215
-[2025-04-23 22:16:07,914] INFO [evaluation.py:452] - Computed conductance for 1000/106812 communities (sampled)
-[2025-04-23 22:16:07,915] INFO [evaluation.py:456] - Average conductance: 0.2938
-[2025-04-23 22:16:08,383] INFO [evaluation.py:486] - Estimated coverage based on 500/106812 communities
-[2025-04-23 22:16:08,390] INFO [evaluation.py:510] - No ground truth provided, skipping NMI calculation
-[2025-04-23 22:16:10,429] INFO [evaluation.py:547] - Description length: 0.6669
-[2025-04-23 22:16:10,429] INFO [evaluation.py:550] - Evaluation completed in 9.19 seconds
-[2025-04-23 22:16:10,485] INFO [__main__.py:659] - Final communities: 106812 communities
-[2025-04-23 22:16:10,485] INFO [__main__.py:660] - Infomap metrics - Modularity: 0.7215, Conductance: 0.2938
-[2025-04-23 22:16:10,486] INFO [__main__.py:661] - Improvement from GN - Modularity: -0.1086
-[2025-04-23 22:16:10,629] INFO [__main__.py:682] - Creating community visualization...
-[2025-04-23 22:16:18,250] INFO [community_visualization.py:65] - Preparing to visualize 477998 nodes, 530872 edges in 106812 communities
-[2025-04-23 22:16:19,086] INFO [community_visualization.py:96] - Community size summary saved to community_visualizations\community_size_summary.png
-[2025-04-23 22:16:19,120] INFO [community_visualization.py:110] - Computing layout for top 20 communities subgraph...
-[2025-04-23 22:16:49,034] INFO [community_visualization.py:200] - Top communities visualization saved to community_visualizations\top_communities_visualization.png
-[2025-04-23 22:16:49,034] INFO [community_visualization.py:203] - Creating community interconnection visualization...
-[2025-04-23 22:16:50,587] INFO [community_visualization.py:285] - Community interconnection visualization saved to community_visualizations\community_interconnections.png
-[2025-04-23 22:16:50,587] INFO [community_visualization.py:288] - Creating detailed visualizations for top communities...
-[2025-04-23 22:16:53,340] INFO [community_visualization.py:364] - Detailed visualization for community 80010 saved to community_visualizations\detailed_communities\community_80010_detail.png
-[2025-04-23 22:16:54,110] INFO [community_visualization.py:364] - Detailed visualization for community 74726 saved to community_visualizations\detailed_communities\community_74726_detail.png
-[2025-04-23 22:16:54,779] INFO [community_visualization.py:364] - Detailed visualization for community 74725 saved to community_visualizations\detailed_communities\community_74725_detail.png
-[2025-04-23 22:16:55,536] INFO [community_visualization.py:364] - Detailed visualization for community 74729 saved to community_visualizations\detailed_communities\community_74729_detail.png
-[2025-04-23 22:16:56,329] INFO [community_visualization.py:364] - Detailed visualization for community 74727 saved to community_visualizations\detailed_communities\community_74727_detail.png
-[2025-04-23 22:16:57,091] INFO [community_visualization.py:364] - Detailed visualization for community 74732 saved to community_visualizations\detailed_communities\community_74732_detail.png
-[2025-04-23 22:16:57,510] INFO [community_visualization.py:364] - Detailed visualization for community 74728 saved to community_visualizations\detailed_communities\community_74728_detail.png
-[2025-04-23 22:16:57,892] INFO [community_visualization.py:364] - Detailed visualization for community 74735 saved to community_visualizations\detailed_communities\community_74735_detail.png
-[2025-04-23 22:16:58,333] INFO [community_visualization.py:364] - Detailed visualization for community 74730 saved to community_visualizations\detailed_communities\community_74730_detail.png
-[2025-04-23 22:16:58,756] INFO [community_visualization.py:364] - Detailed visualization for community 74738 saved to community_visualizations\detailed_communities\community_74738_detail.png
-[2025-04-23 22:16:58,969] INFO [community_visualization.py:462] - Community visualization completed in 48.34 seconds
-[2025-04-23 22:16:58,970] INFO [community_visualization.py:463] - Comprehensive visualization report saved to community_visualizations\community_report.html
-[2025-04-23 22:17:00,048] INFO [__main__.py:162] - Evaluation metrics saved to results\metrics_20250423-221659.json
-[2025-04-23 22:17:00,056] INFO [__main__.py:688] - Evaluation metrics saved to results\metrics_20250423-221659.json
-[2025-04-23 22:17:00,679] INFO [__main__.py:456] - Metrics comparison plot saved to results\metrics_comparison.png
-[2025-04-23 22:17:00,680] INFO [__main__.py:695] - Metrics comparison plot saved to results\metrics_comparison.png
-[2025-04-23 22:17:00,681] INFO [__main__.py:726] - ==================================================
-[2025-04-23 22:17:00,681] INFO [__main__.py:727] - COMMUNITY DETECTION PIPELINE SUMMARY
-[2025-04-23 22:17:00,682] INFO [__main__.py:728] - ==================================================
-[2025-04-23 22:17:00,852] INFO [__main__.py:729] - Nodes: 477998, Edges: 530872
-[2025-04-23 22:17:00,853] INFO [__main__.py:730] - Graph density: 0.000005
-[2025-04-23 22:17:00,853] INFO [__main__.py:731] - Connected components: 71813
-[2025-04-23 22:17:00,853] WARNING [__main__.py:735] - IMPORTANT: Graph is highly disconnected - metrics may not be meaningful
-[2025-04-23 22:17:00,854] WARNING [__main__.py:736] - High number of connected components (71813) may explain high modularity values
-[2025-04-23 22:17:00,854] INFO [__main__.py:738] - Final number of communities: 106812
-[2025-04-23 22:17:00,854] INFO [__main__.py:739] - Stage-by-stage modularity:
-[2025-04-23 22:17:00,855] INFO [__main__.py:740] -   - Baseline: 0.0000
-[2025-04-23 22:17:00,855] INFO [__main__.py:741] -   - Louvain:  0.8301 (delta: +0.8301)
-[2025-04-23 22:17:00,856] INFO [__main__.py:742] -   - GN:       0.8301 (delta: 0.0000)
-[2025-04-23 22:17:00,856] INFO [__main__.py:743] -   - Infomap:  0.7215 (delta: -0.1086)
-[2025-04-23 22:17:00,857] INFO [__main__.py:744] - Overall improvement: +0.7215
-[2025-04-23 22:17:00,857] INFO [__main__.py:751] - Visualization saved to: community_visualizations\community_report.html
-[2025-04-23 22:17:00,858] INFO [__main__.py:752] - Metrics saved to: results\metrics_20250423-221659.json
-[2025-04-23 22:17:00,859] INFO [__main__.py:753] - Total runtime: 418.79 seconds
-[2025-04-23 22:17:00,859] INFO [__main__.py:754] - ==================================================
+[2025-04-24 03:03:53,857] INFO [__main__.py:60] - Output log being saved to: results\output_20250424-030353.txt
+[2025-04-24 03:03:53,858] INFO [__main__.py:567] - Starting Community Detection Pipeline
+[2025-04-24 03:03:53,860] INFO [__main__.py:578] - Loading configuration from config.yaml
+[2025-04-24 03:03:53,862] INFO [__main__.py:597] - Configuration: data_dir=data, sample_size=100000, size_threshold=5000, target_subcommunities=5, modularity_threshold=0.3
+[2025-04-24 03:03:53,862] INFO [__main__.py:600] - Performance settings: max_iterations=30, time_limit=18000s, fast_mode=True
+[2025-04-24 03:03:53,862] INFO [__main__.py:601] - File settings: input_edge_file=undirected.txt, ground_truth_file=ground_truth.txt
+[2025-04-24 03:03:53,863] INFO [data_io.py:234] - Loading graph from cached pickle: data\livejournal_100000.pkl
+[2025-04-24 03:03:53,958] INFO [__main__.py:617] - Graph loaded in 0.09 seconds
+[2025-04-24 03:03:53,958] INFO [data_io.py:195] - Ground truth file is available at: data\undirected.txt
+[2025-04-24 03:03:53,959] INFO [__main__.py:196] - Analyzing graph structure...
+[2025-04-24 03:03:54,150] INFO [__main__.py:231] - Graph has 145211 nodes and 92918 edges (density: 0.000009)
+[2025-04-24 03:03:54,150] INFO [__main__.py:232] - Graph has 53051 connected components
+[2025-04-24 03:03:54,150] INFO [__main__.py:233] - Largest component has 10611 nodes (7.31% of graph)
+[2025-04-24 03:03:54,151] WARNING [__main__.py:236] - Graph is disconnected with 53051 components - metrics may be affected
+[2025-04-24 03:03:54,154] INFO [__main__.py:239] - Component size distribution: 10611 nodes: 1 components, 246 nodes: 1 components, 145 nodes: 1 components, 113 nodes: 1 components, 63 nodes: 1 components, 62 nodes: 1 components, 61 nodes: 1 components, 57 nodes: 1 components, 54 nodes: 1 components, 53 nodes: 1 components
+[2025-04-24 03:03:54,161] INFO [__main__.py:637] - Using ground truth file: ground_truth.txt
+[2025-04-24 03:03:54,161] INFO [__main__.py:372] - Looking for ground truth files in: data
+[2025-04-24 03:03:54,161] INFO [__main__.py:377] - Checking for ground truth file at: data\ground_truth.txt
+[2025-04-24 03:03:54,161] INFO [__main__.py:380] - Found ground truth file: data\ground_truth.txt
+[2025-04-24 03:03:54,162] INFO [__main__.py:311] - Attempting to load ground truth from: data\ground_truth.txt
+[2025-04-24 03:03:54,910] INFO [__main__.py:358] - Loaded ground truth from edge file with 256109 nodes across 216518 communities
+[2025-04-24 03:03:54,982] INFO [__main__.py:438] - Filtered ground truth from 256109 to 92371 nodes
+[2025-04-24 03:03:55,004] INFO [__main__.py:653] - Ground truth loaded successfully with 92371 nodes and 85616 communities
+[2025-04-24 03:03:55,015] INFO [evaluation.py:381] - Evaluating community detection results
+[2025-04-24 03:03:55,015] WARNING [evaluation.py:412] - Large graph detected (145211 nodes) - using optimized metrics
+[2025-04-24 03:03:55,147] WARNING [evaluation.py:447] - Graph has 53051 connected components (largest: 10611 nodes)
+[2025-04-24 03:03:55,147] WARNING [evaluation.py:448] - Metrics may be affected by graph disconnectivity
+[2025-04-24 03:03:55,578] INFO [evaluation.py:452] - Modularity: 0.0000
+[2025-04-24 03:03:55,737] INFO [evaluation.py:463] - Average conductance: 0.0000
+[2025-04-24 03:03:55,737] WARNING [evaluation.py:467] - Very low conductance likely due to graph disconnectivity (few edges between components)
+[2025-04-24 03:03:56,225] INFO [evaluation.py:285] - NMI calculated on 92371 overlapping nodes: 0.0000
+[2025-04-24 03:03:56,228] INFO [evaluation.py:515] - Normalized Mutual Information: 0.0000
+[2025-04-24 03:03:56,233] INFO [evaluation.py:557] - Evaluation completed in 1.22 seconds
+[2025-04-24 03:03:56,242] INFO [__main__.py:672] - Baseline metrics - Modularity: 0.0000, Conductance: 0.0000
+[2025-04-24 03:04:15,649] INFO [evaluation.py:381] - Evaluating community detection results
+[2025-04-24 03:04:15,649] WARNING [evaluation.py:412] - Large graph detected (145211 nodes) - using optimized metrics
+[2025-04-24 03:04:15,808] WARNING [evaluation.py:447] - Graph has 53051 connected components (largest: 10611 nodes)
+[2025-04-24 03:04:15,809] WARNING [evaluation.py:448] - Metrics may be affected by graph disconnectivity
+[2025-04-24 03:04:16,353] WARNING [evaluation.py:41] - Very high modularity (0.9977) with 53051 connected components.
+[2025-04-24 03:04:16,354] WARNING [evaluation.py:42] - This is expected for disconnected graphs, as each component naturally forms a community.
+[2025-04-24 03:04:16,356] INFO [evaluation.py:452] - Modularity: 0.9977
+[2025-04-24 03:04:16,435] INFO [evaluation.py:459] - Computed conductance for 1000/53083 communities (sampled)
+[2025-04-24 03:04:16,436] INFO [evaluation.py:463] - Average conductance: 0.0003
+[2025-04-24 03:04:16,436] WARNING [evaluation.py:467] - Very low conductance likely due to graph disconnectivity (few edges between components)
+[2025-04-24 03:04:17,323] INFO [evaluation.py:285] - NMI calculated on 92371 overlapping nodes: 0.9469
+[2025-04-24 03:04:17,327] INFO [evaluation.py:515] - Normalized Mutual Information: 0.9469
+[2025-04-24 03:04:17,332] INFO [evaluation.py:557] - Evaluation completed in 1.68 seconds
+[2025-04-24 03:04:17,345] INFO [__main__.py:687] - Initial Louvain: 53083 communities
+[2025-04-24 03:04:17,345] INFO [__main__.py:688] - Louvain metrics - Modularity: 0.9977, Conductance: 0.0003
+[2025-04-24 03:04:17,345] INFO [__main__.py:689] - Improvement from baseline - Modularity: +0.9977
+[2025-04-24 03:04:17,345] INFO [__main__.py:697] - Large graph with many components: checking if Girvan-Newman refinement is needed
+[2025-04-24 03:04:17,345] INFO [__main__.py:700] - High modularity detected from Louvain. Skipping Girvan-Newman refinement.
+[2025-04-24 03:04:17,346] INFO [__main__.py:745] - After refinement: 53083 communities
+[2025-04-24 03:04:17,346] INFO [__main__.py:746] - GN metrics - Modularity: 0.9977, Conductance: 0.0003
+[2025-04-24 03:04:20,419] INFO [evaluation.py:381] - Evaluating community detection results
+[2025-04-24 03:04:20,420] WARNING [evaluation.py:412] - Large graph detected (145211 nodes) - using optimized metrics
+[2025-04-24 03:04:20,670] WARNING [evaluation.py:447] - Graph has 53051 connected components (largest: 10611 nodes)
+[2025-04-24 03:04:20,671] WARNING [evaluation.py:448] - Metrics may be affected by graph disconnectivity
+[2025-04-24 03:04:21,275] WARNING [evaluation.py:41] - Very high modularity (0.9648) with 53051 connected components.
+[2025-04-24 03:04:21,276] WARNING [evaluation.py:42] - This is expected for disconnected graphs, as each component naturally forms a community.
+[2025-04-24 03:04:21,278] INFO [evaluation.py:452] - Modularity: 0.9648
+[2025-04-24 03:04:21,346] INFO [evaluation.py:459] - Computed conductance for 1000/56005 communities (sampled)
+[2025-04-24 03:04:21,347] INFO [evaluation.py:463] - Average conductance: 0.0191
+[2025-04-24 03:04:22,147] INFO [evaluation.py:285] - NMI calculated on 92371 overlapping nodes: 0.9664
+[2025-04-24 03:04:22,151] INFO [evaluation.py:515] - Normalized Mutual Information: 0.9664
+[2025-04-24 03:04:22,428] INFO [evaluation.py:554] - Description length: 0.1258
+[2025-04-24 03:04:22,429] INFO [evaluation.py:557] - Evaluation completed in 2.01 seconds
+[2025-04-24 03:04:22,439] INFO [__main__.py:767] - Final communities: 56005 communities
+[2025-04-24 03:04:22,439] INFO [__main__.py:768] - Infomap metrics - Modularity: 0.9648, Conductance: 0.0191
+[2025-04-24 03:04:22,440] INFO [__main__.py:769] - Improvement from GN - Modularity: -0.0329
+[2025-04-24 03:04:22,466] INFO [__main__.py:790] - Creating community visualization...
+[2025-04-24 03:04:22,743] WARNING [community_visualization.py:38] - Graph is highly disconnected (53051 components for 145211 nodes)
+[2025-04-24 03:04:22,743] WARNING [community_visualization.py:39] - Visualization may be limited or simplified for this type of graph
+[2025-04-24 03:04:23,348] INFO [community_visualization.py:72] - Preparing to visualize 145211 nodes, 92918 edges in 56005 communities
+[2025-04-24 03:04:23,688] INFO [community_visualization.py:103] - Community size summary saved to community_visualizations\community_size_summary.png
+[2025-04-24 03:04:23,691] INFO [community_visualization.py:120] - Computing layout for top 20 communities subgraph...
+[2025-04-24 03:04:24,464] INFO [community_visualization.py:210] - Top communities visualization saved to community_visualizations\top_communities_visualization.png
+[2025-04-24 03:04:24,464] INFO [community_visualization.py:218] - Skipping community interconnection visualization for highly disconnected graph
+[2025-04-24 03:04:24,465] INFO [community_visualization.py:327] - Creating detailed visualizations for top 5 communities...
+[2025-04-24 03:04:24,722] INFO [community_visualization.py:405] - Detailed visualization for community 0 saved to community_visualizations\detailed_communities\community_0_detail.png
+[2025-04-24 03:04:24,983] INFO [community_visualization.py:405] - Detailed visualization for community 1 saved to community_visualizations\detailed_communities\community_1_detail.png
+[2025-04-24 03:04:25,247] INFO [community_visualization.py:405] - Detailed visualization for community 2 saved to community_visualizations\detailed_communities\community_2_detail.png
+[2025-04-24 03:04:25,495] INFO [community_visualization.py:405] - Detailed visualization for community 3 saved to community_visualizations\detailed_communities\community_3_detail.png
+[2025-04-24 03:04:25,751] INFO [community_visualization.py:405] - Detailed visualization for community 4 saved to community_visualizations\detailed_communities\community_4_detail.png
+[2025-04-24 03:04:25,777] INFO [community_visualization.py:512] - Comprehensive visualization report saved to community_visualizations\community_report.html
+[2025-04-24 03:04:26,106] INFO [__main__.py:166] - Evaluation metrics saved to results\metrics_20250424-030425.json
+[2025-04-24 03:04:26,108] INFO [__main__.py:796] - Evaluation metrics saved to results\metrics_20250424-030425.json
+[2025-04-24 03:04:26,463] INFO [__main__.py:551] - Metrics comparison plot saved to results\metrics_comparison.png
+[2025-04-24 03:04:26,464] INFO [__main__.py:803] - Metrics comparison plot saved to results\metrics_comparison.png
+[2025-04-24 03:04:26,464] INFO [__main__.py:809] - ==================================================
+[2025-04-24 03:04:26,464] INFO [__main__.py:810] - NORMALIZED MUTUAL INFORMATION (NMI) RESULTS
+[2025-04-24 03:04:26,464] INFO [__main__.py:811] - ==================================================
+[2025-04-24 03:04:26,464] INFO [__main__.py:812] - NMI measures similarity between detected communities and ground truth (0-1, higher is better)
+[2025-04-24 03:04:26,465] INFO [__main__.py:813] -   - Baseline: 0.0000
+[2025-04-24 03:04:26,465] INFO [__main__.py:814] -   - Louvain:  0.9469
+[2025-04-24 03:04:26,465] INFO [__main__.py:815] -   - GN:       0.9469
+[2025-04-24 03:04:26,465] INFO [__main__.py:816] -   - Infomap:  0.9664
+[2025-04-24 03:04:26,465] INFO [__main__.py:834] - ==================================================
+[2025-04-24 03:04:26,465] INFO [__main__.py:835] - COMMUNITY DETECTION PIPELINE SUMMARY
+[2025-04-24 03:04:26,465] INFO [__main__.py:836] - ==================================================
+[2025-04-24 03:04:26,491] INFO [__main__.py:837] - Nodes: 145211, Edges: 92918
+[2025-04-24 03:04:26,491] INFO [__main__.py:838] - Graph density: 0.000009
+[2025-04-24 03:04:26,491] INFO [__main__.py:839] - Connected components: 53051
+[2025-04-24 03:04:26,492] WARNING [__main__.py:843] - IMPORTANT: Graph is highly disconnected - metrics may not be meaningful
+[2025-04-24 03:04:26,492] WARNING [__main__.py:844] - High number of connected components (53051) may explain high modularity values
+[2025-04-24 03:04:26,492] INFO [__main__.py:846] - Final number of communities: 56005
+[2025-04-24 03:04:26,493] INFO [__main__.py:847] - Stage-by-stage modularity:
+[2025-04-24 03:04:26,493] INFO [__main__.py:848] -   - Baseline: 0.0000
+[2025-04-24 03:04:26,493] INFO [__main__.py:849] -   - Louvain:  0.9977 (delta: +0.9977)
+[2025-04-24 03:04:26,493] INFO [__main__.py:850] -   - GN:       0.9977 (delta: 0.0000)
+[2025-04-24 03:04:26,493] INFO [__main__.py:851] -   - Infomap:  0.9648 (delta: -0.0329)
+[2025-04-24 03:04:26,493] INFO [__main__.py:852] - Overall improvement: +0.9648
+[2025-04-24 03:04:26,493] INFO [__main__.py:856] - NOTE: The high modularity values are likely due to many disconnected components in the graph
+[2025-04-24 03:04:26,494] INFO [__main__.py:857] -       Each component forms its own natural community with no external edges
+[2025-04-24 03:04:26,494] INFO [__main__.py:859] - Visualization saved to: community_visualizations\community_report.html
+[2025-04-24 03:04:26,494] INFO [__main__.py:860] - Metrics saved to: results\metrics_20250424-030425.json
+[2025-04-24 03:04:26,494] INFO [__main__.py:861] - Total runtime: 32.61 seconds
+[2025-04-24 03:04:26,494] INFO [__main__.py:862] - ==================================================
+[2025-04-24 03:04:26,495] INFO [__main__.py:865] - Pipeline execution completed successfully.
+[2025-04-24 03:04:26,495] INFO [__main__.py:866] - Output log has been saved to: results\output_20250424-030426.txt

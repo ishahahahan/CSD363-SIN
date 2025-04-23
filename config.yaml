@@ -2,18 +2,21 @@
 
 # Data settings
 data_dir: data
-sample_size: null  # Reduced from 100000 for better performance
+sample_size: 100000  # Reduced from 100000 for better performance
+
+# Dataset files
+input_edge_file: undirected.txt  # File used to create the graph
+ground_truth_file: ground_truth.txt  # File containing ground truth communities
 
 # Algorithm parameters
-size_threshold: 500  # Communities larger than this will be refined
+size_threshold: 5000  # Communities larger than this will be refined
 target_subcommunities: 5  # Target number of subcommunities in refinement
 modularity_threshold: 0.3  # Communities with modularity below this will be enhanced with Infomap
-edge_file: edge_file.txt
 
 # Performance optimization settings
-max_iterations: 50  # Limit Girvan-Newman iterations
-time_limit: 300  # 5 minute time limit per algorithm
-fast_mode: true  # Use approximation algorithms for large graphs
+max_iterations: 30  # Limit Girvan-Newman iterations
+time_limit: 18000  # 5 minute time limit per algorithm
+fast_mode: True  # Use approximation algorithms for large graphs
 
 # Output settings
 output_dir: results  # Directory for saving results

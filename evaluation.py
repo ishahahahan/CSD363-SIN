@@ -266,8 +266,14 @@ def compute_nmi(partition, ground_truth):
     common_nodes = set(partition.keys()) & set(ground_truth.keys())
     
     if not common_nodes:
-        logger.warning("No common nodes between partition and ground truth")
+        logger.warning(f"No common nodes between partition ({len(partition)} nodes) and ground truth ({len(ground_truth)} nodes). NMI cannot be calculated.")
         return 0.0
+    
+    # If very few nodes overlap, also issue a warning
+    if len(common_nodes) < 10:
+        logger.warning(f"Very few common nodes ({len(common_nodes)}) between partition and ground truth. NMI may not be reliable.")
+    elif len(common_nodes) < min(len(partition), len(ground_truth)) * 0.1:
+        logger.warning(f"Only {len(common_nodes)} common nodes (less than 10%) between partition and ground truth. NMI may be skewed.")
         
     # Extract community assignments for common nodes
     true_labels = [ground_truth[node] for node in common_nodes]
@@ -276,6 +282,7 @@ def compute_nmi(partition, ground_truth):
     try:
         # Compute NMI
         nmi = normalized_mutual_info_score(true_labels, pred_labels)
+        logger.info(f"NMI calculated on {len(common_nodes)} overlapping nodes: {nmi:.4f}")
         return nmi
     except Exception as e:
         logger.error(f"Error computing NMI: {str(e)}")

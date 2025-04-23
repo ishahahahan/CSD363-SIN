@@ -103,6 +103,10 @@ def parse_args():
     # Configuration
     parser.add_argument('--config', type=str, default=None,
                         help='Path to config file (YAML or JSON)')
+    parser.add_argument('--input-edge-file', type=str, default=None,
+                        help='Path to input edge file for graph construction')
+    parser.add_argument('--ground-truth-file', type=str, default=None,
+                        help='Path to ground truth file for evaluation')
     
     return parser.parse_args()
 
@@ -267,25 +271,6 @@ def load_livejournal_ground_truth(file_path):
         logger.error(f"Error loading ground truth: {str(e)}")
         return {}
 
-def load_ground_truth(data_dir, sample_size=None):
-    """Load ground truth with support for different formats"""
-    logger = logging.getLogger('community_pipeline')
-    
-    # Check for LiveJournal ground truth
-    lj_ground_truth_file = os.path.join(data_dir, 'com-lj.top5000.cmty.txt')
-    if os.path.exists(lj_ground_truth_file):
-        logger.info(f"Loading LiveJournal ground truth from {lj_ground_truth_file}")
-        return load_livejournal_ground_truth(lj_ground_truth_file)
-    
-    # Alternative: Check for generic ground truth format (node_id community_id)
-    generic_ground_truth_file = os.path.join(data_dir, 'ground_truth.txt')
-    if os.path.exists(generic_ground_truth_file):
-        logger.info(f"Loading generic ground truth from {generic_ground_truth_file}")
-        return load_generic_ground_truth(generic_ground_truth_file)
-    
-    logger.warning("No ground truth files found. NMI will not be calculated.")
-    return None
-
 def load_generic_ground_truth(file_path):
     """Load ground truth from a generic format: node_id community_id"""
     logger = logging.getLogger('community_pipeline')
@@ -306,6 +291,116 @@ def load_generic_ground_truth(file_path):
     except Exception as e:
         logger.error(f"Error loading generic ground truth: {str(e)}")
         return {}
+
+def load_edge_file_ground_truth(file_path):
+    """
+    Load ground truth from the edge file, which could be in one of these formats:
+    1. node_id community_id (one per line)
+    2. Edge list format that needs to be converted to communities
+    
+    Args:
+        file_path (str): Path to the edge file
+        
+    Returns:
+        dict: Dictionary mapping node_id to community_id
+    """
+    logger = logging.getLogger('community_pipeline')
+    ground_truth = {}
+    
+    try:
+        logger.info(f"Attempting to load ground truth from: {file_path}")
+        
+        if not os.path.exists(file_path):
+            logger.error(f"Edge file does not exist: {file_path}")
+            return {}
+            
+        # First, try to read as node_id community_id format
+        node_to_comm_format = True
+        edge_list = []
+        
+        with open(file_path, 'r') as f:
+            for line_num, line in enumerate(f, 1):
+                if line.strip() and not line.startswith('#'):  # Skip comments and empty lines
+                    parts = line.strip().split()
+                    if len(parts) >= 2:
+                        try:
+                            # Try to interpret as node_id community_id
+                            node_id = int(parts[0])
+                            comm_id = int(parts[1])
+                            ground_truth[node_id] = comm_id
+                        except ValueError:
+                            # If conversion fails, it might be edge list format
+                            node_to_comm_format = False
+                            try:
+                                u, v = int(parts[0]), int(parts[1])
+                                edge_list.append((u, v))
+                            except ValueError:
+                                logger.warning(f"Skipping invalid line {line_num} in edge file: {line.strip()}")
+                    else:
+                        logger.warning(f"Line {line_num} doesn't have enough columns: {line.strip()}")
+        
+        # If it wasn't in node_id community_id format, try to convert edge list to communities
+        if not ground_truth and edge_list:
+            logger.info(f"Edge file appears to be in edge list format with {len(edge_list)} edges. Converting to communities...")
+            # Create a graph from the edge list
+            import networkx as nx
+            G = nx.Graph()
+            G.add_edges_from(edge_list)
+            
+            # Get connected components as communities
+            for comm_id, component in enumerate(nx.connected_components(G)):
+                for node in component:
+                    ground_truth[node] = comm_id
+            
+            logger.info(f"Extracted {len(set(ground_truth.values()))} communities from edge file's connected components")
+        
+        if ground_truth:
+            logger.info(f"Loaded ground truth from edge file with {len(ground_truth)} nodes across {len(set(ground_truth.values()))} communities")
+        else:
+            logger.warning(f"Could not extract ground truth from edge file: {file_path}")
+            
+        return ground_truth
+        
+    except Exception as e:
+        logger.error(f"Error loading ground truth from edge file: {str(e)}")
+        return {}
+
+def load_ground_truth(data_dir, sample_size=None, edge_file=None, ground_truth_file=None):
+    """Load ground truth with support for different formats"""
+    logger = logging.getLogger('community_pipeline')
+    
+    logger.info(f"Looking for ground truth files in: {data_dir}")
+    
+    # First check if ground_truth_file is specified (this is the new dedicated parameter)
+    if ground_truth_file:
+        ground_truth_path = os.path.join(data_dir, ground_truth_file)
+        logger.info(f"Checking for ground truth file at: {ground_truth_path}")
+        
+        if os.path.exists(ground_truth_path):
+            logger.info(f"Found ground truth file: {ground_truth_path}")
+            return load_edge_file_ground_truth(ground_truth_path)
+        else:
+            logger.warning(f"Specified ground truth file not found: {ground_truth_path}")
+    
+    # Fall back to edge_file if no ground_truth_file was specified or found
+    if edge_file:
+        logger.info(f"Falling back to edge file for ground truth: {edge_file}")
+        edge_file_path = os.path.join(data_dir, edge_file)
+        
+        if os.path.exists(edge_file_path):
+            logger.info(f"Found edge file: {edge_file_path}")
+            return load_edge_file_ground_truth(edge_file_path)
+        else:
+            logger.warning(f"Specified edge file not found: {edge_file_path}")
+    
+    # Check for LiveJournal ground truth
+    lj_ground_truth_file = os.path.join(data_dir, 'com-lj.top5000.cmty.txt')
+    if os.path.exists(lj_ground_truth_file):
+        logger.info(f"Loading LiveJournal ground truth from {lj_ground_truth_file}")
+        return load_livejournal_ground_truth(lj_ground_truth_file)
+    
+    logger.warning("No ground truth files found. NMI will not be calculated.")
+    return None
 
 def create_synthetic_ground_truth(G, method="louvain"):
     """Create synthetic ground truth for testing NMI when no real ground truth is available"""
@@ -493,12 +588,17 @@ def main():
     # Performance parameters
     max_iterations = args.max_iterations if hasattr(args, 'max_iterations') and args.max_iterations is not None else config.get('max_iterations', None)
     time_limit = args.time_limit if hasattr(args, 'time_limit') and args.time_limit != 600 else config.get('time_limit', 600)
-    fast_mode = args.fast_mode if hasattr(args, 'fast_mode') else config.get('fast_mode', False)
+    fast_mode = args.fast_mode or config.get('fast_mode', False)
+    
+    # Get file paths from config
+    input_edge_file = args.input_edge_file if hasattr(args, 'input_edge_file') and args.input_edge_file is not None else config.get('input_edge_file', None)
+    ground_truth_file = args.ground_truth_file if hasattr(args, 'ground_truth_file') and args.ground_truth_file is not None else config.get('ground_truth_file', None)
     
     logger.info(f"Configuration: data_dir={data_dir}, sample_size={sample_size}, "
                f"size_threshold={size_threshold}, target_subcommunities={target_subcommunities}, "
                f"modularity_threshold={modularity_threshold}")
     logger.info(f"Performance settings: max_iterations={max_iterations}, time_limit={time_limit}s, fast_mode={fast_mode}")
+    logger.info(f"File settings: input_edge_file={input_edge_file}, ground_truth_file={ground_truth_file}")
     
     # Dictionary to store metrics at each pipeline stage
     all_metrics = {}
@@ -510,25 +610,16 @@ def main():
     # Step 1: Load the graph
     load_start_time = time.time()
     url = "https://snap.stanford.edu/data/com-LiveJournal.tar.gz"
-    edge_file_path = args.edge_file if hasattr(args, 'edge_file') else config.get('edge_file', None)
-    G = get_graph(data_dir, edge_file_path=edge_file_path, url=url, sample_size=sample_size)
+    
+    # Load the graph from the input edge file
+    G = get_graph(data_dir, edge_file_path=input_edge_file, url=url, sample_size=sample_size)
     load_time = time.time() - load_start_time
     logger.info(f"Graph loaded in {load_time:.2f} seconds")
     
-    # Check graph size and give warnings/recommendations
-    if G.number_of_nodes() > 50000 and not fast_mode:
-        logger.warning(f"Large graph detected ({G.number_of_nodes()} nodes). Consider using --fast-mode for better performance.")
-        logger.warning("Processing may take a long time without optimizations.")
-    
-    # Set reasonable defaults for large graphs
-    if G.number_of_nodes() > 100000:
-        if max_iterations is None:
-            max_iterations = 20
-            logger.info(f"Large graph: Setting max_iterations to {max_iterations}")
-        
-        if time_limit > 300:
-            time_limit = 300
-            logger.info(f"Large graph: Setting time_limit to {time_limit}s")
+    # If input_edge_file is specified but doesn't exist, create it from the loaded graph
+    if input_edge_file:
+        from data_io import ensure_ground_truth_file
+        ensure_ground_truth_file(G, data_dir, input_edge_file)
     
     # Add graph structure analysis for context
     graph_analysis = analyze_graph_structure(G)
@@ -541,10 +632,15 @@ def main():
     # Load ground truth (add this after loading the graph)
     ground_truth = None
     if config.get('use_ground_truth', True):
-        ground_truth = load_ground_truth(data_dir)
+        # Make sure we're using the correct ground truth file
+        if ground_truth_file:
+            logger.info(f"Using ground truth file: {ground_truth_file}")
+            
+        # Try to load ground truth from specified ground truth file
+        ground_truth = load_ground_truth(data_dir, sample_size=sample_size, edge_file=input_edge_file, ground_truth_file=ground_truth_file)
         
         # If using a sampled graph, filter the ground truth
-        if sample_size:
+        if sample_size and ground_truth:
             ground_truth = filter_ground_truth_for_sample(ground_truth, G)
         
         # If no ground truth available but testing is needed, create synthetic
@@ -552,6 +648,18 @@ def main():
             synthetic_method = config.get('synthetic_ground_truth_method', 'louvain')
             ground_truth = create_synthetic_ground_truth(G, method=synthetic_method)
             logger.info(f"Created synthetic ground truth with {len(ground_truth)} nodes")
+        
+        if ground_truth:
+            logger.info(f"Ground truth loaded successfully with {len(ground_truth)} nodes and {len(set(ground_truth.values()))} communities")
+        else:
+            # If still no ground truth, create it from components as a last resort
+            if config.get('generate_ground_truth_from_components', True):
+                logger.warning("No ground truth loaded. Generating ground truth from graph components...")
+                ground_truth = {}
+                for i, component in enumerate(nx.connected_components(G)):
+                    for node in component:
+                        ground_truth[node] = i
+                logger.info(f"Generated ground truth from {len(set(ground_truth.values()))} connected components")
     
     # BASELINE EVALUATION - Single Community
     baseline_start_time = time.time()
@@ -753,5 +861,26 @@ def main():
     logger.info(f"Total runtime: {total_runtime:.2f} seconds")
     logger.info("=" * 50)
     
+    # Add log completion message to make sure output log is properly saved
+    logger.info("Pipeline execution completed successfully.")
+    logger.info(f"Output log has been saved to: {os.path.join('results', f'output_{time.strftime("%Y%m%d-%H%M%S")}.txt')}")
+    
+    # Return some key results for testing/verification
+    return {
+        'modularity': infomap_metrics['modularity'],
+        'communities': len(final_communities),
+        'visualization_path': visualization_path,
+        'metrics_path': metrics_path
+    }
+    
 if __name__ == "__main__":
-    main()
+    try:
+        result = main()
+        # Code execution completed, no need for additional output here
+    except Exception as e:
+        logger = logging.getLogger('community_pipeline')
+        logger.error(f"Pipeline execution failed with error: {str(e)}")
+        # Print stack trace to help with debugging
+        import traceback
+        logger.error(traceback.format_exc())
+        sys.exit(1)

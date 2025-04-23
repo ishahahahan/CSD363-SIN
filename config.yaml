@@ -2,7 +2,7 @@
 
 # Data settings
 data_dir: data
-sample_size: 100000  # Reduced from 100000 for better performance
+sample_size: 1000000  # Reduced from 100000 for better performance
 
 # Dataset files
 input_edge_file: undirected.txt  # File used to create the graph

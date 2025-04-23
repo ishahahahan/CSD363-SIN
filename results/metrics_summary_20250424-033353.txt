@@ -1,0 +1,37 @@
+================================================================================
+COMMUNITY DETECTION PIPELINE - METRICS SUMMARY
+Run date: 2025-04-24 03:12:56,879
+================================================================================
+
+GRAPH STATISTICS:
+--------------------------------------------------
+Nodes: 477998
+Edges: 530872
+Density: 0.00000500
+Connected Components: 71813
+Largest Component: 303526 nodes (63.50% of graph)
+
+ALGORITHM PERFORMANCE:
+--------------------------------------------------
+Algorithm            Communities     Modularity      Conductance    
+-----------------------------------------------------------------
+Baseline             1               0.0000          0.0000         
+Louvain              73882           0.8301          0.0296         
+Girvan-Newman        73886           0.8301          0.0307         
+Infomap              106809          0.7214          0.2932         
+
+NORMALIZED MUTUAL INFORMATION (NMI):
+--------------------------------------------------
+Algorithm            NMI Score      
+-----------------------------------
+Baseline             0.0000         
+Louvain              0.7615         
+Girvan-Newman        0.7615         
+Infomap              0.9505         
+
+IMPROVEMENT SUMMARY:
+--------------------------------------------------
+Louvain vs Baseline (Modularity): +0.8301
+Overall Improvement (Modularity): +0.7214
+
+Total Runtime: 19m 20.79s

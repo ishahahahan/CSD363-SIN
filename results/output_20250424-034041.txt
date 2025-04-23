@@ -1,0 +1,180 @@
+[2025-04-24 03:40:41,094] INFO - Output log being saved to: results\output_20250424-034041.txt
+[2025-04-24 03:40:41,095] INFO - Starting Community Detection Pipeline
+[2025-04-24 03:40:41,096] INFO - Loading configuration from config.yaml
+[2025-04-24 03:40:41,097] INFO - Configuration: data_dir=data, sample_size=None, size_threshold=5000, target_subcommunities=5, modularity_threshold=0.3
+[2025-04-24 03:40:41,097] INFO - Performance settings: max_iterations=30, time_limit=18000s, fast_mode=True
+[2025-04-24 03:40:41,097] INFO - File settings: input_edge_file=undirected.txt, ground_truth_file=ground_truth.txt
+[2025-04-24 03:40:41,099] INFO - Loading graph from cached pickle: data\livejournal.pkl
+[2025-04-24 03:40:41,486] INFO - Graph loaded in 0.39 seconds
+[2025-04-24 03:40:41,486] INFO - Ground truth file is available at: data\undirected.txt
+[2025-04-24 03:40:41,486] INFO - Analyzing graph structure...
+[2025-04-24 03:40:42,455] INFO - Graph has 477998 nodes and 530872 edges (density: 0.000005)
+[2025-04-24 03:40:42,456] INFO - Graph has 71813 connected components
+[2025-04-24 03:40:42,456] INFO - Largest component has 303526 nodes (63.50% of graph)
+[2025-04-24 03:40:42,456] WARNING - Graph is disconnected with 71813 components - metrics may be affected
+[2025-04-24 03:40:42,460] INFO - Component size distribution: 303526 nodes: 1 components, 58 nodes: 1 components, 38 nodes: 2 components, 35 nodes: 1 components, 32 nodes: 1 components, 27 nodes: 1 components, 24 nodes: 1 components, 22 nodes: 1 components, 20 nodes: 2 components
+[2025-04-24 03:40:42,477] INFO - Using ground truth file: ground_truth.txt
+[2025-04-24 03:40:42,478] INFO - Looking for ground truth files in: data
+[2025-04-24 03:40:42,478] INFO - Checking for ground truth file at: data\ground_truth.txt
+[2025-04-24 03:40:42,478] INFO - Found ground truth file: data\ground_truth.txt
+[2025-04-24 03:40:42,478] INFO - Attempting to load ground truth from: data\ground_truth.txt
+[2025-04-24 03:40:43,277] INFO - Loaded ground truth from edge file with 256109 nodes across 216518 communities
+[2025-04-24 03:40:43,302] INFO - Ground truth loaded successfully with 256109 nodes and 216518 communities
+[2025-04-24 03:40:43,352] INFO - Evaluating community detection results
+[2025-04-24 03:40:43,353] WARNING - Large graph detected (477998 nodes) - using optimized metrics
+[2025-04-24 03:40:44,008] WARNING - Graph has 71813 connected components (largest: 303526 nodes)
+[2025-04-24 03:40:44,008] WARNING - Metrics may be affected by graph disconnectivity
+[2025-04-24 03:40:45,878] INFO - Modularity: 0.0000
+[2025-04-24 03:40:46,623] INFO - Average conductance: 0.0000
+[2025-04-24 03:40:46,624] WARNING - Very low conductance likely due to graph disconnectivity (few edges between components)
+[2025-04-24 03:40:48,156] INFO - Estimated coverage based on 1/1 communities
+[2025-04-24 03:40:48,407] INFO - NMI calculated on 256109 overlapping nodes: 0.0000
+[2025-04-24 03:40:48,414] INFO - Normalized Mutual Information: 0.0000
+[2025-04-24 03:40:48,420] INFO - Evaluation completed in 5.07 seconds
+[2025-04-24 03:40:48,462] INFO - Baseline metrics - Modularity: 0.0000, Conductance: 0.0000
+[2025-04-24 03:43:44,689] INFO - Evaluating community detection results
+[2025-04-24 03:43:44,690] WARNING - Large graph detected (477998 nodes) - using optimized metrics
+[2025-04-24 03:43:45,311] WARNING - Graph has 71813 connected components (largest: 303526 nodes)
+[2025-04-24 03:43:45,312] WARNING - Metrics may be affected by graph disconnectivity
+[2025-04-24 03:43:47,162] INFO - Modularity: 0.8351
+[2025-04-24 03:43:47,737] INFO - Computed conductance for 1000/73881 communities (sampled)
+[2025-04-24 03:43:47,737] INFO - Average conductance: 0.0321
+[2025-04-24 03:43:48,834] INFO - Estimated coverage based on 500/73881 communities
+[2025-04-24 03:43:49,187] INFO - NMI calculated on 256109 overlapping nodes: 0.7604
+[2025-04-24 03:43:49,197] INFO - Normalized Mutual Information: 0.7604
+[2025-04-24 03:43:49,202] INFO - Evaluation completed in 4.51 seconds
+[2025-04-24 03:43:49,240] INFO - Initial Louvain: 73881 communities
+[2025-04-24 03:43:49,240] INFO - Louvain metrics - Modularity: 0.8351, Conductance: 0.0321
+[2025-04-24 03:43:49,240] INFO - Improvement from baseline - Modularity: +0.8351
+[2025-04-24 03:43:49,240] INFO - Large graph with many components: checking if Girvan-Newman refinement is needed
+[2025-04-24 03:43:49,241] INFO - Running Girvan-Newman with max_iterations=30
+[2025-04-24 03:43:49,241] INFO - Refining communities larger than 5000 nodes
+[2025-04-24 03:43:49,313] INFO - Found 3 communities larger than threshold
+[2025-04-24 03:43:49,316] INFO - Refining community 2 with 21325 nodes
+[2025-04-24 03:43:49,708] INFO - Running Girvan-Newman on community 2 to find 5 subcommunities
+[2025-04-24 03:43:49,708] INFO - Running Girvan-Newman algorithm with metric tracking
+[2025-04-24 03:43:49,709] WARNING - Large graph detected (21325 nodes). Using optimized GN algorithm.
+[2025-04-24 03:43:49,709] INFO - Using optimized Girvan-Newman for large graph (21325 nodes)
+[2025-04-24 03:43:49,723] INFO - Starting with 1 connected components
+[2025-04-24 03:43:49,739] INFO - Focusing on largest connected component (21325 nodes)
+[2025-04-24 03:43:50,073] INFO - Processing component 1 with 21325 nodes
+[2025-04-24 03:45:37,663] INFO - Evaluating step 1/1
+[2025-04-24 03:45:38,033] INFO - Using approximate edge betweenness with k=1000 samples
+[2025-04-24 03:47:39,798] INFO - Optimized Girvan-Newman completed in 230.09s
+[2025-04-24 03:47:39,800] INFO - Final communities: 1
+[2025-04-24 03:47:39,816] INFO - Found 1 subcommunities for community 2
+[2025-04-24 03:47:39,817] INFO - No meaningful partitioning found for community 2
+[2025-04-24 03:47:39,818] INFO - Refining community 7 with 43825 nodes
+[2025-04-24 03:47:40,419] INFO - Running Girvan-Newman on community 7 to find 5 subcommunities
+[2025-04-24 03:47:40,420] INFO - Running Girvan-Newman algorithm with metric tracking
+[2025-04-24 03:47:40,422] WARNING - Large graph detected (43825 nodes). Using optimized GN algorithm.
+[2025-04-24 03:47:40,423] INFO - Using optimized Girvan-Newman for large graph (43825 nodes)
+[2025-04-24 03:47:40,497] INFO - Starting with 1 connected components
+[2025-04-24 03:47:40,553] INFO - Focusing on largest connected component (43825 nodes)
+[2025-04-24 03:47:41,923] INFO - Processing component 1 with 43825 nodes
+[2025-04-24 03:54:22,610] INFO - Split component into 8 parts
+[2025-04-24 03:54:22,996] INFO - Step 2, Communities: 8, Modularity: 0.0002
+[2025-04-24 03:54:22,997] INFO - Evaluating step 1/2
+[2025-04-24 03:54:23,549] INFO - Using approximate edge betweenness with k=1000 samples
+[2025-04-24 03:58:12,640] INFO - Evaluating step 2/2
+[2025-04-24 03:58:13,007] INFO - Using approximate edge betweenness with k=1000 samples
+[2025-04-24 04:01:40,671] INFO - Optimized Girvan-Newman completed in 840.25s
+[2025-04-24 04:01:40,672] INFO - Final communities: 8
+[2025-04-24 04:01:40,673] INFO - Best modularity: 0.0002
+[2025-04-24 04:01:40,706] INFO - Found 8 subcommunities for community 7
+[2025-04-24 04:01:40,724] INFO - Applied refinement: split community 7 into 8 communities
+[2025-04-24 04:01:40,725] INFO - Refining community 34 with 27752 nodes
+[2025-04-24 04:01:40,948] INFO - Running Girvan-Newman on community 34 to find 5 subcommunities
+[2025-04-24 04:01:40,948] INFO - Running Girvan-Newman algorithm with metric tracking
+[2025-04-24 04:01:40,949] WARNING - Large graph detected (27752 nodes). Using optimized GN algorithm.
+[2025-04-24 04:01:40,949] INFO - Using optimized Girvan-Newman for large graph (27752 nodes)
+[2025-04-24 04:01:40,971] INFO - Starting with 1 connected components
+[2025-04-24 04:01:40,989] INFO - Focusing on largest connected component (27752 nodes)
+[2025-04-24 04:01:41,431] INFO - Processing component 1 with 27752 nodes
+[2025-04-24 04:03:21,277] INFO - Evaluating step 1/1
+[2025-04-24 04:03:21,493] INFO - Using approximate edge betweenness with k=1000 samples
+[2025-04-24 04:05:02,376] INFO - Optimized Girvan-Newman completed in 201.43s
+[2025-04-24 04:05:02,377] INFO - Final communities: 1
+[2025-04-24 04:05:02,393] INFO - Found 1 subcommunities for community 34
+[2025-04-24 04:05:02,394] INFO - No meaningful partitioning found for community 34
+[2025-04-24 04:05:02,435] INFO - Refinement complete. Partition now has 73888 communities
+[2025-04-24 04:05:02,498] INFO - Evaluating community detection results
+[2025-04-24 04:05:02,498] WARNING - Large graph detected (477998 nodes) - using optimized metrics
+[2025-04-24 04:05:03,365] WARNING - Graph has 71813 connected components (largest: 303526 nodes)
+[2025-04-24 04:05:03,366] WARNING - Metrics may be affected by graph disconnectivity
+[2025-04-24 04:05:05,186] INFO - Modularity: 0.8351
+[2025-04-24 04:05:05,734] INFO - Computed conductance for 1000/73888 communities (sampled)
+[2025-04-24 04:05:05,735] INFO - Average conductance: 0.0348
+[2025-04-24 04:05:06,720] INFO - Estimated coverage based on 500/73888 communities
+[2025-04-24 04:05:07,141] INFO - NMI calculated on 256109 overlapping nodes: 0.7605
+[2025-04-24 04:05:07,150] INFO - Normalized Mutual Information: 0.7605
+[2025-04-24 04:05:07,157] INFO - Evaluation completed in 4.66 seconds
+[2025-04-24 04:05:07,189] INFO - After refinement: 73888 communities
+[2025-04-24 04:05:07,189] INFO - GN metrics - Modularity: 0.8351, Conductance: 0.0348
+[2025-04-24 04:05:22,382] INFO - Evaluating community detection results
+[2025-04-24 04:05:22,382] WARNING - Large graph detected (477998 nodes) - using optimized metrics
+[2025-04-24 04:05:23,245] WARNING - Graph has 71813 connected components (largest: 303526 nodes)
+[2025-04-24 04:05:23,246] WARNING - Metrics may be affected by graph disconnectivity
+[2025-04-24 04:05:25,147] INFO - Modularity: 0.7210
+[2025-04-24 04:05:25,395] INFO - Computed conductance for 1000/107014 communities (sampled)
+[2025-04-24 04:05:25,395] INFO - Average conductance: 0.3718
+[2025-04-24 04:05:25,577] INFO - Estimated coverage based on 500/107014 communities
+[2025-04-24 04:05:25,936] INFO - NMI calculated on 256109 overlapping nodes: 0.9506
+[2025-04-24 04:05:25,946] INFO - Normalized Mutual Information: 0.9506
+[2025-04-24 04:05:26,983] INFO - Description length: 0.6673
+[2025-04-24 04:05:26,983] INFO - Evaluation completed in 4.60 seconds
+[2025-04-24 04:05:27,014] INFO - Final communities: 107014 communities
+[2025-04-24 04:05:27,014] INFO - Infomap metrics - Modularity: 0.7210, Conductance: 0.3718
+[2025-04-24 04:05:27,015] INFO - Improvement from GN - Modularity: -0.1141
+[2025-04-24 04:05:27,093] INFO - Creating community visualization...
+[2025-04-24 04:05:30,954] INFO - Preparing to visualize 477998 nodes, 530872 edges in 107014 communities
+[2025-04-24 04:05:31,422] INFO - Community size summary saved to community_visualizations\community_size_summary.png
+[2025-04-24 04:05:31,454] INFO - Computing layout for top 20 communities subgraph...
+[2025-04-24 04:05:52,412] INFO - Top communities visualization saved to community_visualizations\top_communities_visualization.png
+[2025-04-24 04:05:52,412] INFO - Creating community interconnection visualization...
+[2025-04-24 04:05:53,454] INFO - Community interconnection visualization saved to community_visualizations\community_interconnections.png
+[2025-04-24 04:05:53,454] INFO - Creating detailed visualizations for top 10 communities...
+[2025-04-24 04:05:54,772] INFO - Detailed visualization for community 0 saved to community_visualizations\detailed_communities\community_0_detail.png
+[2025-04-24 04:05:55,317] INFO - Detailed visualization for community 1 saved to community_visualizations\detailed_communities\community_1_detail.png
+[2025-04-24 04:05:55,816] INFO - Detailed visualization for community 2 saved to community_visualizations\detailed_communities\community_2_detail.png
+[2025-04-24 04:05:56,233] INFO - Detailed visualization for community 3 saved to community_visualizations\detailed_communities\community_3_detail.png
+[2025-04-24 04:05:56,795] INFO - Detailed visualization for community 4 saved to community_visualizations\detailed_communities\community_4_detail.png
+[2025-04-24 04:05:57,255] INFO - Detailed visualization for community 5 saved to community_visualizations\detailed_communities\community_5_detail.png
+[2025-04-24 04:05:57,672] INFO - Detailed visualization for community 6 saved to community_visualizations\detailed_communities\community_6_detail.png
+[2025-04-24 04:05:57,933] INFO - Detailed visualization for community 7 saved to community_visualizations\detailed_communities\community_7_detail.png
+[2025-04-24 04:05:58,195] INFO - Detailed visualization for community 8 saved to community_visualizations\detailed_communities\community_8_detail.png
+[2025-04-24 04:05:58,462] INFO - Detailed visualization for community 9 saved to community_visualizations\detailed_communities\community_9_detail.png
+[2025-04-24 04:05:58,561] INFO - Comprehensive visualization report saved to community_visualizations\community_report.html
+[2025-04-24 04:05:59,185] INFO - Evaluation metrics saved to results\metrics_20250424-040558.json
+[2025-04-24 04:05:59,190] INFO - Evaluation metrics saved to results\metrics_20250424-040558.json
+[2025-04-24 04:05:59,550] INFO - Metrics comparison plot saved to results\metrics_comparison.png
+[2025-04-24 04:05:59,551] INFO - Metrics comparison plot saved to results\metrics_comparison.png
+[2025-04-24 04:05:59,551] INFO - ==================================================
+[2025-04-24 04:05:59,551] INFO - NORMALIZED MUTUAL INFORMATION (NMI) RESULTS
+[2025-04-24 04:05:59,551] INFO - ==================================================
+[2025-04-24 04:05:59,551] INFO - NMI measures similarity between detected communities and ground truth (0-1, higher is better)
+[2025-04-24 04:05:59,551] INFO -   - Baseline: 0.0000
+[2025-04-24 04:05:59,551] INFO -   - Louvain:  0.7604
+[2025-04-24 04:05:59,551] INFO -   - GN:       0.7605
+[2025-04-24 04:05:59,552] INFO -   - Infomap:  0.9506
+[2025-04-24 04:05:59,552] INFO - ==================================================
+[2025-04-24 04:05:59,552] INFO - COMMUNITY DETECTION PIPELINE SUMMARY
+[2025-04-24 04:05:59,552] INFO - ==================================================
+[2025-04-24 04:05:59,651] INFO - Nodes: 477998, Edges: 530872
+[2025-04-24 04:05:59,652] INFO - Graph density: 0.000005
+[2025-04-24 04:05:59,652] INFO - Connected components: 71813
+[2025-04-24 04:05:59,652] WARNING - IMPORTANT: Graph is highly disconnected - metrics may not be meaningful
+[2025-04-24 04:05:59,652] WARNING - High number of connected components (71813) may explain high modularity values
+[2025-04-24 04:05:59,652] INFO - Final number of communities: 107014
+[2025-04-24 04:05:59,652] INFO - Stage-by-stage modularity:
+[2025-04-24 04:05:59,653] INFO -   - Baseline: 0.0000
+[2025-04-24 04:05:59,653] INFO -   - Louvain:  0.8351 (delta: +0.8351)
+[2025-04-24 04:05:59,653] INFO -   - GN:       0.8351 (delta: -0.0000)
+[2025-04-24 04:05:59,653] INFO -   - Infomap:  0.7210 (delta: -0.1141)
+[2025-04-24 04:05:59,653] INFO - Overall improvement: +0.7210
+[2025-04-24 04:05:59,653] INFO - Visualization saved to: community_visualizations\community_report.html
+[2025-04-24 04:05:59,653] INFO - Metrics saved to: results\metrics_20250424-040558.json
+[2025-04-24 04:05:59,653] INFO - Total runtime: 1518.46 seconds
+[2025-04-24 04:05:59,654] INFO - ==================================================
+[2025-04-24 04:05:59,654] INFO - Pipeline execution completed successfully.
+[2025-04-24 04:05:59,654] INFO - Output log has been saved to: results\output_20250424-040559.txt

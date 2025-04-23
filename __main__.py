@@ -9,12 +9,18 @@ import json
 import numpy as np
 from collections import defaultdict
 import matplotlib.pyplot as plt
+import networkx as nx
 
 # Import pipeline modules
 from data_io import get_graph
 from detection import run_louvain, refine_girvan_newman, enhance_infomap
-from evaluation import evaluate_all
+from evaluation import evaluate_all, compare_algorithms, track_algorithm_metrics
 from visualization import plot_communities
+from visualization.metrics_visualization import (
+    plot_algorithm_metrics,
+    plot_edge_betweenness_distribution,
+    plot_description_length_contribution
+)
 
 # Configure logging
 def setup_logging():
@@ -57,64 +63,166 @@ def parse_args():
     """Parse command line arguments"""
     parser = argparse.ArgumentParser(description='Community Detection Pipeline for LiveJournal Dataset')
     
+    # Data settings
     parser.add_argument('--data-dir', default='data',
                         help='Directory to store/find data (default: data)')
     parser.add_argument('--sample-size', type=int, default=None,
                         help='Sample size for graph (default: None, use full graph)')
+    
+    # Algorithm parameters
     parser.add_argument('--size-threshold', type=int, default=1000,
                         help='Size threshold for community refinement (default: 1000)')
     parser.add_argument('--target-subcommunities', type=int, default=5,
                         help='Target number of subcommunities for refinement (default: 5)')
     parser.add_argument('--modularity-threshold', type=float, default=0.3,
                         help='Modularity threshold for Infomap enhancement (default: 0.3)')
+    
+    # Performance parameters
+    parser.add_argument('--max-iterations', type=int, default=None,
+                        help='Maximum iterations for Girvan-Newman algorithm')
+    parser.add_argument('--time-limit', type=int, default=600,
+                        help='Time limit in seconds for each algorithm stage (default: 600)')
+    parser.add_argument('--fast-mode', action='store_true',
+                        help='Enable fast mode for large graphs (uses approximations)')
+                        
+    # Configuration
     parser.add_argument('--config', type=str, default=None,
                         help='Path to config file (YAML or JSON)')
     
     return parser.parse_args()
 
-def save_metrics_to_file(all_metrics, filepath='evaluation_metrics.json'):
-    """Save metrics dictionary to a JSON file"""
-    with open(filepath, 'w') as f:
-        json.dump(all_metrics, f, indent=4)
+def make_json_serializable(obj):
+    """
+    Recursively converts non-JSON-serializable objects to serializable formats.
+    
+    Args:
+        obj: Any Python object
+        
+    Returns:
+        A JSON-serializable version of the object
+    """
+    if isinstance(obj, dict):
+        # Convert dictionary with potentially non-string keys
+        return {str(key): make_json_serializable(value) for key, value in obj.items()}
+    elif isinstance(obj, list):
+        # Convert elements of a list
+        return [make_json_serializable(item) for item in obj]
+    elif isinstance(obj, tuple):
+        # Convert tuple to string
+        return str(obj)
+    elif isinstance(obj, (int, float, str, bool)) or obj is None:
+        # These types are already JSON-serializable
+        return obj
+    else:
+        # Convert anything else to string
+        return str(obj)
+
+def save_metrics_to_file(all_metrics, output_dir='results'):
+    """
+    Save metrics dictionary to a JSON file with proper error handling.
+    
+    Args:
+        all_metrics: Metrics dictionary to save
+        output_dir: Directory to save the file
+        
+    Returns:
+        str: Path to saved file or None if error occurred
+    """
     logger = logging.getLogger('community_pipeline')
-    logger.info(f"Evaluation metrics saved to {filepath}")
-    return filepath
+    
+    try:
+        # Create output directory if it doesn't exist
+        os.makedirs(output_dir, exist_ok=True)
+        
+        # Generate a timestamp-based filename to ensure uniqueness
+        timestamp = time.strftime("%Y%m%d-%H%M%S")
+        filepath = os.path.join(output_dir, f"metrics_{timestamp}.json")
+        
+        # Convert non-serializable objects to serializable format
+        serializable_metrics = make_json_serializable(all_metrics)
+        
+        with open(filepath, 'w') as f:
+            json.dump(serializable_metrics, f, indent=4)
+        
+        logger.info(f"Evaluation metrics saved to {filepath}")
+        return filepath
+    
+    except OSError as e:
+        logger.error(f"Error saving metrics file: {str(e)}")
+        # Try with a simpler filename in the current directory
+        try:
+            simple_filepath = f"metrics_{timestamp}.json"
+            with open(simple_filepath, 'w') as f:
+                json.dump(serializable_metrics, f, indent=4)
+            logger.info(f"Evaluation metrics saved to {simple_filepath} (fallback)")
+            return simple_filepath
+        except Exception as e2:
+            logger.error(f"Failed to save metrics even with simple filename: {str(e2)}")
+            return None
+    except Exception as e:
+        logger.error(f"Unexpected error saving metrics file: {str(e)}")
+        return None
 
-def plot_metrics_comparison(metrics_dict, output_path='metrics_comparison.png'):
-    """Generate a comparison plot of key metrics across pipeline stages"""
-    stages = list(metrics_dict.keys())
-    if 'summary' in stages:
-        stages.remove('summary')  # Don't include summary in plot
+def analyze_graph_structure(G):
+    """
+    Analyze the graph structure to provide context for evaluation metrics.
     
-    fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 8), sharex=True)
+    Args:
+        G (networkx.Graph): Input graph
+        
+    Returns:
+        dict: Dictionary of graph structure metrics
+    """
+    logger = logging.getLogger('community_pipeline')
+    logger.info("Analyzing graph structure...")
     
-    # Modularity plot
-    modularity_values = [metrics_dict[stage]['modularity'] for stage in stages]
-    ax1.plot(stages, modularity_values, 'o-', linewidth=2, markersize=8)
-    ax1.set_title('Modularity Across Pipeline Stages')
-    ax1.set_ylabel('Modularity')
-    ax1.grid(True)
+    # Basic graph properties
+    n_nodes = G.number_of_nodes()
+    n_edges = G.number_of_edges()
+    density = nx.density(G)
     
-    # Conductance plot
-    conductance_values = [metrics_dict[stage]['avg_conductance'] for stage in stages]
-    ax2.plot(stages, conductance_values, 'o-', linewidth=2, markersize=8, color='green')
-    ax2.set_title('Average Conductance Across Pipeline Stages')
-    ax2.set_ylabel('Avg Conductance')
-    ax2.set_xlabel('Pipeline Stage')
-    ax2.grid(True)
+    # Connectivity analysis
+    connected_components = list(nx.connected_components(G))
+    n_components = len(connected_components)
+    largest_cc_size = len(max(connected_components, key=len))
+    component_sizes = sorted([len(cc) for cc in connected_components], reverse=True)
     
-    plt.tight_layout()
-    plt.savefig(output_path)
-    return output_path
-
-# Add to your imports at the top of __main__.py
-import os
-import logging
-import time
-import networkx as nx
-from collections import defaultdict
-
-# Keep your existing setup_logging function
+    # Degree statistics
+    degrees = [d for _, d in G.degree()]
+    avg_degree = sum(degrees) / len(degrees) if degrees else 0
+    max_degree = max(degrees) if degrees else 0
+    min_degree = min(degrees) if degrees else 0
+    
+    # Create analysis report
+    analysis = {
+        "nodes": n_nodes,
+        "edges": n_edges,
+        "density": density,
+        "connected_components": n_components,
+        "largest_component_size": largest_cc_size,
+        "largest_component_percentage": largest_cc_size / n_nodes * 100 if n_nodes > 0 else 0,
+        "component_sizes": component_sizes[:10],  # Show only top 10 components
+        "avg_degree": avg_degree,
+        "max_degree": max_degree,
+        "min_degree": min_degree,
+        "isolated_nodes": sum(1 for d in degrees if d == 0)
+    }
+    
+    # Log important insights
+    logger.info(f"Graph has {n_nodes} nodes and {n_edges} edges (density: {density:.6f})")
+    logger.info(f"Graph has {n_components} connected components")
+    logger.info(f"Largest component has {largest_cc_size} nodes ({analysis['largest_component_percentage']:.2f}% of graph)")
+    
+    if n_components > 1:
+        logger.warning(f"Graph is disconnected with {n_components} components - metrics may be affected")
+        component_distribution = [f"{size} nodes: {component_sizes.count(size)} components" 
+                                 for size in sorted(set(component_sizes[:10]), reverse=True)]
+        logger.info(f"Component size distribution: {', '.join(component_distribution)}")
+    
+    if analysis['isolated_nodes'] > 0:
+        logger.warning(f"Graph contains {analysis['isolated_nodes']} isolated nodes")
+    
+    return analysis
 
 def load_livejournal_ground_truth(file_path):
     """Load LiveJournal ground truth communities"""
@@ -225,6 +333,119 @@ def filter_ground_truth_for_sample(ground_truth, G):
     
     return filtered_ground_truth
 
+def plot_metrics_comparison(metrics_dict, output_dir='results', filename='metrics_comparison.png'):
+    """Generate a comparison plot of key metrics across pipeline stages"""
+    # Get algorithm stages only, filtering out metadata and summary
+    algorithm_stages = [k for k in metrics_dict.keys() 
+                       if k not in ['summary', 'graph_analysis', 'comparison']]
+    
+    if not algorithm_stages:
+        logger = logging.getLogger('community_pipeline')
+        logger.warning("No algorithm stages to plot")
+        return None
+    
+    try:
+        # Create output directory if it doesn't exist
+        os.makedirs(output_dir, exist_ok=True)
+        
+        # Set the output path
+        output_path = os.path.join(output_dir, filename)
+        
+        # Determine which metrics are available across all stages
+        # Standard metrics
+        available_metrics = []
+        if all('modularity' in metrics_dict[stage] for stage in algorithm_stages):
+            available_metrics.append('modularity')
+        if all('avg_conductance' in metrics_dict[stage] for stage in algorithm_stages):
+            available_metrics.append('avg_conductance')
+        if all('num_communities' in metrics_dict[stage] for stage in algorithm_stages):
+            available_metrics.append('num_communities')
+        if all('coverage' in metrics_dict[stage] for stage in algorithm_stages):
+            available_metrics.append('coverage')
+        
+        # Check if any stage has algorithm-specific metrics
+        has_edge_betweenness = any('avg_edge_betweenness' in metrics_dict[stage] for stage in algorithm_stages)
+        has_description_length = any('description_length' in metrics_dict[stage] for stage in algorithm_stages)
+        
+        # Include algorithm-specific metrics
+        if has_edge_betweenness:
+            available_metrics.append('edge_betweenness')
+        if has_description_length:
+            available_metrics.append('description_length')
+        
+        # Create figure with subplots for each metric
+        fig, axes = plt.subplots(len(available_metrics), 1, figsize=(10, 4*len(available_metrics)))
+        
+        # Handle case with only one metric
+        if len(available_metrics) == 1:
+            axes = [axes]
+            
+        # Plot each available metric
+        for i, metric in enumerate(available_metrics):
+            if metric == 'edge_betweenness':
+                # For edge_betweenness, only plot for stages that have it
+                x_values = []
+                y_values = []
+                for idx, stage in enumerate(algorithm_stages):
+                    if 'avg_edge_betweenness' in metrics_dict[stage]:
+                        x_values.append(idx)
+                        y_values.append(metrics_dict[stage]['avg_edge_betweenness'])
+                
+                if x_values:  # Only plot if we have data
+                    axes[i].plot(x_values, y_values, 'o-', linewidth=2, markersize=8, color='purple')
+                    axes[i].set_title('Average Edge Betweenness')
+                    axes[i].set_xticks(range(len(algorithm_stages)))
+                    axes[i].set_xticklabels(algorithm_stages, rotation=45, ha='right')
+                    axes[i].set_ylabel('Edge Betweenness')
+                    axes[i].grid(True)
+            
+            elif metric == 'description_length':
+                # For description_length, only plot for stages that have it
+                x_values = []
+                y_values = []
+                for idx, stage in enumerate(algorithm_stages):
+                    if 'description_length' in metrics_dict[stage]:
+                        x_values.append(idx)
+                        y_values.append(metrics_dict[stage]['description_length'])
+                
+                if x_values:  # Only plot if we have data
+                    axes[i].plot(x_values, y_values, 'o-', linewidth=2, markersize=8, color='brown')
+                    axes[i].set_title('Description Length')
+                    axes[i].set_xticks(range(len(algorithm_stages)))
+                    axes[i].set_xticklabels(algorithm_stages, rotation=45, ha='right')
+                    axes[i].set_ylabel('Description Length')
+                    axes[i].grid(True)
+            
+            else:
+                # For standard metrics available in all stages
+                metric_key = 'avg_conductance' if metric == 'avg_conductance' else metric
+                metric_values = [metrics_dict[stage].get(metric_key, 0) for stage in algorithm_stages]
+                axes[i].plot(range(len(algorithm_stages)), metric_values, 'o-', linewidth=2, markersize=8)
+                axes[i].set_title(f'{metric.replace("_", " ").title()}')
+                axes[i].set_xticks(range(len(algorithm_stages)))
+                axes[i].set_xticklabels(algorithm_stages, rotation=45, ha='right')
+                axes[i].set_ylabel(metric.replace('_', ' ').title())
+                axes[i].grid(True)
+        
+        # Add note about disconnected graph if needed
+        if 'graph_analysis' in metrics_dict and metrics_dict['graph_analysis']['connected_components'] > 1:
+            components = metrics_dict['graph_analysis']['connected_components']
+            fig.text(0.5, 0.01, f"Note: Graph has {components} connected components",
+                    ha='center', fontsize=10, style='italic')
+        
+        plt.tight_layout()
+        plt.savefig(output_path)
+        plt.close()
+        
+        logger = logging.getLogger('community_pipeline')
+        logger.info(f"Metrics comparison plot saved to {output_path}")
+        return output_path
+    
+    except Exception as e:
+        logger = logging.getLogger('community_pipeline')
+        logger.error(f"Error generating metrics comparison plot: {e}")
+        return None
+
 def main():
     """Main entry point for the community detection pipeline"""
     # Set random seeds for reproducibility
@@ -254,12 +475,22 @@ def main():
     target_subcommunities = args.target_subcommunities if args.target_subcommunities != 5 else config.get('target_subcommunities', 5)
     modularity_threshold = args.modularity_threshold if args.modularity_threshold != 0.3 else config.get('modularity_threshold', 0.3)
     
+    # Performance parameters
+    max_iterations = args.max_iterations if hasattr(args, 'max_iterations') and args.max_iterations is not None else config.get('max_iterations', None)
+    time_limit = args.time_limit if hasattr(args, 'time_limit') and args.time_limit != 600 else config.get('time_limit', 600)
+    fast_mode = args.fast_mode if hasattr(args, 'fast_mode') else config.get('fast_mode', False)
+    
     logger.info(f"Configuration: data_dir={data_dir}, sample_size={sample_size}, "
                f"size_threshold={size_threshold}, target_subcommunities={target_subcommunities}, "
                f"modularity_threshold={modularity_threshold}")
+    logger.info(f"Performance settings: max_iterations={max_iterations}, time_limit={time_limit}s, fast_mode={fast_mode}")
     
     # Dictionary to store metrics at each pipeline stage
     all_metrics = {}
+    
+    # Create results directory at the beginning
+    results_dir = "results"
+    os.makedirs(results_dir, exist_ok=True)
     
     # Step 1: Load the graph
     load_start_time = time.time()
@@ -268,6 +499,29 @@ def main():
     G = get_graph(data_dir, edge_file_path=edge_file_path, url=url, sample_size=sample_size)
     load_time = time.time() - load_start_time
     logger.info(f"Graph loaded in {load_time:.2f} seconds")
+    
+    # Check graph size and give warnings/recommendations
+    if G.number_of_nodes() > 50000 and not fast_mode:
+        logger.warning(f"Large graph detected ({G.number_of_nodes()} nodes). Consider using --fast-mode for better performance.")
+        logger.warning("Processing may take a long time without optimizations.")
+    
+    # Set reasonable defaults for large graphs
+    if G.number_of_nodes() > 100000:
+        if max_iterations is None:
+            max_iterations = 20
+            logger.info(f"Large graph: Setting max_iterations to {max_iterations}")
+        
+        if time_limit > 300:
+            time_limit = 300
+            logger.info(f"Large graph: Setting time_limit to {time_limit}s")
+    
+    # Add graph structure analysis for context
+    graph_analysis = analyze_graph_structure(G)
+    
+    # Dictionary to store metrics at each pipeline stage
+    all_metrics = {
+        'graph_analysis': graph_analysis
+    }
     
     # Load ground truth (add this after loading the graph)
     ground_truth = None
@@ -287,7 +541,7 @@ def main():
     # BASELINE EVALUATION - Single Community
     baseline_start_time = time.time()
     baseline_partition = {node: 0 for node in G.nodes()}
-    baseline_metrics = evaluate_all(G, baseline_partition, ground_truth)
+    baseline_metrics = evaluate_all(G, baseline_partition, ground_truth, algorithm_type='baseline')
     baseline_time = time.time() - baseline_start_time
     
     baseline_metrics['runtime'] = baseline_time
@@ -297,7 +551,7 @@ def main():
     # Step 2: Run initial community detection using Louvain
     louvain_start_time = time.time()
     partition, communities = run_louvain(G)
-    louvain_metrics = evaluate_all(G, partition, ground_truth)
+    louvain_metrics = evaluate_all(G, partition, ground_truth, algorithm_type='louvain')
     louvain_time = time.time() - louvain_start_time
     
     louvain_metrics['runtime'] = louvain_time
@@ -313,26 +567,60 @@ def main():
     
     # Step 3: Refine large communities using Girvan-Newman
     gn_start_time = time.time()
-    refined_partition = refine_girvan_newman(G, communities, size_threshold, target_subcommunities)
     
-    # Update communities mapping after refinement
-    refined_communities = defaultdict(list)
-    for node, comm_id in refined_partition.items():
-        refined_communities[comm_id].append(node)
+    # For large graphs in fast mode or with many components, skip GN refinement if not needed
+    skip_gn = False
+    if (fast_mode and G.number_of_nodes() > 50000) or graph_analysis['connected_components'] > 5000:
+        logger.info("Large graph with many components: checking if Girvan-Newman refinement is needed")
+        # Check if we already have good communities from Louvain
+        if louvain_metrics['modularity'] > 0.9:
+            logger.info("High modularity detected from Louvain. Skipping Girvan-Newman refinement.")
+            skip_gn = True
+            refined_partition = partition
+            refined_communities = communities
+            
+            # Copy metrics to maintain pipeline
+            gn_metrics = louvain_metrics.copy()
+            gn_metrics['skipped'] = True
+            gn_metrics['runtime'] = 0.0
+            gn_metrics['improvement_from_louvain'] = {
+                'modularity': 0.0,
+                'conductance': 0.0
+            }
     
-    gn_metrics = evaluate_all(G, refined_partition, ground_truth)
-    gn_time = time.time() - gn_start_time
+    if not skip_gn:
+        # Set max_iterations for GN algorithm
+        if max_iterations is None:
+            # Adjust max_iterations based on graph size
+            if G.number_of_nodes() > 50000:
+                max_iterations = 20
+            elif G.number_of_nodes() > 10000:
+                max_iterations = 50
+            else:
+                max_iterations = 100
+        
+        logger.info(f"Running Girvan-Newman with max_iterations={max_iterations}")
+        refined_partition = refine_girvan_newman(G, communities, size_threshold, target_subcommunities, 
+                                                max_iterations=max_iterations)
+        
+        # Update communities mapping after refinement
+        refined_communities = defaultdict(list)
+        for node, comm_id in refined_partition.items():
+            refined_communities[comm_id].append(node)
+        
+        gn_metrics = evaluate_all(G, refined_partition, ground_truth, algorithm_type='girvan_newman')
+        gn_time = time.time() - gn_start_time
+        
+        gn_metrics['runtime'] = gn_time
+        gn_metrics['improvement_from_louvain'] = {
+            'modularity': gn_metrics['modularity'] - louvain_metrics['modularity'],
+            'conductance': louvain_metrics['avg_conductance'] - gn_metrics['avg_conductance']
+        }
     
-    gn_metrics['runtime'] = gn_time
-    gn_metrics['improvement_from_louvain'] = {
-        'modularity': gn_metrics['modularity'] - louvain_metrics['modularity'],
-        'conductance': louvain_metrics['avg_conductance'] - gn_metrics['avg_conductance']
-    }
     all_metrics['girvan_newman'] = gn_metrics
     
     logger.info(f"After refinement: {len(refined_communities)} communities")
     logger.info(f"GN metrics - Modularity: {gn_metrics['modularity']:.4f}, Conductance: {gn_metrics['avg_conductance']:.4f}")
-    logger.info(f"Improvement from Louvain - Modularity: {gn_metrics['improvement_from_louvain']['modularity']:.4f}")
     
     # Step 4: Enhance low-modularity communities using Infomap
     infomap_start_time = time.time()
@@ -343,7 +631,7 @@ def main():
     for node, comm_id in final_partition.items():
         final_communities[comm_id].append(node)
     
-    infomap_metrics = evaluate_all(G, final_partition, ground_truth)
+    infomap_metrics = evaluate_all(G, final_partition, ground_truth, algorithm_type='infomap')
     infomap_time = time.time() - infomap_start_time
     
     infomap_metrics['runtime'] = infomap_time
@@ -366,6 +654,12 @@ def main():
         'total_improvement': {
             'modularity': infomap_metrics['modularity'] - baseline_metrics['modularity'],
             'conductance': baseline_metrics['avg_conductance'] - infomap_metrics['avg_conductance']
+        },
+        'graph_structure': {
+            'n_components': graph_analysis['connected_components'],
+            'largest_component_pct': graph_analysis['largest_component_percentage'],
+            'density': graph_analysis['density'],
+            'avg_degree': graph_analysis['avg_degree'],
         }
     }
     
@@ -374,12 +668,18 @@ def main():
     visualization_path = plot_communities(G, final_communities)
     
     # Save metrics to file
-    metrics_path = save_metrics_to_file(all_metrics)
-    logger.info(f"Evaluation metrics saved to {metrics_path}")
+    metrics_path = save_metrics_to_file(all_metrics, output_dir=results_dir)
+    if metrics_path:
+        logger.info(f"Evaluation metrics saved to {metrics_path}")
+    else:
+        logger.warning("Failed to save metrics to file")
     
     # Generate metrics comparison plot
-    plot_path = plot_metrics_comparison(all_metrics)
-    logger.info(f"Metrics comparison plot saved to {plot_path}")
+    plot_path = plot_metrics_comparison(all_metrics, output_dir=results_dir)
+    if plot_path:
+        logger.info(f"Metrics comparison plot saved to {plot_path}")
+    else:
+        logger.warning("Could not generate metrics comparison plot")
     
     # Add NMI results to your summary
     if ground_truth:
@@ -406,13 +706,20 @@ def main():
             'overall': infomap_metrics['nmi'] - baseline_metrics['nmi']
         }
     
-    # Print summary results
+    # Print enhanced summary results with context for metrics
     total_runtime = time.time() - pipeline_start_time
     logger.info("=" * 50)
     logger.info("COMMUNITY DETECTION PIPELINE SUMMARY")
     logger.info("=" * 50)
-    logger.info(f"Nodes: {G.number_of_nodes()}")
-    logger.info(f"Edges: {G.number_of_edges()}")
+    logger.info(f"Nodes: {G.number_of_nodes()}, Edges: {G.number_of_edges()}")
+    logger.info(f"Graph density: {graph_analysis['density']:.6f}")
+    logger.info(f"Connected components: {graph_analysis['connected_components']}")
+    
+    # If graph is highly disconnected, add warning
+    if graph_analysis['connected_components'] > G.number_of_nodes() * 0.1:  # More than 10% of nodes are disconnected components
+        logger.warning("IMPORTANT: Graph is highly disconnected - metrics may not be meaningful")
+        logger.warning(f"High number of connected components ({graph_analysis['connected_components']}) may explain high modularity values")
+    
     logger.info(f"Final number of communities: {len(final_communities)}")
     logger.info(f"Stage-by-stage modularity:")
     logger.info(f"  - Baseline: {baseline_metrics['modularity']:.4f}")
@@ -420,6 +727,12 @@ def main():
     logger.info(f"  - GN:       {gn_metrics['modularity']:.4f} (delta: {gn_metrics['improvement_from_louvain']['modularity']:.4f})")
     logger.info(f"  - Infomap:  {infomap_metrics['modularity']:.4f} (delta: {infomap_metrics['improvement_from_gn']['modularity']:.4f})")
     logger.info(f"Overall improvement: +{all_metrics['summary']['total_improvement']['modularity']:.4f}")
+    
+    # Add interpretation of the results based on graph structure
+    if graph_analysis['connected_components'] > 100 and louvain_metrics['modularity'] > 0.9:
+        logger.info("NOTE: The high modularity values are likely due to many disconnected components in the graph")
+        logger.info("      Each component forms its own natural community with no external edges")
+    
     logger.info(f"Visualization saved to: {visualization_path}")
     logger.info(f"Metrics saved to: {metrics_path}")
     logger.info(f"Total runtime: {total_runtime:.2f} seconds")

@@ -1,60 +1,45 @@
 <!DOCTYPE html>
-    <html>
-    <head>
-        <title>Community Detection Results</title>
-        <style>
-            body { font-family: Arial, sans-serif; margin: 0; padding: 20px; }
-            h1, h2 { color: #333; }
-            .section { margin-bottom: 40px; }
-            img { max-width: 100%; border: 1px solid #ddd; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-            .stats { background-color: #f5f5f5; padding: 15px; border-radius: 5px; }
-        </style>
-    </head>
-    <body>
-        <h1>Community Detection Analysis Results</h1>
+        <html>
+        <head>
+            <title>Community Detection Results</title>
+            <style>
+                body { font-family: Arial, sans-serif; margin: 0; padding: 20px; }
+                h1, h2 { color: #333; }
+                .section { margin-bottom: 40px; }
+                img { max-width: 100%; border: 1px solid #ddd; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+                .stats { background-color: #f5f5f5; padding: 15px; border-radius: 5px; }
+                .warning { background-color: #fff3cd; color: #856404; padding: 10px; border-radius: 5px; margin: 10px 0; }
+            </style>
+        </head>
+        <body>
+            <h1>Community Detection Analysis Results</h1>
+            
+            <div class="stats">
+                <h2>Summary Statistics</h2>
+                <p>Total nodes: 395282</p>
+                <p>Total edges: 413832</p>
+                <p>Total communities: 95168</p>
+                <p>Largest community: 71661 (122 nodes)</p>
+                <p>Graph connected components: 68282</p>
+                <p>Largest connected component: 230616 nodes (58.3% of graph)</p>
+            </div>
+            
+            <div class="warning">
+                <strong>Note:</strong> This graph has 68282 connected components, which may naturally form separate communities.
+                High modularity values are expected in disconnected graphs as there are no edges between components.
+            </div>
+            
+            <div class="section">
+                <h2>Community Size Distribution</h2>
+                <img src="community_size_summary.png" alt="Community Size Summary">
+            </div>
+            
+            <div class="section">
+                <h2>Top Communities Overview</h2>
+                <img src="top_communities_visualization.png" alt="Top Communities Visualization">
+            </div>
         
-        <div class="stats">
-            <h2>Summary Statistics</h2>
-            <p>Total nodes: 345094</p>
-            <p>Total edges: 339806</p>
-            <p>Total communities: 89851</p>
-            <p>Largest community: 69637 (96 nodes)</p>
-        </div>
+            </div>
+        </body>
+        </html>
         
-        <div class="section">
-            <h2>Community Size Distribution</h2>
-            <img src="community_size_summary.png" alt="Community Size Summary">
-        </div>
-        
-        <div class="section">
-            <h2>Top Communities Overview</h2>
-            <img src="top_communities_visualization.png" alt="Top Communities Visualization">
-        </div>
-        
-        <div class="section">
-            <h2>Community Interconnections</h2>
-            <img src="community_interconnections.png" alt="Community Interconnections">
-        </div>
-        
-        <div class="section">
-            <h2>Detailed Community Views</h2>
-    
-            <h3>Community 69637</h3>
-            <img src="community_69637_detailed.png" alt="Community 69637 Detailed View">
-        
-            <h3>Community 67880</h3>
-            <img src="community_67880_detailed.png" alt="Community 67880 Detailed View">
-        
-            <h3>Community 80744</h3>
-            <img src="community_80744_detailed.png" alt="Community 80744 Detailed View">
-        
-            <h3>Community 69638</h3>
-            <img src="community_69638_detailed.png" alt="Community 69638 Detailed View">
-        
-            <h3>Community 69646</h3>
-            <img src="community_69646_detailed.png" alt="Community 69646 Detailed View">
-        
-        </div>
-    </body>
-    </html>
-    

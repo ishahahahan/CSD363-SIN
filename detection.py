@@ -41,107 +41,104 @@ def run_louvain(G):
     
     return partition, communities
 
-def refine_girvan_newman(G, communities, size_threshold, target_subcommunities):
+def refine_girvan_newman(G, communities, size_threshold, target_subcommunities, max_iterations=None):
     """
-    Refine large communities using Girvan-Newman edge betweenness algorithm.
+    Refine large communities using Girvan-Newman algorithm.
     
     Args:
         G (networkx.Graph): Input graph
-        communities (dict): Dictionary mapping community IDs to lists of nodes
-        size_threshold (int): Size threshold for community refinement
-        target_subcommunities (int): Target number of subcommunities to find
-    
+        communities (dict): Dictionary of community_id -> list of nodes
+        size_threshold (int): Communities larger than this will be refined
+        target_subcommunities (int): Target number of subcommunities after refinement
+        max_iterations (int, optional): Maximum number of iterations for Girvan-Newman
+        
     Returns:
-        dict: Updated partition mapping node->community
+        dict: Updated partition mapping node -> community_id
     """
+    logger = logging.getLogger('community_pipeline')
     logger.info(f"Refining communities larger than {size_threshold} nodes")
-    start_time = time.time()
     
-    # Start with the original partition
-    partition = {node: comm_id for comm_id, nodes in communities.items() for node in nodes}
-    next_community_id = max(communities.keys()) + 1 if communities else 0
+    # Get the original partition
+    partition = {}
+    for comm_id, nodes in communities.items():
+        for node in nodes:
+            partition[node] = comm_id
     
-    # Process large communities
-    large_communities = {comm_id: nodes for comm_id, nodes in communities.items() 
-                        if len(nodes) > size_threshold}
+    # Find large communities that need refinement
+    large_communities = {
+        comm_id: nodes for comm_id, nodes in communities.items()
+        if len(nodes) > size_threshold
+    }
+    
+    logger.info(f"Found {len(large_communities)} communities larger than threshold")
     
     if not large_communities:
-        logger.info("No communities exceed the size threshold")
+        logger.info("No communities need refinement, returning original partition")
         return partition
     
-    logger.info(f"Found {len(large_communities)} communities to refine")
+    # Start with highest community ID to avoid conflicts
+    next_community_id = max(communities.keys()) + 1
     
-    for comm_id, nodes in tqdm(large_communities.items(), desc="Refining large communities"):
-        logger.debug(f"Processing community {comm_id} with {len(nodes)} nodes")
+    # Process each large community
+    for comm_id, nodes in large_communities.items():
+        logger.info(f"Refining community {comm_id} with {len(nodes)} nodes")
         
-        # Extract subgraph for this community
-        G_sub = G.subgraph(nodes).copy()
+        # Extract the subgraph for this community
+        subgraph = G.subgraph(nodes).copy()
         
         # Skip if subgraph is too small or has no edges
-        if G_sub.number_of_nodes() < 10 or G_sub.number_of_edges() == 0:
-            logger.debug(f"Skipping community {comm_id}: too small or no edges")
+        if subgraph.number_of_nodes() < 3 or subgraph.number_of_edges() < 2:
+            logger.info(f"Skipping community {comm_id}: too small for meaningful refinement")
             continue
-        
-        # Compute edge betweenness centrality (approximate for large graphs)
-        logger.debug(f"Computing edge betweenness for community {comm_id}")
-        sub_start_time = time.time()
-        
-        if G_sub.number_of_nodes() > 5000:
-            logger.debug("Using approximate edge betweenness (k=1000)")
-            edge_betweenness = nx.edge_betweenness_centrality(G_sub, k=1000)
-        else:
-            edge_betweenness = nx.edge_betweenness_centrality(G_sub)
-        
-        logger.debug(f"Edge betweenness computed in {time.time() - sub_start_time:.2f} seconds")
-        
-        # Sort edges by betweenness
-        sorted_edges = sorted(edge_betweenness.items(), key=lambda x: x[1], reverse=True)
-        
-        # Iteratively remove edges and check connected components
-        edges_to_remove = []
-        G_tmp = G_sub.copy()
-        current_components = list(nx.connected_components(G_tmp))
-        
-        logger.debug(f"Starting edge removal with {len(current_components)} component(s)")
-        
-        for i, ((u, v), _) in enumerate(sorted_edges):
-            edges_to_remove.append((u, v))
             
-            # Check components every 10 edge removals or at the end
-            if (i + 1) % 10 == 0 or i == len(sorted_edges) - 1:
-                G_tmp.remove_edges_from(edges_to_remove)
-                edges_to_remove = []
-                current_components = list(nx.connected_components(G_tmp))
-                
-                if len(current_components) >= target_subcommunities:
-                    logger.debug(f"Reached target of {len(current_components)} subcommunities after removing {i+1} edges")
-                    break
+        # Determine target number of subcommunities based on size
+        target = min(
+            target_subcommunities,
+            subgraph.number_of_nodes() // 10
+        )
+        target = max(2, target)  # At least split into 2
         
-        # Assign new community IDs to components
-        if len(current_components) > 1:
-            for component in current_components:
-                if len(component) < 5:
-                    continue
-                for node in component:
-                    partition[node] = next_community_id
-                next_community_id += 1
-        else:
-            # Keep original community ID if no split occurred
-            logger.debug(f"Community {comm_id} could not be split further")
+        try:
+            # Run Girvan-Newman with a limit on iterations or components
+            from .algorithms.girvan_newman_wrapper import run_girvan_newman_with_tracking
+            
+            logger.info(f"Running Girvan-Newman on community {comm_id} to find {target} subcommunities")
+            
+            # Run GN with tracking and parameter passing
+            subpartition, metrics, _ = run_girvan_newman_with_tracking(
+                subgraph, 
+                max_communities=target,
+                max_iterations=max_iterations
+            )
+            
+            # Count actual subcommunities found
+            subcommunities = set(subpartition.values())
+            num_subcommunities = len(subcommunities)
+            
+            logger.info(f"Found {num_subcommunities} subcommunities for community {comm_id}")
+            
+            # Only apply refinement if we found multiple communities
+            if num_subcommunities > 1:
+                # Map the subcommunities to new community IDs
+                id_mapping = {old_id: next_community_id + i for i, old_id in enumerate(subcommunities)}
+                
+                # Update the partition for this community's nodes
+                for node, subcomm_id in subpartition.items():
+                    partition[node] = id_mapping[subcomm_id]
+                
+                # Update next_community_id
+                next_community_id += num_subcommunities
+                
+                logger.info(f"Applied refinement: split community {comm_id} into {num_subcommunities} communities")
+            else:
+                logger.info(f"No meaningful partitioning found for community {comm_id}")
+                
+        except Exception as e:
+            logger.error(f"Error refining community {comm_id}: {str(e)}")
+            # Continue with next community
+            continue
     
-    elapsed = time.time() - start_time
-    logger.info(f"Girvan-Newman refinement completed in {elapsed:.2f} seconds")
-    
-    if elapsed > 60:
-        logger.warning(f"Girvan-Newman refinement took {elapsed:.2f} seconds, which exceeds the 60-second threshold")
-    
-    # Regenerate communities dict
-    new_communities = defaultdict(list)
-    for node, comm_id in partition.items():
-        new_communities[comm_id].append(node)
-    
-    logger.info(f"After refinement: {len(new_communities)} communities")
-    
+    logger.info(f"Refinement complete. Partition now has {len(set(partition.values()))} communities")
     return partition
 
 def enhance_infomap(G, partition, communities, modularity_threshold):

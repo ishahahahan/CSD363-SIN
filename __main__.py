@@ -40,9 +40,24 @@ def setup_logging():
     file_formatter = logging.Formatter('[%(asctime)s] %(levelname)s [%(filename)s:%(lineno)d] - %(message)s')
     file_handler.setFormatter(file_formatter)
     
+    # Output log file handler (INFO level - same as console output)
+    timestamp = time.strftime("%Y%m%d-%H%M%S")
+    output_log_path = os.path.join("results", f"output_{timestamp}.txt")
+    
+    # Make sure the results directory exists
+    os.makedirs("results", exist_ok=True)
+    
+    output_handler = logging.FileHandler(output_log_path)
+    output_handler.setLevel(logging.INFO)
+    output_formatter = logging.Formatter('[%(asctime)s] %(levelname)s - %(message)s')
+    output_handler.setFormatter(output_formatter)
+    
     # Add handlers
     logger.addHandler(console_handler)
     logger.addHandler(file_handler)
+    logger.addHandler(output_handler)
+    
+    logger.info(f"Output log being saved to: {output_log_path}")
     
     return logger
 

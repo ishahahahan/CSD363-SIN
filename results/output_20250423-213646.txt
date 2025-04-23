@@ -1,0 +1,85 @@
+[2025-04-23 21:36:46,493] INFO - Output log being saved to: results\output_20250423-213646.txt
+[2025-04-23 21:36:46,494] INFO - Starting Community Detection Pipeline
+[2025-04-23 21:36:46,496] INFO - Loading configuration from config.yaml
+[2025-04-23 21:36:46,499] INFO - Configuration: data_dir=data, sample_size=10000, size_threshold=500, target_subcommunities=5, modularity_threshold=0.3
+[2025-04-23 21:36:46,499] INFO - Performance settings: max_iterations=50, time_limit=300s, fast_mode=False
+[2025-04-23 21:36:46,528] INFO - Graph loaded in 0.03 seconds
+[2025-04-23 21:36:46,529] INFO - Analyzing graph structure...
+[2025-04-23 21:36:46,562] INFO - Graph has 18607 nodes and 9565 edges (density: 0.000055)
+[2025-04-23 21:36:46,562] INFO - Graph has 9045 connected components
+[2025-04-23 21:36:46,563] INFO - Largest component has 8 nodes (0.04% of graph)
+[2025-04-23 21:36:46,563] WARNING - Graph is disconnected with 9045 components - metrics may be affected
+[2025-04-23 21:36:46,564] INFO - Component size distribution: 8 nodes: 1 components, 7 nodes: 2 components, 6 nodes: 4 components, 5 nodes: 8 components
+[2025-04-23 21:36:46,565] WARNING - No ground truth files found. NMI will not be calculated.
+[2025-04-23 21:36:46,566] INFO - Evaluating community detection results
+[2025-04-23 21:36:46,585] WARNING - Graph has 9045 connected components (largest: 8 nodes)
+[2025-04-23 21:36:46,586] WARNING - Metrics may be affected by graph disconnectivity
+[2025-04-23 21:36:46,688] INFO - Modularity: 0.0000
+[2025-04-23 21:36:46,730] INFO - Average conductance: 0.0000
+[2025-04-23 21:36:46,731] WARNING - Very low conductance likely due to graph disconnectivity (few edges between components)
+[2025-04-23 21:36:46,825] INFO - No ground truth provided, skipping NMI calculation
+[2025-04-23 21:36:46,826] INFO - Evaluation completed in 0.26 seconds
+[2025-04-23 21:36:46,829] INFO - Baseline metrics - Modularity: 0.0000, Conductance: 0.0000
+[2025-04-23 21:36:48,343] INFO - Evaluating community detection results
+[2025-04-23 21:36:48,399] WARNING - Graph has 9045 connected components (largest: 8 nodes)
+[2025-04-23 21:36:48,400] WARNING - Metrics may be affected by graph disconnectivity
+[2025-04-23 21:36:48,523] WARNING - Very high modularity (0.9999) with 9045 connected components.
+[2025-04-23 21:36:48,523] WARNING - This is expected for disconnected graphs, as each component naturally forms a community.
+[2025-04-23 21:36:48,524] INFO - Modularity: 0.9999
+[2025-04-23 21:36:48,557] INFO - Average conductance: 0.0000
+[2025-04-23 21:36:48,558] WARNING - Very low conductance likely due to graph disconnectivity (few edges between components)
+[2025-04-23 21:36:48,772] INFO - No ground truth provided, skipping NMI calculation
+[2025-04-23 21:36:48,775] INFO - Evaluation completed in 0.43 seconds
+[2025-04-23 21:36:48,780] INFO - Initial Louvain: 9045 communities
+[2025-04-23 21:36:48,781] INFO - Louvain metrics - Modularity: 0.9999, Conductance: 0.0000
+[2025-04-23 21:36:48,782] INFO - Improvement from baseline - Modularity: +0.9999
+[2025-04-23 21:36:48,783] INFO - Large graph with many components: checking if Girvan-Newman refinement is needed
+[2025-04-23 21:36:48,784] INFO - High modularity detected from Louvain. Skipping Girvan-Newman refinement.
+[2025-04-23 21:36:48,785] INFO - After refinement: 9045 communities
+[2025-04-23 21:36:48,785] INFO - GN metrics - Modularity: 0.9999, Conductance: 0.0000
+[2025-04-23 21:36:48,968] INFO - Evaluating community detection results
+[2025-04-23 21:36:49,026] WARNING - Graph has 9045 connected components (largest: 8 nodes)
+[2025-04-23 21:36:49,027] WARNING - Metrics may be affected by graph disconnectivity
+[2025-04-23 21:36:49,136] WARNING - Very high modularity (0.9999) with 9045 connected components.
+[2025-04-23 21:36:49,137] WARNING - This is expected for disconnected graphs, as each component naturally forms a community.
+[2025-04-23 21:36:49,137] INFO - Modularity: 0.9999
+[2025-04-23 21:36:49,174] INFO - Average conductance: 0.0000
+[2025-04-23 21:36:49,174] WARNING - Very low conductance likely due to graph disconnectivity (few edges between components)
+[2025-04-23 21:36:49,359] INFO - No ground truth provided, skipping NMI calculation
+[2025-04-23 21:36:49,411] INFO - Description length: 0.0000
+[2025-04-23 21:36:49,411] INFO - Evaluation completed in 0.44 seconds
+[2025-04-23 21:36:49,414] INFO - Final communities: 9045 communities
+[2025-04-23 21:36:49,414] INFO - Infomap metrics - Modularity: 0.9999, Conductance: 0.0000
+[2025-04-23 21:36:49,415] INFO - Improvement from GN - Modularity: 0.0000
+[2025-04-23 21:36:49,420] INFO - Creating community visualization...
+[2025-04-23 21:36:49,540] INFO - Preparing to visualize 18607 nodes, 9565 edges in 9045 communities
+[2025-04-23 21:36:50,520] INFO - Community size summary saved to community_visualizations\community_size_summary.png
+[2025-04-23 21:36:50,522] INFO - Computing layout for top 20 communities subgraph...
+[2025-04-23 21:36:51,499] INFO - Top communities visualization saved to community_visualizations\top_communities_visualization.png
+[2025-04-23 21:36:51,516] INFO - Community visualization completed in 2.10 seconds
+[2025-04-23 21:36:51,517] INFO - Comprehensive visualization report saved to community_visualizations\community_report.html
+[2025-04-23 21:36:51,732] INFO - Evaluation metrics saved to results\metrics_20250423-213651.json
+[2025-04-23 21:36:51,734] INFO - Evaluation metrics saved to results\metrics_20250423-213651.json
+[2025-04-23 21:36:52,370] INFO - Metrics comparison plot saved to results\metrics_comparison.png
+[2025-04-23 21:36:52,371] INFO - Metrics comparison plot saved to results\metrics_comparison.png
+[2025-04-23 21:36:52,372] INFO - ==================================================
+[2025-04-23 21:36:52,372] INFO - COMMUNITY DETECTION PIPELINE SUMMARY
+[2025-04-23 21:36:52,372] INFO - ==================================================
+[2025-04-23 21:36:52,376] INFO - Nodes: 18607, Edges: 9565
+[2025-04-23 21:36:52,376] INFO - Graph density: 0.000055
+[2025-04-23 21:36:52,376] INFO - Connected components: 9045
+[2025-04-23 21:36:52,377] WARNING - IMPORTANT: Graph is highly disconnected - metrics may not be meaningful
+[2025-04-23 21:36:52,377] WARNING - High number of connected components (9045) may explain high modularity values
+[2025-04-23 21:36:52,378] INFO - Final number of communities: 9045
+[2025-04-23 21:36:52,378] INFO - Stage-by-stage modularity:
+[2025-04-23 21:36:52,378] INFO -   - Baseline: 0.0000
+[2025-04-23 21:36:52,379] INFO -   - Louvain:  0.9999 (delta: +0.9999)
+[2025-04-23 21:36:52,379] INFO -   - GN:       0.9999 (delta: 0.0000)
+[2025-04-23 21:36:52,379] INFO -   - Infomap:  0.9999 (delta: 0.0000)
+[2025-04-23 21:36:52,380] INFO - Overall improvement: +0.9999
+[2025-04-23 21:36:52,380] INFO - NOTE: The high modularity values are likely due to many disconnected components in the graph
+[2025-04-23 21:36:52,381] INFO -       Each component forms its own natural community with no external edges
+[2025-04-23 21:36:52,382] INFO - Visualization saved to: community_visualizations\community_report.html
+[2025-04-23 21:36:52,382] INFO - Metrics saved to: results\metrics_20250423-213651.json
+[2025-04-23 21:36:52,383] INFO - Total runtime: 5.88 seconds
+[2025-04-23 21:36:52,383] INFO - ==================================================

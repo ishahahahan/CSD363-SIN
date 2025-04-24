@@ -620,6 +620,10 @@ def main():
     if input_edge_file:
         from data_io import ensure_ground_truth_file
         ensure_ground_truth_file(G, data_dir, input_edge_file)
+
+    if ground_truth_file and ground_truth_file != input_edge_file:
+        from data_io import ensure_ground_truth_file
+        ensure_ground_truth_file(G, data_dir, ground_truth_file)
     
     # Add graph structure analysis for context
     graph_analysis = analyze_graph_structure(G)
